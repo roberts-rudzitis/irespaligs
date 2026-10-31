@@ -44,6 +44,12 @@ class User(AbstractUser):
         help_text=_("Shown on payment notices, e.g. recipient name, bank, IBAN."),
     )
 
+    # Email reminders – each type can be switched off on the "My account" page.
+    remind_readings = models.BooleanField(_("monthly reminder to enter meter readings"), default=True)
+    remind_overdue = models.BooleanField(_("reminder when rent is overdue"), default=True)
+    remind_lease_end = models.BooleanField(_("reminder 60 and 30 days before a lease ends"), default=True)
+    remind_vid = models.BooleanField(_("reminder to check VID notification for new leases"), default=True)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

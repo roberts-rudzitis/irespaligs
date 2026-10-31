@@ -21,6 +21,10 @@ Status legend: ☐ open · ☑ verified · ✎ verified but changed our design
 - ☐ **V5 – Statements issued by a private landlord**: any mandatory content (e.g. is it a
   "rēķins" with required fields, or just a payment notice)? *Used in:* statement PDF wording.
 
+- ☐ **V6 – What counts as rental income**: are utilities/fixed charges the landlord passes on to
+  the tenant (and pays on to providers) part of taxable rental income, or only the rent?
+  *Used in:* year summary (shows billed rent and billed utilities separately; no tax calculation).
+
 ## Rental law (Dzīvojamo telpu īres likums, in force since 01.05.2021)
 
 - ☐ **L1 – Land register (zemesgrāmata) registration** of a lease makes it binding on a new

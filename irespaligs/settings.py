@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "apps.pages",
     "apps.rentals",
     "apps.statements",
+    "apps.reminders",
 ]
 
 MIDDLEWARE = [

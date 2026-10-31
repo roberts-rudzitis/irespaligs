@@ -17,6 +17,7 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'dashboard' %}">{% translate "Dashboard" %}</a></li>
           <li><a href="{% url 'rentals:tenant_list' %}">{% translate "Tenants" %}</a></li>
+          <li><a href="{% url 'statements:year_summary' %}">{% translate "Year summary" %}</a></li>
           <li><a href="{% url 'profile' %}">{% translate "My account" %}</a></li>
           <li><a href="{% url 'account_logout' %}">{% translate "Log out" %}</a></li>
         {% else %}

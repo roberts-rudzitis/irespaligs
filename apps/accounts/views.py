@@ -10,7 +10,10 @@ from .models import User
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ["full_name", "language", "payment_details"]
+        fields = [
+            "full_name", "language", "payment_details",
+            "remind_readings", "remind_overdue", "remind_lease_end", "remind_vid",
+        ]
         widgets = {"payment_details": forms.Textarea(attrs={"rows": 3})}
 
 

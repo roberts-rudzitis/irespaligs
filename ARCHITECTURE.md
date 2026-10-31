@@ -38,7 +38,7 @@ Kubernetes, file storage (S3). Each can be added later if a real need appears.
 irespaligs/            project settings, urls
 apps/
   accounts/            custom User model, profile, language choice, allauth templates
-  rentals/             Property, Tenant, Lease, Meter, Tariff, FixedCharge, MeterReading
+  rentals/             Property, Tenant, Lease, Meter, FixedCharge, MeterReading
   statements/          Statement, StatementLine, Payment, PDF + email, year summary export
   reminders/           reminder rules + ReminderLog, the daily `send_reminders` command
   subscriptions/       Stripe checkout, portal, webhook, plan limits

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n money %}
+{% block head_title %}{% translate "Year summary" %} {{ year }}{% endblock %}
+{% block content %}
+  <h1>{% translate "Year summary" %} {{ year }}</h1>
+  <form method="get" class="year-picker">
+    <select name="year" aria-label="{% translate 'Year' %}" onchange="this.form.submit()">
+      {% for y in years %}<option value="{{ y }}"{% if y == year %} selected{% endif %}>{{ y }}</option>{% endfor %}
+    </select>
+    <noscript><button type="submit">{% translate "Show" %}</button></noscript>
+  </form>
+
+  <div class="overflow-auto">{% include "statements/_year_table.html" %}</div>
+  {% include "statements/_tax_note.html" %}
+
+  <div class="actions">
+    <a href="{% url 'statements:year_summary_csv' %}?year={{ year }}" role="button" class="secondary outline">{% translate "Download CSV (Excel)" %}</a>
+    <a href="{% url 'statements:year_summary_pdf' %}?year={{ year }}" role="button" class="secondary outline">{% translate "Download PDF" %}</a>
+  </div>
+{% endblock %}

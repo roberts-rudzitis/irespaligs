@@ -1,0 +1,10 @@
+{% load i18n %}{% autoescape off %}{% blocktranslate with name=user.get_short_name %}Hello, {{ name }}!{% endblocktranslate %}
+
+{% translate "Here is what needs your attention:" %}
+{% for item in items %}
+• {{ item }}
+{% endfor %}
+{% translate "You can switch reminders off under “My account”." %}
+
+ĪresPalīgs
+{% endautoescape %}

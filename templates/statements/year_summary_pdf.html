@@ -1,0 +1,33 @@
+{% load i18n money %}<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: "DejaVu Sans", sans-serif; font-size: 10pt; color: #222; }
+  h1 { font-size: 16pt; }
+  h2 { font-size: 12pt; margin-top: 8mm; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border-bottom: 1px solid #ddd; padding: 2mm 1mm; text-align: left; }
+  .num { text-align: right; white-space: nowrap; }
+  .note { color: #555; margin-top: 6mm; }
+</style>
+</head>
+<body>
+  <h1>{% translate "Year summary" %} {{ year }}</h1>
+  <p>{{ landlord.full_name|default:landlord.email }}</p>
+  {% include "statements/_year_table.html" %}
+
+  {% for row in rows %}{% if row.payments %}
+    <h2>{{ row.property.name }} – {% translate "Payments received" %}</h2>
+    <table>
+      {% for p in row.payments %}
+        <tr><td>{{ p.paid_on|date:"SHORT_DATE_FORMAT" }}</td><td>{{ p.statement.lease.tenant.full_name }}</td>
+            <td>{{ p.statement.number }}</td><td class="num">{{ p.amount|eur }}</td></tr>
+      {% endfor %}
+    </table>
+  {% endif %}{% endfor %}
+
+  {% include "statements/_tax_note.html" %}
+</body>
+</html>

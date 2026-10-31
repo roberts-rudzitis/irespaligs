@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:48+0200\n"
+"POT-Creation-Date: 2026-10-31 18:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,16 +49,66 @@ msgstr ""
 msgid "Shown on payment notices, e.g. recipient name, bank, IBAN."
 msgstr ""
 
-#: apps/accounts/models.py:53
+#: apps/accounts/models.py:48
+msgid "monthly reminder to enter meter readings"
+msgstr ""
+
+#: apps/accounts/models.py:49
+msgid "reminder when rent is overdue"
+msgstr ""
+
+#: apps/accounts/models.py:50
+msgid "reminder 60 and 30 days before a lease ends"
+msgstr ""
+
+#: apps/accounts/models.py:51
+msgid "reminder to check VID notification for new leases"
+msgstr ""
+
+#: apps/accounts/models.py:59
 msgid "user"
 msgstr ""
 
-#: apps/accounts/models.py:54
+#: apps/accounts/models.py:60
 msgid "users"
 msgstr ""
 
-#: apps/accounts/views.py:22 apps/core/mixins.py:17
+#: apps/accounts/views.py:25 apps/core/mixins.py:17
 msgid "Saved."
+msgstr ""
+
+#: apps/reminders/services.py:37
+#, python-format
+msgid ""
+"It's a new month – enter meter readings and create payment notices for your "
+"%(count)s active lease(s)."
+msgstr ""
+
+#: apps/reminders/services.py:44
+#, python-format
+msgid ""
+"%(property)s: %(tenant)s has not fully paid the notice for %(month)s (due "
+"%(due)s). Still to pay: %(balance)s."
+msgstr ""
+
+#: apps/reminders/services.py:61
+#, python-format
+msgid ""
+"%(property)s: the lease with %(tenant)s ends on %(date)s (in %(days)s days). "
+"Time to agree on an extension or a new tenant."
+msgstr ""
+
+#: apps/reminders/services.py:81
+#, python-format
+msgid ""
+"%(property)s: a new lease with %(tenant)s started on %(date)s. Check whether "
+"you need to notify VID (e.g. if you use the 10 percent rental income tax) – "
+"see vid.gov.lv. Record the date on the lease when done."
+msgstr ""
+
+#: apps/reminders/services.py:115
+#, python-format
+msgid "ĪresPalīgs reminders for %(date)s"
 msgstr ""
 
 #: apps/rentals/forms.py:11
@@ -418,37 +468,81 @@ msgstr ""
 msgid "Payment notice for %(month)s – %(property)s"
 msgstr ""
 
-#: apps/statements/views.py:50
+#: apps/statements/views.py:53
 msgid "Draft created. Check it, then send it to the tenant."
 msgstr ""
 
-#: apps/statements/views.py:82
+#: apps/statements/views.py:85
 #, python-format
 msgid "Sent to %(email)s."
 msgstr ""
 
-#: apps/statements/views.py:92
+#: apps/statements/views.py:95
 msgid "Deleted."
 msgstr ""
 
-#: apps/statements/views.py:105
+#: apps/statements/views.py:108
 msgid "Payment recorded."
 msgstr ""
 
-#: apps/statements/views.py:116
+#: apps/statements/views.py:119
 msgid "Payment deleted."
 msgstr ""
 
-#: irespaligs/settings.py:131
-msgid "Latvian"
+#: apps/statements/views.py:158
+msgid "Payment date"
+msgstr ""
+
+#: apps/statements/views.py:158 apps/statements/views.py:166
+#: templates/pages/dashboard.html:23 templates/pages/dashboard.html:48
+#: templates/statements/_year_table.html:5
+msgid "Property"
+msgstr ""
+
+#: apps/statements/views.py:158 templates/pages/dashboard.html:48
+msgid "Tenant"
+msgstr ""
+
+#: apps/statements/views.py:158
+msgid "Notice"
+msgstr ""
+
+#: apps/statements/views.py:158 templates/statements/_lines.html:10
+msgid "Amount"
+msgstr ""
+
+#: apps/statements/views.py:158
+msgid "Note"
+msgstr ""
+
+#: apps/statements/views.py:166 templates/statements/_year_table.html:6
+msgid "Billed rent"
+msgstr ""
+
+#: apps/statements/views.py:166 templates/statements/_year_table.html:7
+msgid "Billed utilities and charges"
+msgstr ""
+
+#: apps/statements/views.py:166 templates/statements/_year_table.html:8
+msgid "Received"
+msgstr ""
+
+#: apps/statements/views.py:169 templates/pages/dashboard.html:37
+#: templates/rentals/property_detail.html:32
+#: templates/statements/_year_table.html:23
+msgid "Total"
 msgstr ""
 
 #: irespaligs/settings.py:132
+msgid "Latvian"
+msgstr ""
+
+#: irespaligs/settings.py:133
 msgid "English"
 msgstr ""
 
 #: templates/accounts/profile.html:3 templates/accounts/profile.html:5
-#: templates/base.html:20
+#: templates/base.html:21
 msgid "My account"
 msgstr ""
 
@@ -470,15 +564,21 @@ msgstr ""
 msgid "Tenants"
 msgstr ""
 
-#: templates/base.html:21
+#: templates/base.html:20 templates/statements/year_summary.html:3
+#: templates/statements/year_summary.html:5
+#: templates/statements/year_summary_pdf.html:17
+msgid "Year summary"
+msgstr ""
+
+#: templates/base.html:22
 msgid "Log out"
 msgstr ""
 
-#: templates/base.html:23 templates/pages/home.html:11
+#: templates/base.html:24 templates/pages/home.html:11
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:24
+#: templates/base.html:25
 msgid "Sign up"
 msgstr ""
 
@@ -495,10 +595,6 @@ msgstr ""
 msgid "Waiting for payment"
 msgstr ""
 
-#: templates/pages/dashboard.html:23 templates/pages/dashboard.html:48
-msgid "Property"
-msgstr ""
-
 #: templates/pages/dashboard.html:24 templates/statements/detail.html:47
 msgid "Still to pay"
 msgstr ""
@@ -507,16 +603,8 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: templates/pages/dashboard.html:37 templates/rentals/property_detail.html:32
-msgid "Total"
-msgstr ""
-
 #: templates/pages/dashboard.html:42
 msgid "Properties"
-msgstr ""
-
-#: templates/pages/dashboard.html:48
-msgid "Tenant"
 msgstr ""
 
 #: templates/pages/dashboard.html:49
@@ -545,6 +633,19 @@ msgstr ""
 
 #: templates/pages/home.html:10
 msgid "Create a free account"
+msgstr ""
+
+#: templates/reminders/digest.txt:1 templates/statements/email.txt:1
+#, python-format
+msgid "Hello, %(name)s!"
+msgstr ""
+
+#: templates/reminders/digest.txt:3
+msgid "Here is what needs your attention:"
+msgstr ""
+
+#: templates/reminders/digest.txt:7
+msgid "You can switch reminders off under “My account”."
 msgstr ""
 
 #: templates/rentals/confirm_delete.html:3
@@ -670,10 +771,6 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: templates/statements/_lines.html:10
-msgid "Amount"
-msgstr ""
-
 #: templates/statements/_lines.html:26
 msgid "Total due"
 msgstr ""
@@ -692,6 +789,15 @@ msgstr ""
 
 #: templates/statements/_state.html:1
 msgid "Unpaid"
+msgstr ""
+
+#: templates/statements/_tax_note.html:5
+msgid ""
+"This is a summary of the amounts recorded in ĪresPalīgs, not a tax "
+"calculation. \"Billed\" counts sent notices by their month; \"Received\" "
+"counts payments by their payment date. Which amounts are taxable rental "
+"income, and at what rate, depends on your tax regime – check the rules on "
+"vid.gov.lv or with a tax adviser."
 msgstr ""
 
 #: templates/statements/create.html:10
@@ -744,11 +850,6 @@ msgstr ""
 msgid "Save payment"
 msgstr ""
 
-#: templates/statements/email.txt:1
-#, python-format
-msgid "Hello, %(name)s!"
-msgstr ""
-
 #: templates/statements/email.txt:3
 #, python-format
 msgid "Attached is the payment notice for %(month)s for %(property)s."
@@ -782,4 +883,24 @@ msgstr ""
 
 #: templates/statements/pdf.html:56
 msgid "Prepared with ĪresPalīgs."
+msgstr ""
+
+#: templates/statements/year_summary.html:7
+msgid "Year"
+msgstr ""
+
+#: templates/statements/year_summary.html:10
+msgid "Show"
+msgstr ""
+
+#: templates/statements/year_summary.html:17
+msgid "Download CSV (Excel)"
+msgstr ""
+
+#: templates/statements/year_summary.html:18
+msgid "Download PDF"
+msgstr ""
+
+#: templates/statements/year_summary_pdf.html:22
+msgid "Payments received"
 msgstr ""

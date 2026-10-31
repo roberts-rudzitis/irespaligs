@@ -1,0 +1,29 @@
+{% load i18n money %}
+<table class="lines">
+  <thead>
+    <tr>
+      <th>{% translate "Property" %}</th>
+      <th class="num">{% translate "Billed rent" %}</th>
+      <th class="num">{% translate "Billed utilities and charges" %}</th>
+      <th class="num">{% translate "Received" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+      <tr>
+        <td>{{ row.property.name }}</td>
+        <td class="num">{{ row.billed_rent|eur }}</td>
+        <td class="num">{{ row.billed_other|eur }}</td>
+        <td class="num">{{ row.received|eur }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>{% translate "Total" %}</th>
+      <th class="num">{{ totals.billed_rent|eur }}</th>
+      <th class="num">{{ totals.billed_other|eur }}</th>
+      <th class="num">{{ totals.received|eur }}</th>
+    </tr>
+  </tfoot>
+</table>
