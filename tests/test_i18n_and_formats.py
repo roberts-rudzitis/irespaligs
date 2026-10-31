@@ -81,3 +81,18 @@ def test_quantity_formatting_drops_trailing_zeros():
     assert format_quantity(Decimal("8450.000")) == "8450"
     assert format_quantity(Decimal("2.15400")) == "2,154"
     assert format_quantity(None) == ""
+
+
+def test_russian_ui(client, db):
+    client.post(reverse("set_language"), {"language": "ru", "next": "/"})
+    html = client.get(reverse("home")).content.decode()
+    assert "Аренда, коммунальные платежи и арендаторы" in html
+    assert "4,99\xa0€" in html  # same Latvian number format in every language
+    with translation.override("ru"):
+        assert formats.date_format(datetime.date(2026, 3, 5), "SHORT_DATE_FORMAT") == "05.03.2026"
+
+
+def test_russian_legal_pages(client, db):
+    client.cookies["django_language"] = "ru"
+    assert "Политика конфиденциальности" in client.get(reverse("privacy")).content.decode()
+    assert "Условия использования" in client.get(reverse("terms")).content.decode()

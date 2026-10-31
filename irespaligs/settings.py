@@ -135,7 +135,7 @@ LANGUAGE_CODE = "lv"
 LANGUAGES = [
     ("lv", _("Latvian")),
     ("en", _("English")),
-    # ("ru", _("Russian")),  # later: add locale/ru and uncomment
+    ("ru", _("Russian")),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 USE_I18N = True

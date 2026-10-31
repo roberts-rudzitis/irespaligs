@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 19:34+0200\n"
+"POT-Creation-Date: 2026-10-31 19:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -701,6 +701,10 @@ msgstr "Latviešu"
 msgid "English"
 msgstr "Angļu"
 
+#: irespaligs/settings.py:138
+msgid "Russian"
+msgstr "Krievu"
+
 #: templates/accounts/profile.html:3 templates/accounts/profile.html:5
 #: templates/base.html:22
 msgid "My account"
@@ -1068,24 +1072,32 @@ msgstr "Atcelt"
 msgid ""
 "You can submit the meter readings for %(property)s at this link each month – "
 "no registration needed:"
-msgstr "Katru mēnesi varat iesniegt skaitītāju rādījumus par īpašumu “%(property)s”, izmantojot šo saiti – reģistrācija nav nepieciešama:"
+msgstr ""
+"Katru mēnesi varat iesniegt skaitītāju rādījumus par īpašumu “%(property)s”, "
+"izmantojot šo saiti – reģistrācija nav nepieciešama:"
 
 #: templates/rentals/email_readings_link.txt:6
 #, python-format
 msgid ""
 "Please keep the link private. If you have questions, reply to this email – "
 "it goes to %(landlord)s."
-msgstr "Lūdzu, nenododiet saiti citiem. Ja jums ir jautājumi, atbildiet uz šo e-pastu – atbilde nonāks pie %(landlord)s."
+msgstr ""
+"Lūdzu, nenododiet saiti citiem. Ja jums ir jautājumi, atbildiet uz šo e-"
+"pastu – atbilde nonāks pie %(landlord)s."
 
 #: templates/rentals/email_readings_submitted.txt:1
 #, python-format
 msgid "%(tenant)s submitted meter readings for %(property)s (%(month)s):"
-msgstr "%(tenant)s iesniedza skaitītāju rādījumus par īpašumu “%(property)s” (%(month)s):"
+msgstr ""
+"%(tenant)s iesniedza skaitītāju rādījumus par īpašumu “%(property)s” "
+"(%(month)s):"
 
 #: templates/rentals/email_readings_submitted.txt:5
 msgid ""
 "Create the payment notice (the readings are filled in – please check them):"
-msgstr "Izveidojiet maksājuma paziņojumu (rādījumi jau ir aizpildīti – lūdzu, pārbaudiet tos):"
+msgstr ""
+"Izveidojiet maksājuma paziņojumu (rādījumi jau ir aizpildīti – lūdzu, "
+"pārbaudiet tos):"
 
 #: templates/rentals/form.html:10
 msgid "+ Add a new tenant"
@@ -1140,7 +1152,9 @@ msgstr "Noņemt saiti"
 msgid ""
 "The tenant opens the link (no registration), enters the readings, and you "
 "get an email. The new payment notice is then filled in."
-msgstr "Īrnieks atver saiti (bez reģistrācijas), ievada rādījumus, un jūs saņemat e-pastu. Jaunajā maksājuma paziņojumā rādījumi būs jau aizpildīti."
+msgstr ""
+"Īrnieks atver saiti (bez reģistrācijas), ievada rādījumus, un jūs saņemat e-"
+"pastu. Jaunajā maksājuma paziņojumā rādījumi būs jau aizpildīti."
 
 #: templates/rentals/property_detail.html:43
 msgid "Create link"
@@ -1210,13 +1224,17 @@ msgstr "Skaitītāju rādījumi"
 msgid ""
 "The payment notice for %(month)s has already been prepared. If a reading is "
 "wrong, please contact your landlord."
-msgstr "Maksājuma paziņojums par %(month)s jau ir sagatavots. Ja kāds rādījums ir nepareizs, lūdzu, sazinieties ar izīrētāju."
+msgstr ""
+"Maksājuma paziņojums par %(month)s jau ir sagatavots. Ja kāds rādījums ir "
+"nepareizs, lūdzu, sazinieties ar izīrētāju."
 
 #: templates/rentals/tenant_readings_done.html:10
 msgid ""
 "Thank you! Your landlord has been notified. You can open this link again to "
 "correct the readings until the payment notice is prepared."
-msgstr "Paldies! Izīrētājs ir informēts. Kamēr maksājuma paziņojums nav sagatavots, varat atvērt šo saiti vēlreiz un labot rādījumus."
+msgstr ""
+"Paldies! Izīrētājs ir informēts. Kamēr maksājuma paziņojums nav sagatavots, "
+"varat atvērt šo saiti vēlreiz un labot rādījumus."
 
 #: templates/rentals/tenant_readings_form.html:11
 #, python-format
