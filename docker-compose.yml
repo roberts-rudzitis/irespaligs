@@ -1,0 +1,37 @@
+# Local development only. Production runs the same Dockerfile on Render (see ARCHITECTURE.md §9).
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: irespaligs
+      POSTGRES_USER: irespaligs
+      POSTGRES_PASSWORD: irespaligs
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U irespaligs"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build: .
+    # Apply database changes, then start Django's dev server (auto-reloads on code changes)
+    command: sh -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      DJANGO_DEBUG: "1"
+      DATABASE_URL: postgres://irespaligs:irespaligs@db:5432/irespaligs
+    # Optional: your own overrides (copy .env.example to .env)
+    env_file:
+      - path: .env
+        required: false
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

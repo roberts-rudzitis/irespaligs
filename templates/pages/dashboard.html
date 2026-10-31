@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Dashboard" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Dashboard" %}</h1>
+  <p>{% blocktranslate with name=user.get_short_name %}Welcome, {{ name }}!{% endblocktranslate %}</p>
+  <p>{% translate "Your properties will appear here." %}</p>
+{% endblock %}

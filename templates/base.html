@@ -1,0 +1,54 @@
+{% load i18n static %}<!doctype html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block head_title %}{% endblock %} · ĪresPalīgs</title>
+  <link rel="stylesheet" href="{% static 'css/pico.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul><li><a href="{% url 'home' %}" class="brand"><strong>ĪresPalīgs</strong></a></li></ul>
+      <ul>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'dashboard' %}">{% translate "Dashboard" %}</a></li>
+          <li><a href="{% url 'account_logout' %}">{% translate "Log out" %}</a></li>
+        {% else %}
+          <li><a href="{% url 'account_login' %}">{% translate "Log in" %}</a></li>
+          <li><a href="{% url 'account_signup' %}" role="button">{% translate "Sign up" %}</a></li>
+        {% endif %}
+        <li>
+          <form action="{% url 'set_language' %}" method="post" class="lang-switch">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            {% get_available_languages as languages %}
+            {% for code, name in languages %}
+              <button type="submit" name="language" value="{{ code }}"
+                      class="outline secondary{% if code == LANGUAGE_CODE %} active{% endif %}"
+                      {% if code == LANGUAGE_CODE %}aria-current="true"{% endif %}>{{ code|upper }}</button>
+            {% endfor %}
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    {% if messages %}
+      {% for message in messages %}
+        <article class="message message-{{ message.tags }}">{{ message }}</article>
+      {% endfor %}
+    {% endif %}
+    {% block body %}{% block content %}{% endblock %}{% endblock %}
+  </main>
+
+  <footer class="container">
+    <small>© ĪresPalīgs</small>
+  </footer>
+  {% block extra_body %}{% endblock %}
+</body>
+</html>
