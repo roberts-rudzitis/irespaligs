@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% comment %}
+  DRAFT privacy policy (English). Must be reviewed by a lawyer before launch.
+  TODO: verify (VERIFY.md G1, G2, G3, G4, G5). Fill in all [PLACEHOLDERS].
+  Keep in sync with privacy_lv.html (the Latvian version prevails).
+{% endcomment %}
+{% block head_title %}Privacy policy{% endblock %}
+{% block content %}
+{% include "pages/legal/_draft_banner.html" %}
+<h1>Privacy policy</h1>
+<p><small>Effective from [DATE]. In case of differences, the Latvian version prevails.</small></p>
+
+<h2>1. Who we are</h2>
+<p>Controller: [COMPANY NAME], reg. no. [NUMBER], registered address [ADDRESS].
+Data protection contact: <a href="mailto:{{ support_email }}">{{ support_email }}</a>.</p>
+
+<h2>2. What data we process</h2>
+<ul>
+  <li><strong>Your account:</strong> email address, name (if given), language, payment details you add for notices, a password hash (never the password itself).</li>
+  <li><strong>Data you enter about your properties and tenants:</strong> property names and addresses, tenants' name, email and phone, lease terms, meter readings, payment notices and payments.</li>
+  <li><strong>Subscription:</strong> plan and status. Card data is processed by Stripe – we never see it.</li>
+  <li><strong>Technical data:</strong> server logs (IP address, time) for security.</li>
+</ul>
+<p>We <strong>do not process personal codes (personas kods)</strong> and do not store identity documents.</p>
+
+<h2>3. Why and on what basis</h2>
+<ul>
+  <li>To provide the service and perform our contract with you (GDPR Art. 6(1)(b)).</li>
+  <li>To meet invoicing and accounting obligations (legal obligation, Art. 6(1)(c)).</li>
+  <li>For security and improving the service (legitimate interests, Art. 6(1)(f)).</li>
+</ul>
+
+<h2>4. Tenant data</h2>
+<p>You (the landlord) are the controller of the tenant data you enter. We process it on your behalf as a processor, under the "Data processing agreement" section of the Terms.</p>
+
+<h2>5. Where data is stored and who receives it</h2>
+<p>All data is stored in the European Union. We use these processors:</p>
+<ul>
+  <li>Render (hosting and database, Frankfurt, Germany)</li>
+  <li>Stripe (payments)</li>
+  <li>Brevo (sending emails, France)</li>
+</ul>
+
+<h2>6. How long we keep data</h2>
+<p>For as long as you have an account. When you delete your account, all data you entered is deleted immediately. Accounting records of your subscription payments are kept as long as the law requires ([PERIOD]).</p>
+
+<h2>7. Your rights</h2>
+<p>You have the right to access, correct and delete your data, restrict or object to processing, and receive it in a portable format. Under "My account" you can <strong>download all your data</strong> or <strong>delete your account</strong> at any time. You may lodge a complaint with the Data State Inspectorate of Latvia (www.dvi.gov.lv).</p>
+
+<h2>8. Cookies</h2>
+<p>We only use necessary cookies: for your login session, security (CSRF), language choice and remembering this notice. We do not use analytics or advertising cookies.</p>
+
+<h2>9. Changes</h2>
+<p>We will inform you by email about significant changes.</p>
+{% endblock %}

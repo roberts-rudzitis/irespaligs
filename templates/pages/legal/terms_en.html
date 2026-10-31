@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% comment %}
+  DRAFT terms of use (English). Must be reviewed by a lawyer before launch.
+  TODO: verify (VERIFY.md B3 withdrawal right, G1 DPA, B1 PVN). Fill in all [PLACEHOLDERS].
+  Keep in sync with terms_lv.html (the Latvian version prevails).
+{% endcomment %}
+{% block head_title %}Terms of use{% endblock %}
+{% block content %}
+{% include "pages/legal/_draft_banner.html" %}
+<h1>Terms of use</h1>
+<p><small>Effective from [DATE]. Provider: [COMPANY NAME], reg. no. [NUMBER]. In case of differences, the Latvian version prevails.</small></p>
+
+<h2>1. The service</h2>
+<p>ĪresPalīgs is an online tool for landlords to keep track of leases, meter readings, payment notices and payments. It <strong>does not give legal or tax advice</strong> and does not calculate taxes. You are responsible for the accuracy of the data you enter and for your obligations towards tenants and authorities.</p>
+
+<h2>2. Account</h2>
+<p>You need a valid email address to register. You are responsible for keeping your account secure.</p>
+
+<h2>3. Plans and payment</h2>
+<p>New accounts get a 14-day free trial. After that, a limited free plan or a paid plan is available. Prices are in euro and include 21% VAT. Payments are collected via Stripe; the subscription renews automatically until you cancel. After cancelling, the plan stays active until the end of the paid period.</p>
+<p>Right of withdrawal: [TO BE CONFIRMED WITH A LAWYER – 14-day withdrawal right for digital services and its exceptions].</p>
+
+<h2>4. Data processing agreement</h2>
+<p>For your tenants' personal data you are the controller and we are the processor (GDPR Art. 28). We process this data only to provide the service and on your instructions, apply appropriate security measures, use only the EU sub-processors listed in the Privacy policy, help you respond to data subject requests, and delete the data when you delete your account. [TO BE COMPLETED WITH A LAWYER]</p>
+
+<h2>5. Liability</h2>
+<p>The service is provided "as is". Our liability is limited to the amount you paid in the last 12 months. [TO BE CHECKED WITH A LAWYER, especially for consumers]</p>
+
+<h2>6. Deleting your account</h2>
+<p>You can download your data and delete your account at any time under "My account".</p>
+
+<h2>7. Governing law</h2>
+<p>The laws of the Republic of Latvia apply. Contact: <a href="mailto:{{ support_email }}">{{ support_email }}</a>.</p>
+{% endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 19:03+0200\n"
+"POT-Creation-Date: 2026-10-31 19:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,9 @@ msgstr "Saglabāts."
 msgid ""
 "Your ĪresPalīgs data, exported on %(date)s. CSV files use ';' as separator "
 "and open in Excel."
-msgstr "Jūsu ĪresPalīgs dati, eksportēti %(date)s. CSV failos atdalītājs ir ';', tos var atvērt Excel."
+msgstr ""
+"Jūsu ĪresPalīgs dati, eksportēti %(date)s. CSV failos atdalītājs ir ';', tos "
+"var atvērt Excel."
 
 #: apps/privacy/services.py:97
 msgid "Your ĪresPalīgs account has been deleted"
@@ -98,7 +100,8 @@ msgstr "Jūsu ĪresPalīgs konts ir dzēsts"
 msgid ""
 "Your account and all its data have been deleted. Thank you for using "
 "ĪresPalīgs."
-msgstr "Jūsu konts un visi tā dati ir dzēsti. Paldies, ka izmantojāt ĪresPalīgs."
+msgstr ""
+"Jūsu konts un visi tā dati ir dzēsti. Paldies, ka izmantojāt ĪresPalīgs."
 
 #: apps/privacy/views.py:23
 msgid "Type your email address to confirm"
@@ -428,7 +431,8 @@ msgstr "%(meter)s – pašreizējais rādījums (%(unit)s)"
 msgid "The amount must be greater than zero."
 msgstr "Summai jābūt lielākai par nulli."
 
-#: apps/statements/models.py:32 templates/statements/_state.html:1
+#: apps/statements/models.py:32 templates/pages/legal/_draft_banner.html:3
+#: templates/statements/_state.html:1
 msgid "Draft"
 msgstr "Melnraksts"
 
@@ -625,11 +629,11 @@ msgstr "gadā (2 mēneši bez maksas)"
 msgid "Thank you! Your subscription will be active in a moment."
 msgstr "Paldies! Abonements pēc brīža būs aktīvs."
 
-#: irespaligs/settings.py:134
+#: irespaligs/settings.py:136
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: irespaligs/settings.py:135
+#: irespaligs/settings.py:137
 msgid "English"
 msgstr "Angļu"
 
@@ -684,13 +688,36 @@ msgstr "Abonements"
 msgid "Log out"
 msgstr "Iziet"
 
-#: templates/base.html:25 templates/pages/home.html:11
+#: templates/base.html:25
 msgid "Log in"
 msgstr "Ieiet"
 
 #: templates/base.html:26
 msgid "Sign up"
 msgstr "Reģistrēties"
+
+#: templates/base.html:56
+msgid "Privacy policy"
+msgstr "Privātuma politika"
+
+#: templates/base.html:57
+msgid "Terms of use"
+msgstr "Lietošanas noteikumi"
+
+#: templates/base.html:64
+msgid "Cookies"
+msgstr "Sīkdatnes"
+
+#: templates/base.html:68
+#, python-format
+msgid ""
+"We only use necessary cookies (login, security, language) – no analytics or "
+"advertising. <a href=\"%(privacy_url)s\">More</a>"
+msgstr "Mēs izmantojam tikai nepieciešamās sīkdatnes (pieteikšanās, drošība, valoda) – bez analītikas un reklāmām. <a href=\"%(privacy_url)s\">Vairāk</a>"
+
+#: templates/base.html:69
+msgid "OK"
+msgstr "Labi"
 
 #: templates/pages/dashboard.html:9
 msgid "Leases ending soon"
@@ -729,21 +756,160 @@ msgstr "Brīvs"
 msgid "You have no properties yet. Start by adding your first one."
 msgstr "Jums vēl nav neviena īpašuma. Sāciet, pievienojot pirmo."
 
-#: templates/pages/home.html:3
-msgid "Home"
-msgstr "Sākums"
-
-#: templates/pages/home.html:6
+#: templates/pages/home.html:3 templates/pages/home.html:10
 msgid "Rent, utilities and tenants – in one place"
 msgstr "Īre, komunālie maksājumi un īrnieki – vienuviet"
 
-#: templates/pages/home.html:7
-msgid "A simple tool for landlords in Latvia."
-msgstr "Vienkāršs rīks izīrētājiem Latvijā."
+#: templates/pages/home.html:5
+msgid ""
+"A simple tool for landlords in Latvia: meter readings, monthly payment "
+"notices, rent tracking and reminders."
+msgstr "Vienkāršs rīks izīrētājiem Latvijā: skaitītāju rādījumi, ikmēneša maksājuma paziņojumi, īres maksu uzskaite un atgādinājumi."
 
-#: templates/pages/home.html:10
-msgid "Create a free account"
-msgstr "Izveidot bezmaksas kontu"
+#: templates/pages/home.html:11
+msgid ""
+"For landlords in Latvia with one or a few flats. Enter the meter readings – "
+"ĪresPalīgs calculates the utilities, prepares the payment notice and emails "
+"it to your tenant."
+msgstr "Izīrētājiem Latvijā ar vienu vai dažiem dzīvokļiem. Ievadiet skaitītāju rādījumus – ĪresPalīgs aprēķina komunālos maksājumus, sagatavo maksājuma paziņojumu un nosūta to īrniekam."
+
+#: templates/pages/home.html:14 templates/pages/home.html:68
+#, python-format
+msgid "Try free for %(days)s days"
+msgstr "Izmēģiniet bez maksas %(days)s dienas"
+
+#: templates/pages/home.html:15
+msgid "No card needed."
+msgstr "Karte nav nepieciešama."
+
+#: templates/pages/home.html:21
+msgid "Monthly notice in 2 minutes"
+msgstr "Ikmēneša paziņojums 2 minūtēs"
+
+#: templates/pages/home.html:22
+msgid ""
+"Last month's readings are filled in. Enter the new ones and get a clear PDF "
+"with rent, water, electricity, heating and fixed charges."
+msgstr "Iepriekšējā mēneša rādījumi jau ir aizpildīti. Ievadiet jaunos un saņemiet pārskatāmu PDF ar īri, ūdeni, elektrību, apkuri un fiksētajiem maksājumiem."
+
+#: templates/pages/home.html:25
+msgid "See who has paid"
+msgstr "Redziet, kurš ir samaksājis"
+
+#: templates/pages/home.html:26
+msgid ""
+"Mark payments as they arrive. Overdue rent is highlighted, and you get a "
+"reminder email."
+msgstr "Atzīmējiet maksājumus, kad tie pienāk. Kavētā īre tiek izcelta, un jūs saņemat atgādinājumu e-pastā."
+
+#: templates/pages/home.html:29
+msgid "Never miss a date"
+msgstr "Neaizmirstiet nevienu datumu"
+
+#: templates/pages/home.html:30
+msgid ""
+"Reminders for meter reading day, lease end dates and other important dates. "
+"A year summary for your tax declaration."
+msgstr "Atgādinājumi par rādījumu nodošanu, līgumu beigām un citiem svarīgiem datumiem. Gada pārskats deklarācijas aizpildīšanai."
+
+#: templates/pages/home.html:35
+msgid "How it works"
+msgstr "Kā tas darbojas"
+
+#: templates/pages/home.html:37
+msgid "Add your flat, tenant and lease (rent, due day)."
+msgstr "Pievienojiet dzīvokli, īrnieku un līgumu (īres maksa, samaksas diena)."
+
+#: templates/pages/home.html:38
+msgid ""
+"Add meters and your prices, plus fixed charges like building management."
+msgstr "Pievienojiet skaitītājus un savas cenas, kā arī fiksētos maksājumus, piem., apsaimniekošanu."
+
+#: templates/pages/home.html:39
+msgid "Each month: enter readings → check the draft → send to the tenant."
+msgstr "Katru mēnesi: ievadiet rādījumus → pārbaudiet melnrakstu → nosūtiet īrniekam."
+
+#: templates/pages/home.html:44
+msgid "Pricing"
+msgstr "Cenas"
+
+#: templates/pages/home.html:50
+msgid "1 property"
+msgstr "1 īpašums"
+
+#: templates/pages/home.html:51
+msgid "Leases, readings and calculations on screen"
+msgstr "Līgumi, rādījumi un aprēķini ekrānā"
+
+#: templates/pages/home.html:52 templates/pages/home.html:62
+msgid "PDF and email notices"
+msgstr "PDF un e-pasta paziņojumi"
+
+#: templates/pages/home.html:53 templates/pages/home.html:63
+#: templates/subscriptions/billing.html:26
+msgid "Email reminders"
+msgstr "Atgādinājumi e-pastā"
+
+#: templates/pages/home.html:59
+#, python-format
+msgid "or %(yearly)s per year (2 months free)"
+msgstr "vai %(yearly)s gadā (2 mēneši bez maksas)"
+
+#: templates/pages/home.html:61 templates/subscriptions/billing.html:24
+#, python-format
+msgid "up to %(n)s property"
+msgid_plural "up to %(n)s properties"
+msgstr[0] "līdz %(n)s īpašumam"
+msgstr[1] "līdz %(n)s īpašumiem"
+msgstr[2] "līdz %(n)s īpašumiem"
+
+#: templates/pages/home.html:64
+msgid "Year summary (CSV, PDF)"
+msgstr "Gada pārskats (CSV, PDF)"
+
+#: templates/pages/home.html:67
+#, python-format
+msgid "Prices include 21%% VAT."
+msgstr "Cenās iekļauts 21%% PVN."
+
+#: templates/pages/home.html:74
+msgid "Questions"
+msgstr "Jautājumi"
+
+#: templates/pages/home.html:76
+msgid "Does ĪresPalīgs calculate my taxes?"
+msgstr "Vai ĪresPalīgs aprēķina manus nodokļus?"
+
+#: templates/pages/home.html:77
+msgid ""
+"No. It keeps track of rent and payments and gives you a year summary, but it "
+"does not calculate or file taxes. Check the rules on vid.gov.lv or with a "
+"tax adviser."
+msgstr "Nē. Tas uzskaita īres maksas un maksājumus un sagatavo gada pārskatu, bet neaprēķina un neiesniedz nodokļus. Noteikumus pārbaudiet vid.gov.lv vai pie nodokļu konsultanta."
+
+#: templates/pages/home.html:80
+msgid "What data do you store about my tenants?"
+msgstr "Kādus datus jūs glabājat par maniem īrniekiem?"
+
+#: templates/pages/home.html:81
+msgid ""
+"Only name, email and phone (optional) – no personal codes (personas kods) "
+"and no documents. Your data is stored in the EU."
+msgstr "Tikai vārdu, e-pastu un tālruni (pēc izvēles) – bez personas kodiem un dokumentiem. Jūsu dati tiek glabāti ES."
+
+#: templates/pages/home.html:84
+msgid "Can I cancel any time?"
+msgstr "Vai varu atteikties jebkurā laikā?"
+
+#: templates/pages/home.html:85
+msgid ""
+"Yes. Cancel in a few clicks; you keep the paid plan until the end of the "
+"period. You can also download or delete all your data at any time."
+msgstr "Jā. Atceliet ar dažiem klikšķiem; maksas plāns paliek spēkā līdz perioda beigām. Visus savus datus varat jebkurā laikā lejupielādēt vai dzēst."
+
+#: templates/pages/legal/_draft_banner.html:4
+msgid "this text has not yet been reviewed by a lawyer and may change."
+msgstr "šo tekstu vēl nav pārskatījis jurists, un tas var mainīties."
 
 #: templates/privacy/account_deleted.html:3
 #: templates/privacy/account_deleted.html:5
@@ -755,13 +921,18 @@ msgid ""
 "This permanently deletes your account and everything in it: properties, "
 "tenants, leases, meter readings, payment notices and payments. Any paid "
 "subscription is cancelled. This cannot be undone."
-msgstr "Tiks neatgriezeniski dzēsts jūsu konts un viss tajā: īpašumi, īrnieki, līgumi, skaitītāju rādījumi, maksājuma paziņojumi un maksājumi. Maksas abonements tiks atcelts. To nevarēs atsaukt."
+msgstr ""
+"Tiks neatgriezeniski dzēsts jūsu konts un viss tajā: īpašumi, īrnieki, "
+"līgumi, skaitītāju rādījumi, maksājuma paziņojumi un maksājumi. Maksas "
+"abonements tiks atcelts. To nevarēs atsaukt."
 
 #: templates/privacy/delete_account.html:7
 #, python-format
 msgid ""
 "You may want to <a href=\"%(export_url)s\">download your data</a> first."
-msgstr "Iespējams, vispirms vēlaties <a href=\"%(export_url)s\">lejupielādēt savus datus</a>."
+msgstr ""
+"Iespējams, vispirms vēlaties <a href=\"%(export_url)s\">lejupielādēt savus "
+"datus</a>."
 
 #: templates/privacy/delete_account.html:11
 msgid "Delete my account permanently"
@@ -1077,21 +1248,9 @@ msgstr ""
 "Pēdējais maksājums neizdevās. Lūdzu, atjaunojiet kartes datus, lai saglabātu "
 "plānu."
 
-#: templates/subscriptions/billing.html:24
-#, python-format
-msgid "up to %(n)s property"
-msgid_plural "up to %(n)s properties"
-msgstr[0] "līdz %(n)s īpašumam"
-msgstr[1] "līdz %(n)s īpašumiem"
-msgstr[2] "līdz %(n)s īpašumiem"
-
 #: templates/subscriptions/billing.html:25
 msgid "PDF payment notices sent to tenants by email"
 msgstr "PDF maksājuma paziņojumi īrniekiem pa e-pastu"
-
-#: templates/subscriptions/billing.html:26
-msgid "Email reminders"
-msgstr "Atgādinājumi e-pastā"
 
 #: templates/subscriptions/billing.html:31
 msgid "Manage payment card or cancel"

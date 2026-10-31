@@ -66,6 +66,10 @@ Status legend: ☐ open · ☑ verified · ✎ verified but changed our design
   coverage is enough, or whether an EU-owned host (Scaleway, Hetzner) is preferable.
   *Used in:* ARCHITECTURE §1, §9.
 
+- ☐ **G6 – Legal texts**: privacy policy and terms in `templates/pages/legal/` are drafts with
+  `[PLACEHOLDERS]` (company name, reg. no., address, retention periods, withdrawal right, liability).
+  Have a lawyer review, then set `LEGAL_TEXTS_REVIEWED=1`.
+
 ## Authentication (later)
 
 - ☐ **A1 – Smart-ID / eParaksts login providers** for Latvia: which brokers offer OpenID

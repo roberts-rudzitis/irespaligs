@@ -71,3 +71,18 @@ To try real checkout in **test mode** (no real money):
 In production, add the webhook endpoint `https://<your-domain>/stripe/webhook/` in the Stripe
 dashboard with the events `checkout.session.completed` and `customer.subscription.*`.
 Plan limits live in `apps/subscriptions/plans.py`.
+
+## Deploying (Render, Frankfurt)
+
+`render.yaml` describes the web app, a PostgreSQL database and the daily reminder job, all in
+the Frankfurt region (EU). Rough steps:
+
+1. Push this repository to GitHub (private).
+2. In Render: **New → Blueprint**, pick the repo. Fill in the variables marked `sync: false`.
+3. Create an environment group `irespaligs-shared` for the cron job with the same variables.
+4. Point your domain to Render, set `DJANGO_ALLOWED_HOSTS` and `DJANGO_CSRF_TRUSTED_ORIGINS`.
+5. Create the Stripe webhook (see "Payments") and a Brevo SMTP key.
+6. Create your admin user: Render shell → `python manage.py createsuperuser`.
+
+Before real users: see the open items in [VERIFY.md](VERIFY.md) and replace the `[PLACEHOLDERS]`
+in `templates/pages/legal/`.

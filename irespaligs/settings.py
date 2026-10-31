@@ -76,6 +76,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
+                "apps.pages.views.cookie_notice",
+                "apps.core.context_processors.site",
             ],
         },
     },
@@ -173,6 +175,10 @@ else:
 
 # Admin lives at /<ADMIN_URL>; use something less guessable than "admin/" in production.
 ADMIN_URL = os.environ.get("DJANGO_ADMIN_URL", "admin/")
+
+SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL", "info@example.lv")
+# Set to 1 after a lawyer has reviewed the privacy policy and terms – removes the "Draft" banner.
+LEGAL_TEXTS_REVIEWED = os.environ.get("LEGAL_TEXTS_REVIEWED", "0") == "1"
 
 # --- Payments (Stripe) -------------------------------------------------------
 # Empty in local development → the billing page says payments are not configured.

@@ -13,7 +13,7 @@ from apps.core.money import format_eur, round_money
 def test_home_is_latvian_by_default(client, db):
     response = client.get(reverse("home"))
     assert response["Content-Language"] == "lv"
-    assert "Izveidot bezmaksas kontu" in response.content.decode()
+    assert "Īre, komunālie maksājumi un īrnieki – vienuviet" in response.content.decode()
 
 
 def test_browser_language_is_ignored(client, db):
@@ -25,7 +25,7 @@ def test_switch_to_english_sets_cookie(client, db):
     response = client.post(reverse("set_language"), {"language": "en", "next": "/"})
     assert response.status_code == 302
     response = client.get(reverse("home"))
-    assert "Create a free account" in response.content.decode()
+    assert "Rent, utilities and tenants – in one place" in response.content.decode()
 
 
 def test_language_choice_is_saved_on_user(client, verified_user):

@@ -51,8 +51,25 @@
   </main>
 
   <footer class="container">
-    <small>© ĪresPalīgs</small>
+    <small>
+      © ĪresPalīgs ·
+      <a href="{% url 'privacy' %}">{% translate "Privacy policy" %}</a> ·
+      <a href="{% url 'terms' %}">{% translate "Terms of use" %}</a> ·
+      <a href="mailto:{{ support_email }}">{{ support_email }}</a>
+    </small>
   </footer>
+
+  {% if show_cookie_notice %}
+    {# TODO: verify (VERIFY.md G3) – a notice (not a consent banner) is enough while we only use necessary cookies #}
+    <aside class="cookie-notice" role="region" aria-label="{% translate 'Cookies' %}">
+      <form method="post" action="{% url 'cookie_notice_ok' %}" class="container">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <small>{% url 'privacy' as privacy_url %}{% blocktranslate %}We only use necessary cookies (login, security, language) – no analytics or advertising. <a href="{{ privacy_url }}">More</a>{% endblocktranslate %}</small>
+        <button type="submit">{% translate "OK" %}</button>
+      </form>
+    </aside>
+  {% endif %}
   {% block extra_body %}{% endblock %}
 </body>
 </html>

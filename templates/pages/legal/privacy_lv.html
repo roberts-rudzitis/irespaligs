@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% comment %}
+  DRAFT privacy policy (Latvian). Must be reviewed by a lawyer before launch.
+  TODO: verify (VERIFY.md G1, G2, G3, G4, G5). Fill in all [PLACEHOLDERS].
+  Keep in sync with privacy_en.html.
+{% endcomment %}
+{% block head_title %}Privātuma politika{% endblock %}
+{% block content %}
+{% include "pages/legal/_draft_banner.html" %}
+<h1>Privātuma politika</h1>
+<p><small>Spēkā no [DATUMS]</small></p>
+
+<h2>1. Kas mēs esam</h2>
+<p>Pārzinis: [UZŅĒMUMA NOSAUKUMS], reģ. nr. [NUMURS], juridiskā adrese [ADRESE].
+Saziņai par datu aizsardzību: <a href="mailto:{{ support_email }}">{{ support_email }}</a>.</p>
+
+<h2>2. Kādus datus mēs apstrādājam</h2>
+<ul>
+  <li><strong>Jūsu konta dati:</strong> e-pasta adrese, vārds (ja norādāt), valodas izvēle, maksājuma rekvizīti, ko norādāt paziņojumiem, paroles jaucējvērtība (ne pati parole).</li>
+  <li><strong>Dati, ko ievadāt par saviem īpašumiem un īrniekiem:</strong> īpašumu nosaukumi un adreses, īrnieku vārds, e-pasts un tālrunis, līgumu nosacījumi, skaitītāju rādījumi, maksājuma paziņojumi un maksājumi.</li>
+  <li><strong>Abonementa dati:</strong> plāns un statuss. Kartes datus apstrādā Stripe – mēs tos neredzam.</li>
+  <li><strong>Tehniskie dati:</strong> servera žurnāli (IP adrese, laiks) drošības nolūkos.</li>
+</ul>
+<p>Mēs <strong>neapstrādājam personas kodus</strong> un neglabājam personu apliecinošus dokumentus.</p>
+
+<h2>3. Kāpēc un uz kāda pamata</h2>
+<ul>
+  <li>Pakalpojuma sniegšanai un līguma izpildei (VDAR 6. panta 1. punkta b) apakšpunkts).</li>
+  <li>Rēķinu un grāmatvedības prasību izpildei (juridisks pienākums, 6. panta 1. punkta c) apakšpunkts).</li>
+  <li>Drošībai un pakalpojuma uzlabošanai (leģitīmās intereses, 6. panta 1. punkta f) apakšpunkts).</li>
+</ul>
+
+<h2>4. Īrnieku dati</h2>
+<p>Par īrnieku datiem, ko ievadāt, pārzinis esat jūs (izīrētājs). Mēs tos apstrādājam jūsu uzdevumā kā apstrādātājs saskaņā ar Lietošanas noteikumu sadaļu “Datu apstrādes līgums”.</p>
+
+<h2>5. Kur dati tiek glabāti un kas tos saņem</h2>
+<p>Visi dati tiek glabāti Eiropas Savienībā. Mēs izmantojam šādus apstrādātājus:</p>
+<ul>
+  <li>Render (mitināšana un datubāze, Frankfurte, Vācija)</li>
+  <li>Stripe (maksājumi)</li>
+  <li>Brevo (e-pastu nosūtīšana, Francija)</li>
+</ul>
+
+<h2>6. Cik ilgi glabājam</h2>
+<p>Kamēr jums ir konts. Dzēšot kontu, visi jūsu ievadītie dati tiek dzēsti nekavējoties. Grāmatvedības dokumentus par jūsu abonementa maksājumiem glabājam tik ilgi, cik to prasa likums ([TERMIŅŠ]).</p>
+
+<h2>7. Jūsu tiesības</h2>
+<p>Jums ir tiesības piekļūt saviem datiem, tos labot, dzēst, ierobežot apstrādi, iebilst un saņemt tos pārnesamā formātā. Sadaļā “Mans konts” varat jebkurā brīdī <strong>lejupielādēt visus savus datus</strong> vai <strong>dzēst kontu</strong>. Jums ir tiesības iesniegt sūdzību Datu valsts inspekcijai (www.dvi.gov.lv).</p>
+
+<h2>8. Sīkdatnes</h2>
+<p>Mēs izmantojam tikai nepieciešamās sīkdatnes: pieteikšanās sesijai, drošībai (CSRF), valodas izvēlei un šī paziņojuma atcerēšanai. Mēs neizmantojam analītikas vai reklāmas sīkdatnes.</p>
+
+<h2>9. Izmaiņas</h2>
+<p>Par būtiskām izmaiņām informēsim pa e-pastu.</p>
+{% endblock %}

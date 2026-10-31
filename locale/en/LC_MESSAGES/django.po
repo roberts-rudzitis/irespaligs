@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 19:03+0200\n"
+"POT-Creation-Date: 2026-10-31 19:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -413,7 +413,8 @@ msgstr ""
 msgid "The amount must be greater than zero."
 msgstr ""
 
-#: apps/statements/models.py:32 templates/statements/_state.html:1
+#: apps/statements/models.py:32 templates/pages/legal/_draft_banner.html:3
+#: templates/statements/_state.html:1
 msgid "Draft"
 msgstr ""
 
@@ -610,11 +611,11 @@ msgstr ""
 msgid "Thank you! Your subscription will be active in a moment."
 msgstr ""
 
-#: irespaligs/settings.py:134
+#: irespaligs/settings.py:136
 msgid "Latvian"
 msgstr ""
 
-#: irespaligs/settings.py:135
+#: irespaligs/settings.py:137
 msgid "English"
 msgstr ""
 
@@ -669,12 +670,35 @@ msgstr ""
 msgid "Log out"
 msgstr ""
 
-#: templates/base.html:25 templates/pages/home.html:11
+#: templates/base.html:25
 msgid "Log in"
 msgstr ""
 
 #: templates/base.html:26
 msgid "Sign up"
+msgstr ""
+
+#: templates/base.html:56
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/base.html:57
+msgid "Terms of use"
+msgstr ""
+
+#: templates/base.html:64
+msgid "Cookies"
+msgstr ""
+
+#: templates/base.html:68
+#, python-format
+msgid ""
+"We only use necessary cookies (login, security, language) – no analytics or "
+"advertising. <a href=\"%(privacy_url)s\">More</a>"
+msgstr ""
+
+#: templates/base.html:69
+msgid "OK"
 msgstr ""
 
 #: templates/pages/dashboard.html:9
@@ -714,20 +738,158 @@ msgstr ""
 msgid "You have no properties yet. Start by adding your first one."
 msgstr ""
 
-#: templates/pages/home.html:3
-msgid "Home"
-msgstr ""
-
-#: templates/pages/home.html:6
+#: templates/pages/home.html:3 templates/pages/home.html:10
 msgid "Rent, utilities and tenants – in one place"
 msgstr ""
 
-#: templates/pages/home.html:7
-msgid "A simple tool for landlords in Latvia."
+#: templates/pages/home.html:5
+msgid ""
+"A simple tool for landlords in Latvia: meter readings, monthly payment "
+"notices, rent tracking and reminders."
 msgstr ""
 
-#: templates/pages/home.html:10
-msgid "Create a free account"
+#: templates/pages/home.html:11
+msgid ""
+"For landlords in Latvia with one or a few flats. Enter the meter readings – "
+"ĪresPalīgs calculates the utilities, prepares the payment notice and emails "
+"it to your tenant."
+msgstr ""
+
+#: templates/pages/home.html:14 templates/pages/home.html:68
+#, python-format
+msgid "Try free for %(days)s days"
+msgstr ""
+
+#: templates/pages/home.html:15
+msgid "No card needed."
+msgstr ""
+
+#: templates/pages/home.html:21
+msgid "Monthly notice in 2 minutes"
+msgstr ""
+
+#: templates/pages/home.html:22
+msgid ""
+"Last month's readings are filled in. Enter the new ones and get a clear PDF "
+"with rent, water, electricity, heating and fixed charges."
+msgstr ""
+
+#: templates/pages/home.html:25
+msgid "See who has paid"
+msgstr ""
+
+#: templates/pages/home.html:26
+msgid ""
+"Mark payments as they arrive. Overdue rent is highlighted, and you get a "
+"reminder email."
+msgstr ""
+
+#: templates/pages/home.html:29
+msgid "Never miss a date"
+msgstr ""
+
+#: templates/pages/home.html:30
+msgid ""
+"Reminders for meter reading day, lease end dates and other important dates. "
+"A year summary for your tax declaration."
+msgstr ""
+
+#: templates/pages/home.html:35
+msgid "How it works"
+msgstr ""
+
+#: templates/pages/home.html:37
+msgid "Add your flat, tenant and lease (rent, due day)."
+msgstr ""
+
+#: templates/pages/home.html:38
+msgid ""
+"Add meters and your prices, plus fixed charges like building management."
+msgstr ""
+
+#: templates/pages/home.html:39
+msgid "Each month: enter readings → check the draft → send to the tenant."
+msgstr ""
+
+#: templates/pages/home.html:44
+msgid "Pricing"
+msgstr ""
+
+#: templates/pages/home.html:50
+msgid "1 property"
+msgstr ""
+
+#: templates/pages/home.html:51
+msgid "Leases, readings and calculations on screen"
+msgstr ""
+
+#: templates/pages/home.html:52 templates/pages/home.html:62
+msgid "PDF and email notices"
+msgstr ""
+
+#: templates/pages/home.html:53 templates/pages/home.html:63
+#: templates/subscriptions/billing.html:26
+msgid "Email reminders"
+msgstr ""
+
+#: templates/pages/home.html:59
+#, python-format
+msgid "or %(yearly)s per year (2 months free)"
+msgstr ""
+
+#: templates/pages/home.html:61 templates/subscriptions/billing.html:24
+#, python-format
+msgid "up to %(n)s property"
+msgid_plural "up to %(n)s properties"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/pages/home.html:64
+msgid "Year summary (CSV, PDF)"
+msgstr ""
+
+#: templates/pages/home.html:67
+#, python-format
+msgid "Prices include 21%% VAT."
+msgstr ""
+
+#: templates/pages/home.html:74
+msgid "Questions"
+msgstr ""
+
+#: templates/pages/home.html:76
+msgid "Does ĪresPalīgs calculate my taxes?"
+msgstr ""
+
+#: templates/pages/home.html:77
+msgid ""
+"No. It keeps track of rent and payments and gives you a year summary, but it "
+"does not calculate or file taxes. Check the rules on vid.gov.lv or with a "
+"tax adviser."
+msgstr ""
+
+#: templates/pages/home.html:80
+msgid "What data do you store about my tenants?"
+msgstr ""
+
+#: templates/pages/home.html:81
+msgid ""
+"Only name, email and phone (optional) – no personal codes (personas kods) "
+"and no documents. Your data is stored in the EU."
+msgstr ""
+
+#: templates/pages/home.html:84
+msgid "Can I cancel any time?"
+msgstr ""
+
+#: templates/pages/home.html:85
+msgid ""
+"Yes. Cancel in a few clicks; you keep the paid plan until the end of the "
+"period. You can also download or delete all your data at any time."
+msgstr ""
+
+#: templates/pages/legal/_draft_banner.html:4
+msgid "this text has not yet been reviewed by a lawyer and may change."
 msgstr ""
 
 #: templates/privacy/account_deleted.html:3
@@ -1045,19 +1207,8 @@ msgstr ""
 msgid "Your last payment failed. Please update your card to keep your plan."
 msgstr ""
 
-#: templates/subscriptions/billing.html:24
-#, python-format
-msgid "up to %(n)s property"
-msgid_plural "up to %(n)s properties"
-msgstr[0] ""
-msgstr[1] ""
-
 #: templates/subscriptions/billing.html:25
 msgid "PDF payment notices sent to tenants by email"
-msgstr ""
-
-#: templates/subscriptions/billing.html:26
-msgid "Email reminders"
 msgstr ""
 
 #: templates/subscriptions/billing.html:31

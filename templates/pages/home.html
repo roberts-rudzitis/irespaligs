@@ -1,13 +1,88 @@
 {% extends "base.html" %}
-{% load i18n %}
-{% block head_title %}{% translate "Home" %}{% endblock %}
+{% load i18n money %}
+{% block head_title %}{% translate "Rent, utilities and tenants – in one place" %}{% endblock %}
+{% block extra_head %}
+  <meta name="description" content="{% translate 'A simple tool for landlords in Latvia: meter readings, monthly payment notices, rent tracking and reminders.' %}">
+{% endblock %}
 {% block content %}
-  <hgroup>
-    <h1>{% translate "Rent, utilities and tenants – in one place" %}</h1>
-    <p>{% translate "A simple tool for landlords in Latvia." %}</p>
-  </hgroup>
-  <p>
-    <a href="{% url 'account_signup' %}" role="button">{% translate "Create a free account" %}</a>
-    <a href="{% url 'account_login' %}" role="button" class="secondary outline">{% translate "Log in" %}</a>
-  </p>
+  <section class="hero">
+    <hgroup>
+      <h1>{% translate "Rent, utilities and tenants – in one place" %}</h1>
+      <p>{% translate "For landlords in Latvia with one or a few flats. Enter the meter readings – ĪresPalīgs calculates the utilities, prepares the payment notice and emails it to your tenant." %}</p>
+    </hgroup>
+    <p>
+      <a href="{% url 'account_signup' %}" role="button">{% blocktranslate with days=trial_days %}Try free for {{ days }} days{% endblocktranslate %}</a>
+      <small class="muted-text">{% translate "No card needed." %}</small>
+    </p>
+  </section>
+
+  <section class="grid features">
+    <article>
+      <h3>{% translate "Monthly notice in 2 minutes" %}</h3>
+      <p>{% translate "Last month's readings are filled in. Enter the new ones and get a clear PDF with rent, water, electricity, heating and fixed charges." %}</p>
+    </article>
+    <article>
+      <h3>{% translate "See who has paid" %}</h3>
+      <p>{% translate "Mark payments as they arrive. Overdue rent is highlighted, and you get a reminder email." %}</p>
+    </article>
+    <article>
+      <h3>{% translate "Never miss a date" %}</h3>
+      <p>{% translate "Reminders for meter reading day, lease end dates and other important dates. A year summary for your tax declaration." %}</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>{% translate "How it works" %}</h2>
+    <ol>
+      <li>{% translate "Add your flat, tenant and lease (rent, due day)." %}</li>
+      <li>{% translate "Add meters and your prices, plus fixed charges like building management." %}</li>
+      <li>{% translate "Each month: enter readings → check the draft → send to the tenant." %}</li>
+    </ol>
+  </section>
+
+  <section id="pricing">
+    <h2>{% translate "Pricing" %}</h2>
+    <div class="grid">
+      <article>
+        <header><strong>{{ free.name }}</strong></header>
+        <h3>{{ 0|eur }}</h3>
+        <ul>
+          <li>{% translate "1 property" %}</li>
+          <li>{% translate "Leases, readings and calculations on screen" %}</li>
+          <li>✗ {% translate "PDF and email notices" %}</li>
+          <li>✗ {% translate "Email reminders" %}</li>
+        </ul>
+      </article>
+      <article class="highlight">
+        <header><strong>{{ standard.name }}</strong></header>
+        <h3>{{ month.gross|eur }} <small>{{ month.label }}</small></h3>
+        <p><small>{% blocktranslate with yearly=year.gross|eur %}or {{ yearly }} per year (2 months free){% endblocktranslate %}</small></p>
+        <ul>
+          <li>{% blocktranslate count n=standard.max_properties %}up to {{ n }} property{% plural %}up to {{ n }} properties{% endblocktranslate %}</li>
+          <li>{% translate "PDF and email notices" %}</li>
+          <li>{% translate "Email reminders" %}</li>
+          <li>{% translate "Year summary (CSV, PDF)" %}</li>
+        </ul>
+        {# TODO: verify (VERIFY.md B1, B4) – PVN display #}
+        <p><small>{% translate "Prices include 21% VAT." %}</small></p>
+        <a href="{% url 'account_signup' %}" role="button">{% blocktranslate with days=trial_days %}Try free for {{ days }} days{% endblocktranslate %}</a>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>{% translate "Questions" %}</h2>
+    <details>
+      <summary>{% translate "Does ĪresPalīgs calculate my taxes?" %}</summary>
+      <p>{% translate "No. It keeps track of rent and payments and gives you a year summary, but it does not calculate or file taxes. Check the rules on vid.gov.lv or with a tax adviser." %}</p>
+    </details>
+    <details>
+      <summary>{% translate "What data do you store about my tenants?" %}</summary>
+      <p>{% translate "Only name, email and phone (optional) – no personal codes (personas kods) and no documents. Your data is stored in the EU." %}</p>
+    </details>
+    <details>
+      <summary>{% translate "Can I cancel any time?" %}</summary>
+      <p>{% translate "Yes. Cancel in a few clicks; you keep the paid plan until the end of the period. You can also download or delete all your data at any time." %}</p>
+    </details>
+  </section>
 {% endblock %}

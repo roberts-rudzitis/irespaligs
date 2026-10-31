@@ -15,4 +15,13 @@ button.link { background: none; border: none; padding: 0; color: var(--pico-prim
 .state-overdue { background: #fbd5d5; color: #7f1d1d; }
 .state-unpaid, .state-partly_paid { background: #fdf0c8; color: #713f12; }
 .state-draft { background: #e5e7eb; color: #374151; }
+.hero { padding: 2rem 0 1rem; }
+.hero h1 { font-size: 2.2rem; }
+.muted-text { opacity: .7; margin-left: .5rem; }
+.features article h3 { font-size: 1.1rem; }
+article.highlight { border: 2px solid var(--pico-primary); }
+.cookie-notice { position: fixed; bottom: 0; left: 0; right: 0; background: var(--pico-card-background-color);
+  border-top: 1px solid var(--pico-muted-border-color); padding: .5rem 0; z-index: 10; }
+.cookie-notice form { display: flex; gap: 1rem; align-items: center; justify-content: space-between; margin: 0; }
+.cookie-notice button { width: auto; margin: 0; padding: .3rem 1rem; }
 footer { margin-top: 3rem; opacity: .7; }

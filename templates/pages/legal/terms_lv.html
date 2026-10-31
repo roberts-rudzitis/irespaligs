@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% comment %}
+  DRAFT terms of use (Latvian). Must be reviewed by a lawyer before launch.
+  TODO: verify (VERIFY.md B3 withdrawal right, G1 DPA, B1 PVN). Fill in all [PLACEHOLDERS].
+  Keep in sync with terms_en.html.
+{% endcomment %}
+{% block head_title %}Lietošanas noteikumi{% endblock %}
+{% block content %}
+{% include "pages/legal/_draft_banner.html" %}
+<h1>Lietošanas noteikumi</h1>
+<p><small>Spēkā no [DATUMS]. Pakalpojuma sniedzējs: [UZŅĒMUMA NOSAUKUMS], reģ. nr. [NUMURS].</small></p>
+
+<h2>1. Pakalpojums</h2>
+<p>ĪresPalīgs ir tiešsaistes rīks izīrētājiem: līgumu, skaitītāju rādījumu, maksājuma paziņojumu un maksājumu uzskaitei. Pakalpojums <strong>nesniedz juridiskas vai nodokļu konsultācijas</strong> un neaprēķina nodokļus. Jūs esat atbildīgs par ievadīto datu pareizību un par saviem pienākumiem pret īrniekiem un valsts iestādēm.</p>
+
+<h2>2. Konts</h2>
+<p>Konta reģistrēšanai nepieciešama derīga e-pasta adrese. Jūs atbildat par sava konta drošību.</p>
+
+<h2>3. Plāni un maksa</h2>
+<p>Jaunam kontam ir 14 dienu bezmaksas izmēģinājums. Pēc tam pieejams bezmaksas plāns ar ierobežojumiem vai maksas plāns. Cenas norādītas eiro, ieskaitot 21 % PVN. Maksājumi tiek iekasēti ar Stripe starpniecību, abonements atjaunojas automātiski, līdz to atceļat. Atceļot plāns paliek aktīvs līdz apmaksātā perioda beigām.</p>
+<p>Atteikuma tiesības: [JĀPRECIZĒ AR JURISTU – 14 dienu atteikuma tiesības digitālajiem pakalpojumiem un to izņēmumi].</p>
+
+<h2>4. Datu apstrādes līgums</h2>
+<p>Attiecībā uz jūsu īrnieku personas datiem jūs esat pārzinis, bet mēs – apstrādātājs (VDAR 28. pants). Mēs apstrādājam šos datus tikai pakalpojuma sniegšanai un pēc jūsu norādījumiem, nodrošinām atbilstošus drošības pasākumus, izmantojam tikai Privātuma politikā minētos apakšapstrādātājus ES, palīdzam jums izpildīt datu subjektu pieprasījumus un dzēšam datus, kad dzēšat kontu. [JĀPAPILDINA AR JURISTU]</p>
+
+<h2>5. Atbildība</h2>
+<p>Pakalpojums tiek sniegts “kāds tas ir”. Mūsu atbildība ir ierobežota līdz summai, ko esat samaksājis par pēdējiem 12 mēnešiem. [JĀPĀRBAUDA AR JURISTU, īpaši attiecībā uz patērētājiem]</p>
+
+<h2>6. Konta dzēšana</h2>
+<p>Jūs varat jebkurā brīdī lejupielādēt savus datus un dzēst kontu sadaļā “Mans konts”.</p>
+
+<h2>7. Piemērojamie tiesību akti</h2>
+<p>Piemēro Latvijas Republikas tiesību aktus. Saziņa: <a href="mailto:{{ support_email }}">{{ support_email }}</a>.</p>
+{% endblock %}

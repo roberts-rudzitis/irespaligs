@@ -1,0 +1,6 @@
+{% load i18n %}{% if not legal_reviewed %}
+<article class="message message-warning">
+  <strong>{% translate "Draft" %}:</strong>
+  {% translate "this text has not yet been reviewed by a lawyer and may change." %}
+</article>
+{% endif %}
