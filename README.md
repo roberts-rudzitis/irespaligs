@@ -35,6 +35,7 @@ in the terminal where `docker compose up` runs. Look for the confirmation link o
 | Create an admin user (for /admin/) | `docker compose run --rm web python manage.py createsuperuser` |
 | After changing a model | `docker compose run --rm web python manage.py makemigrations` |
 | After adding/changing text | `docker compose run --rm web python manage.py makemessages -l lv -l en --ignore=staticfiles`, translate in `locale/lv/LC_MESSAGES/django.po`, then `docker compose run --rm web python manage.py compilemessages --ignore=staticfiles` |
+| Admin panel / metrics | http://localhost:8000/admin/ and http://localhost:8000/admin/metrics/ (staff user needed) |
 | Open a database shell (SQL) | `docker compose exec db psql -U irespaligs` |
 | Start from an empty database | `docker compose down -v` (⚠️ deletes all local data) |
 

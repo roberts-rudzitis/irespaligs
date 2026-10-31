@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Delete my account" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Delete my account" %}</h1>
+  <p>{% blocktranslate %}This permanently deletes your account and everything in it: properties, tenants, leases, meter readings, payment notices and payments. Any paid subscription is cancelled. This cannot be undone.{% endblocktranslate %}</p>
+  <p>{% url 'export_data' as export_url %}{% blocktranslate %}You may want to <a href="{{ export_url }}">download your data</a> first.{% endblocktranslate %}</p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include "includes/form_fields.html" %}
+    <button type="submit" class="contrast">{% translate "Delete my account permanently" %}</button>
+  </form>
+{% endblock %}

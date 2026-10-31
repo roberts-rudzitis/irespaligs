@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load money %}
+{% comment %}Staff-only page; English only on purpose (internal tool).{% endcomment %}
+{% block content %}
+<h1>Metrics</h1>
+<p>Goal for the first 3 months (SPEC.md §5): <strong>{{ m.goal_paying }} paying landlords</strong>.</p>
+<table>
+  <tr><th>Landlords (total)</th><td>{{ m.total }}</td></tr>
+  <tr><th>New in the last 7 days</th><td>{{ m.new_7_days }}</td></tr>
+  <tr><th>In free trial</th><td>{{ m.in_trial }}</td></tr>
+  <tr><th>Paying</th><td><strong>{{ m.paying }}</strong> / {{ m.goal_paying }} ({{ m.monthly }} monthly, {{ m.yearly }} yearly)</td></tr>
+  <tr><th>Payment failed (past due)</th><td>{{ m.past_due }}</td></tr>
+  <tr><th>MRR excl. PVN</th><td>{{ m.mrr_net|eur }}</td></tr>
+  <tr><th>Activated (first notice within 7 days)</th><td>{{ m.activated }} ({{ m.activation_pct }}%, goal ≥ 50%)</td></tr>
+  <tr><th>Active in the last 30 days (created a notice)</th><td>{{ m.active_30 }}</td></tr>
+</table>
+{% endblock %}

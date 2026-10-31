@@ -132,3 +132,8 @@ def handle_webhook(payload, headers):
         "customer.subscription.deleted",
     ):
         _apply_subscription(data)
+
+
+def delete_customer(customer_id):
+    """Deleting a Stripe customer also cancels their subscriptions immediately."""
+    _client().v1.customers.delete(customer_id)

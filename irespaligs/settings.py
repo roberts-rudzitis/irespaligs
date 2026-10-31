@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.statements",
     "apps.reminders",
     "apps.subscriptions",
+    "apps.privacy",
 ]
 
 MIDDLEWARE = [
@@ -169,6 +170,9 @@ if EMAIL_HOST:
 else:
     # Local development: emails (e.g. login codes) are printed in the `docker compose up` output.
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Admin lives at /<ADMIN_URL>; use something less guessable than "admin/" in production.
+ADMIN_URL = os.environ.get("DJANGO_ADMIN_URL", "admin/")
 
 # --- Payments (Stripe) -------------------------------------------------------
 # Empty in local development → the billing page says payments are not configured.

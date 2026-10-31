@@ -9,4 +9,10 @@
     {% include "includes/form_fields.html" %}
     <button type="submit">{% translate "Save" %}</button>
   </form>
+
+  <h2>{% translate "Your data" %}</h2>
+  <p>
+    <a href="{% url 'export_data' %}" role="button" class="secondary outline">{% translate "Download all my data (ZIP)" %}</a>
+    <a href="{% url 'delete_account' %}">{% translate "Delete my account" %}</a>
+  </p>
 {% endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:59+0200\n"
+"POT-Creation-Date: 2026-10-31 19:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: apps/accounts/admin.py:15
+#: apps/accounts/admin.py:31
 msgid "Personal info"
 msgstr "Personiskā informācija"
 
-#: apps/accounts/admin.py:16
+#: apps/accounts/admin.py:32
+msgid "Reminders"
+msgstr "Atgādinājumi"
+
+#: apps/accounts/admin.py:33
 msgid "Permissions"
 msgstr "Atļaujas"
 
-#: apps/accounts/admin.py:17
+#: apps/accounts/admin.py:34
 msgid "Important dates"
 msgstr "Svarīgi datumi"
 
@@ -78,6 +82,31 @@ msgstr "lietotāji"
 #: apps/accounts/views.py:25 apps/core/mixins.py:17
 msgid "Saved."
 msgstr "Saglabāts."
+
+#: apps/privacy/services.py:73
+#, python-format
+msgid ""
+"Your ĪresPalīgs data, exported on %(date)s. CSV files use ';' as separator "
+"and open in Excel."
+msgstr "Jūsu ĪresPalīgs dati, eksportēti %(date)s. CSV failos atdalītājs ir ';', tos var atvērt Excel."
+
+#: apps/privacy/services.py:97
+msgid "Your ĪresPalīgs account has been deleted"
+msgstr "Jūsu ĪresPalīgs konts ir dzēsts"
+
+#: apps/privacy/services.py:98 templates/privacy/account_deleted.html:6
+msgid ""
+"Your account and all its data have been deleted. Thank you for using "
+"ĪresPalīgs."
+msgstr "Jūsu konts un visi tā dati ir dzēsti. Paldies, ka izmantojāt ĪresPalīgs."
+
+#: apps/privacy/views.py:23
+msgid "Type your email address to confirm"
+msgstr "Apstiprināšanai ierakstiet savu e-pasta adresi"
+
+#: apps/privacy/views.py:31
+msgid "This is not your account's email address."
+msgstr "Šī nav jūsu konta e-pasta adrese."
 
 #: apps/reminders/services.py:38
 #, python-format
@@ -320,7 +349,9 @@ msgstr "Jauns īpašums"
 
 #: apps/rentals/views.py:34
 msgid "Your plan's property limit is reached. Upgrade to add more."
-msgstr "Jūsu plāna īpašumu limits ir sasniegts. Lai pievienotu vairāk, izvēlieties maksas plānu."
+msgstr ""
+"Jūsu plāna īpašumu limits ir sasniegts. Lai pievienotu vairāk, izvēlieties "
+"maksas plānu."
 
 #: apps/rentals/views.py:47
 msgid "Edit property"
@@ -594,11 +625,11 @@ msgstr "gadā (2 mēneši bez maksas)"
 msgid "Thank you! Your subscription will be active in a moment."
 msgstr "Paldies! Abonements pēc brīža būs aktīvs."
 
-#: irespaligs/settings.py:133
+#: irespaligs/settings.py:134
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: irespaligs/settings.py:134
+#: irespaligs/settings.py:135
 msgid "English"
 msgstr "Angļu"
 
@@ -614,6 +645,19 @@ msgstr "Mainīt paroli"
 #: templates/accounts/profile.html:10 templates/rentals/form.html:12
 msgid "Save"
 msgstr "Saglabāt"
+
+#: templates/accounts/profile.html:13
+msgid "Your data"
+msgstr "Jūsu dati"
+
+#: templates/accounts/profile.html:15
+msgid "Download all my data (ZIP)"
+msgstr "Lejupielādēt visus manus datus (ZIP)"
+
+#: templates/accounts/profile.html:16 templates/privacy/delete_account.html:3
+#: templates/privacy/delete_account.html:5
+msgid "Delete my account"
+msgstr "Dzēst manu kontu"
 
 #: templates/base.html:18 templates/pages/dashboard.html:3
 #: templates/pages/dashboard.html:5
@@ -700,6 +744,28 @@ msgstr "Vienkāršs rīks izīrētājiem Latvijā."
 #: templates/pages/home.html:10
 msgid "Create a free account"
 msgstr "Izveidot bezmaksas kontu"
+
+#: templates/privacy/account_deleted.html:3
+#: templates/privacy/account_deleted.html:5
+msgid "Account deleted"
+msgstr "Konts dzēsts"
+
+#: templates/privacy/delete_account.html:6
+msgid ""
+"This permanently deletes your account and everything in it: properties, "
+"tenants, leases, meter readings, payment notices and payments. Any paid "
+"subscription is cancelled. This cannot be undone."
+msgstr "Tiks neatgriezeniski dzēsts jūsu konts un viss tajā: īpašumi, īrnieki, līgumi, skaitītāju rādījumi, maksājuma paziņojumi un maksājumi. Maksas abonements tiks atcelts. To nevarēs atsaukt."
+
+#: templates/privacy/delete_account.html:7
+#, python-format
+msgid ""
+"You may want to <a href=\"%(export_url)s\">download your data</a> first."
+msgstr "Iespējams, vispirms vēlaties <a href=\"%(export_url)s\">lejupielādēt savus datus</a>."
+
+#: templates/privacy/delete_account.html:11
+msgid "Delete my account permanently"
+msgstr "Neatgriezeniski dzēst manu kontu"
 
 #: templates/reminders/digest.txt:1 templates/statements/email.txt:1
 #, python-format
@@ -1007,7 +1073,9 @@ msgstr "atjaunosies"
 
 #: templates/subscriptions/billing.html:21
 msgid "Your last payment failed. Please update your card to keep your plan."
-msgstr "Pēdējais maksājums neizdevās. Lūdzu, atjaunojiet kartes datus, lai saglabātu plānu."
+msgstr ""
+"Pēdējais maksājums neizdevās. Lūdzu, atjaunojiet kartes datus, lai saglabātu "
+"plānu."
 
 #: templates/subscriptions/billing.html:24
 #, python-format
@@ -1047,7 +1115,9 @@ msgstr "Maksāt ar karti"
 msgid ""
 "Secure payment by Stripe. You can cancel at any time; the plan stays active "
 "until the end of the paid period."
-msgstr "Drošs maksājums ar Stripe. Varat atcelt jebkurā laikā; plāns paliek aktīvs līdz apmaksātā perioda beigām."
+msgstr ""
+"Drošs maksājums ar Stripe. Varat atcelt jebkurā laikā; plāns paliek aktīvs "
+"līdz apmaksātā perioda beigām."
 
 #: templates/subscriptions/billing.html:55
 msgid "Online payments are not configured on this server yet."
