@@ -154,3 +154,40 @@ def test_vid_reminder_counts_from_signing_date(lease):
     send_reminders(D(2026, 10, 21))
     assert "20.10.2026" in mail.outbox[0].body
     assert "piecu darbdienu" in mail.outbox[0].body  # "within 5 working days"
+
+
+# --- Leases signed before 01.05.2021 (Land Register transition, VERIFY.md L2) ----
+
+
+@pytest.fixture
+def old_lease(lease):
+    lease.signed_on = D(2020, 9, 1)
+    lease.start_date = D(2020, 9, 1)
+    lease.end_date = D(2027, 8, 31)
+    lease.save()
+    return lease
+
+
+def test_old_unregistered_lease_gets_one_reminder(old_lease):
+    send_reminders(D(2026, 11, 2))
+    assert "31.12.2026" in mail.outbox[0].body and "zemesgramata.lv" in mail.outbox[0].body
+    send_reminders(D(2026, 11, 3))
+    assert len(mail.outbox) == 1  # only once
+
+
+def test_no_old_lease_warning_when_registered_or_after_deadline(old_lease):
+    assert send_reminders(D(2027, 1, 5)) == 0  # transition period is over
+    old_lease.registered_in_land_register = True
+    old_lease.save()
+    assert send_reminders(D(2026, 11, 2)) == 0
+
+
+def test_old_lease_warning_on_dashboard(client, verified_user, old_lease):
+    client.force_login(verified_user)
+    response = client.get(reverse("dashboard"))
+    assert response.context["old_leases"] == [old_lease]
+
+
+def test_new_lease_gets_no_old_lease_warning(client, verified_user, lease):
+    client.force_login(verified_user)
+    assert client.get(reverse("dashboard")).context["old_leases"] == []

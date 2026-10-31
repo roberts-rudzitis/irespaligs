@@ -82,6 +82,8 @@ class Lease(TimeStampedModel):
     )
     # Secret part of the tenant's "submit readings" link (no login). Empty = no link.
     readings_token = models.CharField(max_length=64, blank=True, db_index=True, editable=False)
+    # Registered leases bind a new owner of the dwelling (Dzīvojamo telpu īres likums, Art. 28; VERIFY.md L1)
+    registered_in_land_register = models.BooleanField(_("registered in the Land Register"), default=False)
 
     owner_lookup = "property__owner"
     objects = OwnedQuerySet.as_manager()

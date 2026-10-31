@@ -9,6 +9,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 
 from apps.rentals.models import Lease, Property
+from apps.rentals.rules import needs_land_register_warning
 from apps.statements.models import Statement
 from apps.subscriptions import plans
 
@@ -43,6 +44,10 @@ def dashboard(request):
         .select_related("property", "tenant")
         .order_by("end_date")
     )
+    old_leases = [
+        lease for lease in Lease.objects.for_owner(request.user).select_related("property", "tenant")
+        if needs_land_register_warning(lease, today)
+    ]
     unpaid = list(
         Statement.objects.for_owner(request.user).unpaid().select_related("lease__property", "lease__tenant").order_by("due_date")
     )
@@ -52,6 +57,7 @@ def dashboard(request):
         {
             "rows": rows,
             "ending_soon": ending_soon,
+            "old_leases": old_leases,
             "unpaid": unpaid,
             "unpaid_total": sum(n.balance for n in unpaid),
         },

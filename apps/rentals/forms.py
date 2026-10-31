@@ -27,7 +27,7 @@ class TenantForm(forms.ModelForm):
 class LeaseForm(forms.ModelForm):
     class Meta:
         model = Lease
-        fields = ["tenant", "signed_on", "start_date", "end_date", "monthly_rent", "deposit", "rent_due_day", "vid_notified_on"]
+        fields = ["tenant", "signed_on", "start_date", "end_date", "monthly_rent", "deposit", "rent_due_day", "vid_notified_on", "registered_in_land_register"]
         widgets = {"signed_on": DateInput(), "start_date": DateInput(), "end_date": DateInput(), "vid_notified_on": DateInput()}
         # localized: shows "450,00" and accepts both "450,00" and "450.00"
         localized_fields = ["monthly_rent", "deposit"]

@@ -41,10 +41,10 @@ Main sources (checked 31.10.2026):
 
 - ☑ **L1 – Land register:** leases may be registered (Art. 35); an unregistered lease does not bind a
   new owner (Art. 28). *Source:* [DTIL].
-- ☑ **L2 – Leases signed before 01.05.2021:** bind a new owner only until **31.12.2026** (or the lease
+- ✎ **L2 – Leases signed before 01.05.2021:** bind a new owner only until **31.12.2026** (or the lease
   end, if earlier); if the parties can't agree on registration, a court claim is possible until
-  31.12.2026 (transitional provisions 2–3). *Source:* [DTIL]. *Idea:* one-time banner/reminder for
-  landlords with old leases – the deadline is two months away.
+  31.12.2026 (transitional provisions 2–3). *Source:* [DTIL]. *Changed:* `Lease.registered_in_land_register`;
+  dashboard warning + one-time reminder for unregistered leases signed before 01.05.2021 (`apps/rentals/rules.py`).
 - ☑ **L3 – Leases are fixed-term** (Art. 9). *Source:* [DTIL]. *Used in:* end date is required.
 - ✎ **L4 – Deposit max. two months' rent** (Art. 12(1)); unused part returned by the day the dwelling is
   vacated unless the lease says otherwise (Art. 12(4)). *Changed:* lease form rejects a larger deposit.

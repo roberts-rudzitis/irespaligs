@@ -15,6 +15,7 @@ from django.utils.translation import gettext as _
 from apps.accounts.models import User
 from apps.core.money import format_eur
 from apps.rentals.models import Lease
+from apps.rentals.rules import needs_land_register_warning
 from apps.statements.models import Statement
 from apps.subscriptions.services import gets_reminders
 
@@ -66,6 +67,19 @@ def lease_end_items(user, today):
     return items
 
 
+def old_lease_items(user, today):
+    """Leases signed before 01.05.2021, not in the Land Register: bind a new owner only until 31.12.2026.
+    Sent once per lease (VERIFY.md L2)."""
+    items = []
+    for lease in Lease.objects.for_owner(user).select_related("property", "tenant"):
+        if needs_land_register_warning(lease, today):
+            text = _("%(property)s: the lease with %(tenant)s was signed before 01.05.2021. If it is not registered in the Land Register, it binds a new owner of the flat only until 31.12.2026. Consider registering it (free) together with the tenant – see zemesgramata.lv. If it is already registered, tick this on the lease.") % {
+                "property": lease.property.name, "tenant": lease.tenant.full_name,
+            }
+            items.append(("old_lease", f"lease:{lease.pk}", text))
+    return items
+
+
 def vid_items(user, today):
     """New leases without a recorded VID notification.
 
@@ -93,6 +107,7 @@ RULES = [
     ("remind_readings", reading_items),
     ("remind_overdue", overdue_items),
     ("remind_lease_end", lease_end_items),
+    ("remind_lease_end", old_lease_items),
     ("remind_vid", vid_items),
 ]
 

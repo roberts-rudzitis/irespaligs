@@ -15,6 +15,19 @@
     </article>
   {% endif %}
 
+  {% if old_leases %}
+    {# Dzīvojamo telpu īres likums, transitional provisions 2–3 (VERIFY.md L2) #}
+    <article class="message message-warning">
+      <strong>{% translate "Old leases: check the Land Register before 31.12.2026" %}</strong>
+      <p>{% blocktranslate %}These leases were signed before 01.05.2021. If a lease is not registered in the Land Register, it binds a new owner of the flat only until 31.12.2026. Registration is free and is done together with the tenant (zemesgramata.lv).{% endblocktranslate %}</p>
+      <ul>
+        {% for lease in old_leases %}
+          <li>{{ lease.property }} ({{ lease.tenant }}) – <a href="{% url 'rentals:lease_update' lease.pk %}">{% translate "mark as registered" %}</a></li>
+        {% endfor %}
+      </ul>
+    </article>
+  {% endif %}
+
   {% if unpaid %}
     <h2>{% translate "Waiting for payment" %}</h2>
     <div class="overflow-auto">

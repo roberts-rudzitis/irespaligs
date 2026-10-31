@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 19:36+0200\n"
+"POT-Creation-Date: 2026-10-31 20:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,7 +111,7 @@ msgstr "Apstiprināšanai ierakstiet savu e-pasta adresi"
 msgid "This is not your account's email address."
 msgstr "Šī nav jūsu konta e-pasta adrese."
 
-#: apps/reminders/services.py:38
+#: apps/reminders/services.py:39
 #, python-format
 msgid ""
 "It's a new month – enter meter readings and create payment notices for your "
@@ -120,7 +120,7 @@ msgstr ""
 "Sācies jauns mēnesis – ievadiet skaitītāju rādījumus un izveidojiet "
 "maksājuma paziņojumus (aktīvie līgumi: %(count)s)."
 
-#: apps/reminders/services.py:45
+#: apps/reminders/services.py:46
 #, python-format
 msgid ""
 "%(property)s: %(tenant)s has not fully paid the notice for %(month)s (due "
@@ -129,7 +129,7 @@ msgstr ""
 "%(property)s: %(tenant)s nav pilnībā apmaksājis paziņojumu par %(month)s "
 "(termiņš %(due)s). Atlikums: %(balance)s."
 
-#: apps/reminders/services.py:62
+#: apps/reminders/services.py:63
 #, python-format
 msgid ""
 "%(property)s: the lease with %(tenant)s ends on %(date)s (in %(days)s days). "
@@ -138,7 +138,17 @@ msgstr ""
 "%(property)s: līgums ar %(tenant)s beidzas %(date)s (pēc %(days)s dienām). "
 "Laiks vienoties par pagarinājumu vai meklēt jaunu īrnieku."
 
-#: apps/reminders/services.py:85
+#: apps/reminders/services.py:76
+#, python-format
+msgid ""
+"%(property)s: the lease with %(tenant)s was signed before 01.05.2021. If it "
+"is not registered in the Land Register, it binds a new owner of the flat "
+"only until 31.12.2026. Consider registering it (free) together with the "
+"tenant – see zemesgramata.lv. If it is already registered, tick this on the "
+"lease."
+msgstr "%(property)s: līgums ar %(tenant)s noslēgts pirms 01.05.2021. Ja tas nav ierakstīts zemesgrāmatā, dzīvokļa jaunajam īpašniekam tas ir saistošs tikai līdz 31.12.2026. Apsveriet iespēju to ierakstīt zemesgrāmatā (bez maksas) kopā ar īrnieku – skat. zemesgramata.lv. Ja līgums jau ir ierakstīts, atzīmējiet to līgumā."
+
+#: apps/reminders/services.py:99
 #, python-format
 msgid ""
 "%(property)s: the lease with %(tenant)s was signed on %(date)s. If you pay "
@@ -151,7 +161,7 @@ msgstr ""
 "paziņojiet VID EDS sistēmā piecu darbdienu laikā no līguma noslēgšanas "
 "(pievienojiet līguma kopiju). Kad paziņots, ierakstiet datumu līgumā."
 
-#: apps/reminders/services.py:121
+#: apps/reminders/services.py:136
 #, python-format
 msgid "ĪresPalīgs reminders for %(date)s"
 msgstr "ĪresPalīgs atgādinājumi %(date)s"
@@ -249,120 +259,124 @@ msgstr ""
 "kad paziņojāt VID EDS sistēmā (jāpaziņo piecu darbdienu laikā no līguma "
 "noslēgšanas)."
 
-#: apps/rentals/models.py:90
+#: apps/rentals/models.py:86
+msgid "registered in the Land Register"
+msgstr "ierakstīts zemesgrāmatā"
+
+#: apps/rentals/models.py:92
 msgid "lease"
 msgstr "īres līgums"
 
-#: apps/rentals/models.py:91
+#: apps/rentals/models.py:93
 msgid "leases"
 msgstr "īres līgumi"
 
-#: apps/rentals/models.py:102
+#: apps/rentals/models.py:104
 msgid "The end date must be after the start date."
 msgstr "Beigu datumam jābūt vēlākam par sākuma datumu."
 
-#: apps/rentals/models.py:104
+#: apps/rentals/models.py:106
 msgid "The signing date can't be after the start date."
 msgstr "Noslēgšanas datums nevar būt vēlāks par sākuma datumu."
 
-#: apps/rentals/models.py:107
+#: apps/rentals/models.py:109
 msgid "By law the deposit may not exceed two months' rent."
 msgstr ""
 "Saskaņā ar likumu drošības nauda nedrīkst pārsniegt divu mēnešu īres maksu."
 
-#: apps/rentals/models.py:114
+#: apps/rentals/models.py:116
 msgid "This property already has a lease in this period."
 msgstr "Šim īpašumam šajā periodā jau ir īres līgums."
 
-#: apps/rentals/models.py:134
+#: apps/rentals/models.py:136
 msgid "Cold water"
 msgstr "Aukstais ūdens"
 
-#: apps/rentals/models.py:135
+#: apps/rentals/models.py:137
 msgid "Hot water"
 msgstr "Karstais ūdens"
 
-#: apps/rentals/models.py:136
+#: apps/rentals/models.py:138
 msgid "Electricity"
 msgstr "Elektrība"
 
-#: apps/rentals/models.py:137
+#: apps/rentals/models.py:139
 msgid "Heating"
 msgstr "Apkure"
 
-#: apps/rentals/models.py:138
+#: apps/rentals/models.py:140
 msgid "Gas"
 msgstr "Gāze"
 
-#: apps/rentals/models.py:139 apps/statements/models.py:92
+#: apps/rentals/models.py:141 apps/statements/models.py:92
 msgid "Other"
 msgstr "Cits"
 
-#: apps/rentals/models.py:142
+#: apps/rentals/models.py:144
 msgid "type"
 msgstr "veids"
 
-#: apps/rentals/models.py:143
+#: apps/rentals/models.py:145
 msgid "label"
 msgstr "apzīmējums"
 
-#: apps/rentals/models.py:143
+#: apps/rentals/models.py:145
 msgid "e.g. “Kitchen”, if there are several"
 msgstr "piem., “Virtuve”, ja skaitītāji ir vairāki"
 
-#: apps/rentals/models.py:144
+#: apps/rentals/models.py:146
 msgid "unit"
 msgstr "mērvienība"
 
-#: apps/rentals/models.py:144
+#: apps/rentals/models.py:146
 msgid "e.g. m³, kWh, MWh"
 msgstr "piem., m³, kWh, MWh"
 
-#: apps/rentals/models.py:145
+#: apps/rentals/models.py:147
 msgid "price per unit"
 msgstr "cena par vienību"
 
-#: apps/rentals/models.py:146 apps/rentals/models.py:187
+#: apps/rentals/models.py:148 apps/rentals/models.py:189
 msgid "in use"
 msgstr "lietošanā"
 
-#: apps/rentals/models.py:152
+#: apps/rentals/models.py:154
 msgid "meter"
 msgstr "skaitītājs"
 
-#: apps/rentals/models.py:153
+#: apps/rentals/models.py:155
 msgid "meters"
 msgstr "skaitītāji"
 
-#: apps/rentals/models.py:169 apps/statements/models.py:36
+#: apps/rentals/models.py:171 apps/statements/models.py:36
 msgid "month"
 msgstr "mēnesis"
 
-#: apps/rentals/models.py:169
+#: apps/rentals/models.py:171
 msgid "Always the 1st day of the month."
 msgstr "Vienmēr mēneša 1. datums."
 
-#: apps/rentals/models.py:170
+#: apps/rentals/models.py:172
 msgid "reading"
 msgstr "rādījums"
 
-#: apps/rentals/models.py:185
+#: apps/rentals/models.py:187
 msgid "description"
 msgstr "apraksts"
 
-#: apps/rentals/models.py:185
+#: apps/rentals/models.py:187
 msgid "e.g. “Building management”"
 msgstr "piem., “Apsaimniekošana”"
 
-#: apps/rentals/models.py:186 apps/statements/models.py:112
+#: apps/rentals/models.py:188 apps/statements/models.py:112
 msgid "amount"
 msgstr "summa"
 
-#: apps/rentals/models.py:193
+#: apps/rentals/models.py:195
 msgid "fixed charge"
 msgstr "fiksētais maksājums"
 
-#: apps/rentals/models.py:194
+#: apps/rentals/models.py:196
 msgid "fixed charges"
 msgstr "fiksētie maksājumi"
 
@@ -406,7 +420,7 @@ msgstr "Iepriekšējais rādījums: %(value)s"
 msgid "This is lower than the previous reading. Please check the meter."
 msgstr "Tas ir mazāks par iepriekšējo rādījumu. Lūdzu, pārbaudiet skaitītāju."
 
-#: apps/rentals/views.py:30 templates/pages/dashboard.html:43
+#: apps/rentals/views.py:30 templates/pages/dashboard.html:56
 msgid "New property"
 msgstr "Jauns īpašums"
 
@@ -464,13 +478,13 @@ msgstr "mm.gggg"
 msgid "Enter the month as mm.yyyy, e.g. 11.2026."
 msgstr "Ievadiet mēnesi formātā mm.gggg, piem., 11.2026."
 
-#: apps/statements/forms.py:35 templates/pages/dashboard.html:23
+#: apps/statements/forms.py:35 templates/pages/dashboard.html:36
 #: templates/rentals/property_detail.html:52
 #: templates/statements/detail.html:12 templates/statements/pdf.html:39
 msgid "Month"
 msgstr "Mēnesis"
 
-#: apps/statements/forms.py:36 templates/pages/dashboard.html:24
+#: apps/statements/forms.py:36 templates/pages/dashboard.html:37
 #: templates/rentals/property_detail.html:52
 #: templates/statements/detail.html:13 templates/statements/email.txt:6
 #: templates/statements/pdf.html:42
@@ -532,7 +546,7 @@ msgstr "maksājuma paziņojums"
 msgid "payment notices"
 msgstr "maksājuma paziņojumi"
 
-#: apps/statements/models.py:89 templates/pages/dashboard.html:49
+#: apps/statements/models.py:89 templates/pages/dashboard.html:62
 #: templates/rentals/property_detail.html:23
 msgid "Rent"
 msgstr "Īres maksa"
@@ -617,12 +631,12 @@ msgstr "Maksājuma datums"
 msgid "Notice"
 msgstr "Paziņojums"
 
-#: apps/statements/views.py:170 templates/pages/dashboard.html:48
+#: apps/statements/views.py:170 templates/pages/dashboard.html:61
 msgid "Tenant"
 msgstr "Īrnieks"
 
 #: apps/statements/views.py:170 apps/statements/views.py:178
-#: templates/pages/dashboard.html:23 templates/pages/dashboard.html:48
+#: templates/pages/dashboard.html:36 templates/pages/dashboard.html:61
 #: templates/statements/_year_table.html:5
 msgid "Property"
 msgstr "Īpašums"
@@ -647,7 +661,7 @@ msgstr "Aprēķinātie komunālie un citi maksājumi"
 msgid "Received"
 msgstr "Saņemts"
 
-#: apps/statements/views.py:181 templates/pages/dashboard.html:37
+#: apps/statements/views.py:181 templates/pages/dashboard.html:50
 #: templates/rentals/property_detail.html:52
 #: templates/statements/_year_table.html:23
 msgid "Total"
@@ -798,31 +812,46 @@ msgstr "Drīzumā beidzas līgumi"
 msgid "%(property)s (%(tenant)s) – ends %(date)s, in %(days)s days"
 msgstr "%(property)s (%(tenant)s) – beidzas %(date)s, pēc %(days)s dienām"
 
-#: templates/pages/dashboard.html:19
+#: templates/pages/dashboard.html:21
+msgid "Old leases: check the Land Register before 31.12.2026"
+msgstr "Veci līgumi: pārbaudiet ierakstu zemesgrāmatā līdz 31.12.2026"
+
+#: templates/pages/dashboard.html:22
+msgid ""
+"These leases were signed before 01.05.2021. If a lease is not registered in "
+"the Land Register, it binds a new owner of the flat only until 31.12.2026. "
+"Registration is free and is done together with the tenant (zemesgramata.lv)."
+msgstr "Šie līgumi noslēgti pirms 01.05.2021. Ja līgums nav ierakstīts zemesgrāmatā, dzīvokļa jaunajam īpašniekam tas ir saistošs tikai līdz 31.12.2026. Ierakstīšana ir bez maksas, un to veic kopā ar īrnieku (zemesgramata.lv)."
+
+#: templates/pages/dashboard.html:25
+msgid "mark as registered"
+msgstr "atzīmēt kā ierakstītu"
+
+#: templates/pages/dashboard.html:32
 msgid "Waiting for payment"
 msgstr "Gaida samaksu"
 
-#: templates/pages/dashboard.html:24 templates/statements/detail.html:47
+#: templates/pages/dashboard.html:37 templates/statements/detail.html:47
 msgid "Still to pay"
 msgstr "Atlikums"
 
-#: templates/pages/dashboard.html:24 templates/rentals/property_detail.html:52
+#: templates/pages/dashboard.html:37 templates/rentals/property_detail.html:52
 msgid "Status"
 msgstr "Statuss"
 
-#: templates/pages/dashboard.html:42
+#: templates/pages/dashboard.html:55
 msgid "Properties"
 msgstr "Īpašumi"
 
-#: templates/pages/dashboard.html:49
+#: templates/pages/dashboard.html:62
 msgid "Lease ends"
 msgstr "Līgums beidzas"
 
-#: templates/pages/dashboard.html:60
+#: templates/pages/dashboard.html:73
 msgid "Vacant"
 msgstr "Brīvs"
 
-#: templates/pages/dashboard.html:68
+#: templates/pages/dashboard.html:81
 msgid "You have no properties yet. Start by adding your first one."
 msgstr "Jums vēl nav neviena īpašuma. Sāciet, pievienojot pirmo."
 
