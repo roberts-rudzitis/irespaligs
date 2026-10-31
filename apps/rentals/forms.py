@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from .models import Lease, Property, Tenant
+from .models import FixedCharge, Lease, Meter, Property, Tenant
 
 
 class DateInput(forms.DateInput):
@@ -37,3 +37,17 @@ class LeaseForm(forms.ModelForm):
         self.instance.property = property
         # Only this landlord's tenants can be chosen.
         self.fields["tenant"].queryset = Tenant.objects.for_owner(owner)
+
+
+class MeterForm(forms.ModelForm):
+    class Meta:
+        model = Meter
+        fields = ["kind", "label", "unit", "price_per_unit", "is_active"]
+        localized_fields = ["price_per_unit"]
+
+
+class FixedChargeForm(forms.ModelForm):
+    class Meta:
+        model = FixedCharge
+        fields = ["label", "amount", "is_active"]
+        localized_fields = ["amount"]

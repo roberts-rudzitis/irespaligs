@@ -72,3 +72,12 @@ def test_dates_are_dd_mm_yyyy_in_both_languages():
         with translation.override(lang):
             assert formats.date_format(day, "SHORT_DATE_FORMAT") == "05.03.2026"
             assert formats.number_format(Decimal("12.5"), 2) == "12,50"
+
+
+def test_quantity_formatting_drops_trailing_zeros():
+    from apps.core.money import format_quantity
+
+    assert format_quantity(Decimal("120.400")) == "120,4"
+    assert format_quantity(Decimal("8450.000")) == "8450"
+    assert format_quantity(Decimal("2.15400")) == "2,154"
+    assert format_quantity(None) == ""

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.db.models import ProtectedError
+from django.db.models import RestrictedError
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -7,8 +7,8 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 
 from apps.core.mixins import OwnerMixin, SavedMessageMixin
 
-from .forms import LeaseForm, PropertyForm, TenantForm
-from .models import Lease, Property, Tenant
+from .forms import FixedChargeForm, LeaseForm, MeterForm, PropertyForm, TenantForm
+from .models import FixedCharge, Lease, Meter, Property, Tenant
 
 FORM_TEMPLATE = "rentals/form.html"
 DELETE_TEMPLATE = "rentals/confirm_delete.html"
@@ -88,7 +88,7 @@ class TenantDelete(OwnerMixin, DeleteView):
     def form_valid(self, form):
         try:
             return super().form_valid(form)
-        except ProtectedError:
+        except RestrictedError:
             messages.error(self.request, _("This tenant has leases. Delete the leases first."))
             return redirect("rentals:tenant_list")
 
@@ -136,3 +136,63 @@ class LeaseDelete(OwnerMixin, DeleteView):
 
     def get_success_url(self):
         return self.object.property.get_absolute_url()
+
+
+# --- Meters and fixed charges (belong to a property) ------------------------
+
+
+class PropertyChildCreate(OwnerMixin, SavedMessageMixin, CreateView):
+    """Create something that belongs to one of the landlord's properties."""
+
+    template_name = FORM_TEMPLATE
+
+    def form_valid(self, form):
+        form.instance.property = get_object_or_404(
+            Property.objects.for_owner(self.request.user), pk=self.kwargs["property_pk"]
+        )
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        get_object_or_404(Property.objects.for_owner(request.user), pk=kwargs["property_pk"])
+        return super().get(request, *args, **kwargs)
+
+
+class PropertyChildDelete(OwnerMixin, DeleteView):
+    template_name = DELETE_TEMPLATE
+
+    def get_success_url(self):
+        return self.object.property.get_absolute_url()
+
+
+class MeterCreate(PropertyChildCreate):
+    model = Meter
+    form_class = MeterForm
+    extra_context = {"title": _("New meter")}
+
+
+class MeterUpdate(OwnerMixin, SavedMessageMixin, UpdateView):
+    model = Meter
+    form_class = MeterForm
+    template_name = FORM_TEMPLATE
+    extra_context = {"title": _("Edit meter")}
+
+
+class MeterDelete(PropertyChildDelete):
+    model = Meter
+
+
+class FixedChargeCreate(PropertyChildCreate):
+    model = FixedCharge
+    form_class = FixedChargeForm
+    extra_context = {"title": _("New fixed charge")}
+
+
+class FixedChargeUpdate(OwnerMixin, SavedMessageMixin, UpdateView):
+    model = FixedCharge
+    form_class = FixedChargeForm
+    template_name = FORM_TEMPLATE
+    extra_context = {"title": _("Edit fixed charge")}
+
+
+class FixedChargeDelete(PropertyChildDelete):
+    model = FixedCharge

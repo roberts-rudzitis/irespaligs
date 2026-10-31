@@ -128,3 +128,12 @@ def test_other_landlords_tenant_and_lease_are_404(client, flat, tenant, db):
 def test_tenant_has_no_personal_code_field():
     field_names = {f.name.lower() for f in Tenant._meta.get_fields()}
     assert not any("personas" in n or "personal_code" in n for n in field_names)
+
+
+def test_deleting_landlord_removes_all_their_data(flat, tenant, verified_user):
+    # Needed for GDPR account deletion: tenants with leases must not block it.
+    make_lease(flat, tenant, datetime.date(2026, 1, 1), datetime.date(2026, 12, 31))
+    verified_user.delete()
+    assert not Property.objects.exists()
+    assert not Tenant.objects.exists()
+    assert not Lease.objects.exists()

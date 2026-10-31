@@ -15,6 +15,30 @@
     </article>
   {% endif %}
 
+  {% if unpaid %}
+    <h2>{% translate "Waiting for payment" %}</h2>
+    <div class="overflow-auto">
+    <table>
+      <thead><tr>
+        <th>{% translate "Property" %}</th><th>{% translate "Month" %}</th>
+        <th>{% translate "Still to pay" %}</th><th>{% translate "Due date" %}</th><th>{% translate "Status" %}</th>
+      </tr></thead>
+      <tbody>
+      {% for notice in unpaid %}
+        <tr>
+          <td><a href="{{ notice.get_absolute_url }}">{{ notice.lease.property.name }}</a> <small>({{ notice.lease.tenant }})</small></td>
+          <td>{{ notice.period|date:"m.Y" }}</td>
+          <td class="num">{{ notice.balance|eur }}</td>
+          <td>{{ notice.due_date|date:"SHORT_DATE_FORMAT" }}</td>
+          <td>{% include "statements/_state.html" with state=notice.payment_state %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      <tfoot><tr><th colspan="2">{% translate "Total" %}</th><th class="num">{{ unpaid_total|eur }}</th><th colspan="2"></th></tr></tfoot>
+    </table>
+    </div>
+  {% endif %}
+
   <h2>{% translate "Properties" %}</h2>
   <p><a href="{% url 'rentals:property_create' %}" role="button">{% translate "New property" %}</a></p>
   {% if rows %}

@@ -12,32 +12,86 @@
   </p>
   {% if object.notes %}<p>{{ object.notes|linebreaksbr }}</p>{% endif %}
 
+  {# ---- Leases and their payment notices ---- #}
   <h2>{% translate "Leases" %}</h2>
-  <p><a href="{% url 'rentals:lease_create' object.pk %}" role="button">{% translate "New lease" %}</a></p>
-  {% with leases=object.leases.all %}
-    {% if leases %}
-      <div class="overflow-auto">
+  <p><a href="{% url 'rentals:lease_create' object.pk %}" role="button" class="secondary outline">{% translate "New lease" %}</a></p>
+  {% for lease in object.leases.all %}
+    <article>
+      <header>
+        <strong>{{ lease.tenant }}</strong>{% if lease.is_active %} <mark>{% translate "active" %}</mark>{% endif %}
+        · {{ lease.start_date|date:"SHORT_DATE_FORMAT" }} – {{ lease.end_date|date:"SHORT_DATE_FORMAT" }}
+        · {% translate "Rent" %} {{ lease.monthly_rent|eur }} · {% translate "Deposit" %} {{ lease.deposit|eur }}
+        <br><small><a href="{% url 'rentals:lease_update' lease.pk %}">{% translate "Edit" %}</a> ·
+        <a href="{% url 'rentals:lease_delete' lease.pk %}">{% translate "Delete" %}</a></small>
+      </header>
+      <p><a href="{% url 'statements:create' lease.pk %}" role="button">{% translate "New payment notice" %}</a></p>
+      {% with notices=lease.statements.all %}
+        {% if notices %}
+          <div class="overflow-auto">
+          <table>
+            <thead><tr><th>{% translate "Month" %}</th><th>{% translate "Total" %}</th><th>{% translate "Due date" %}</th><th>{% translate "Status" %}</th></tr></thead>
+            <tbody>
+            {% for notice in notices %}
+              <tr>
+                <td><a href="{{ notice.get_absolute_url }}">{{ notice.period|date:"m.Y" }}</a></td>
+                <td class="num">{{ notice.total|eur }}</td>
+                <td>{{ notice.due_date|date:"SHORT_DATE_FORMAT" }}</td>
+                <td>{% include "statements/_state.html" with state=notice.payment_state %}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          </div>
+        {% endif %}
+      {% endwith %}
+    </article>
+  {% empty %}
+    <p>{% translate "No leases yet." %}</p>
+  {% endfor %}
+
+  {# ---- Meters ---- #}
+  <h2>{% translate "Meters" %}</h2>
+  <p><a href="{% url 'rentals:meter_create' object.pk %}" role="button" class="secondary outline">{% translate "New meter" %}</a></p>
+  {% with meters=object.meters.all %}
+    {% if meters %}
       <table>
-        <thead><tr>
-          <th>{% translate "Tenant" %}</th><th>{% translate "Period" %}</th>
-          <th>{% translate "Rent" %}</th><th>{% translate "Deposit" %}</th><th></th>
-        </tr></thead>
+        <thead><tr><th>{% translate "Meter" %}</th><th>{% translate "Price per unit" %}</th><th>{% translate "Last reading" %}</th><th></th></tr></thead>
         <tbody>
-        {% for lease in leases %}
-          <tr>
-            <td>{{ lease.tenant }}{% if lease.is_active %} <mark>{% translate "active" %}</mark>{% endif %}</td>
-            <td>{{ lease.start_date|date:"SHORT_DATE_FORMAT" }} – {{ lease.end_date|date:"SHORT_DATE_FORMAT" }}</td>
-            <td>{{ lease.monthly_rent|eur }}</td>
-            <td>{{ lease.deposit|eur }}</td>
-            <td><a href="{% url 'rentals:lease_update' lease.pk %}">{% translate "Edit" %}</a> ·
-                <a href="{% url 'rentals:lease_delete' lease.pk %}">{% translate "Delete" %}</a></td>
+        {% for meter in meters %}
+          <tr{% if not meter.is_active %} class="muted"{% endif %}>
+            <td>{{ meter }}</td>
+            <td class="num">{{ meter.price_per_unit|qty }} €/{{ meter.unit }}</td>
+            <td class="num">{% with last=meter.readings.first %}{% if last %}{{ last.value|qty }} ({{ last.period|date:"m.Y" }}){% endif %}{% endwith %}</td>
+            <td><a href="{% url 'rentals:meter_update' meter.pk %}">{% translate "Edit" %}</a> ·
+                <a href="{% url 'rentals:meter_delete' meter.pk %}">{% translate "Delete" %}</a></td>
           </tr>
         {% endfor %}
         </tbody>
       </table>
-      </div>
     {% else %}
-      <p>{% translate "No leases yet." %}</p>
+      <p>{% translate "No meters yet. Add water, electricity or heating meters to bill utilities by readings." %}</p>
+    {% endif %}
+  {% endwith %}
+
+  {# ---- Fixed monthly charges ---- #}
+  <h2>{% translate "Fixed monthly charges" %}</h2>
+  <p><a href="{% url 'rentals:charge_create' object.pk %}" role="button" class="secondary outline">{% translate "New fixed charge" %}</a></p>
+  {% with charges=object.fixed_charges.all %}
+    {% if charges %}
+      <table>
+        <tbody>
+        {% for charge in charges %}
+          <tr{% if not charge.is_active %} class="muted"{% endif %}>
+            <td>{{ charge.label }}</td>
+            <td class="num">{{ charge.amount|eur }}</td>
+            <td><a href="{% url 'rentals:charge_update' charge.pk %}">{% translate "Edit" %}</a> ·
+                <a href="{% url 'rentals:charge_delete' charge.pk %}">{% translate "Delete" %}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>{% translate "No fixed charges yet (e.g. building management, waste)." %}</p>
     {% endif %}
   {% endwith %}
 {% endblock %}

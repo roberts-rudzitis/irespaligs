@@ -37,6 +37,12 @@ class User(AbstractUser):
     language = models.CharField(
         _("language"), max_length=8, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE
     )
+    # Printed on payment notices so the tenant knows where to pay (the landlord's own bank account).
+    payment_details = models.TextField(
+        _("payment details"),
+        blank=True,
+        help_text=_("Shown on payment notices, e.g. recipient name, bank, IBAN."),
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

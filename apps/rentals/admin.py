@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Lease, Property, Tenant
+from .models import FixedCharge, Lease, Meter, MeterReading, Property, Tenant
 
 
 @admin.register(Property)
@@ -19,3 +19,8 @@ class TenantAdmin(admin.ModelAdmin):
 class LeaseAdmin(admin.ModelAdmin):
     list_display = ["property", "tenant", "start_date", "end_date", "monthly_rent"]
     list_select_related = ["property", "tenant"]
+
+
+admin.site.register(Meter)
+admin.site.register(MeterReading)
+admin.site.register(FixedCharge)

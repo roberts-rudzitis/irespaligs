@@ -62,8 +62,7 @@ All tables have `id`, `created_at`, `updated_at`. All money is `NUMERIC(12,2)` (
 `Decimal`, **never float** – floats give rounding errors like 0.1 + 0.2 = 0.30000000000000004).
 
 ```
-User ─┬─< Property ─┬─< Meter ─┬─< Tariff
-      │             │          └─< MeterReading
+User ─┬─< Property ─┬─< Meter ───< MeterReading
       │             ├─< FixedCharge
       │             └─< Lease >── Tenant
       │                   └─< Statement ─┬─< StatementLine
@@ -75,13 +74,12 @@ User ─┬─< Property ─┬─< Meter ─┬─< Tariff
 
 | Table | Key fields | Notes |
 |---|---|---|
-| **User** | email (login), full_name, language (`lv`/`en`), email_verified | Custom model from day one (Django best practice). **No personas kods.** |
+| **User** | email (login), full_name, language (`lv`/`en`), payment_details (landlord's own IBAN text, printed on notices) | Custom model from day one (Django best practice). **No personas kods.** |
 | **Subscription** | user, plan (`free`/`standard`), status, stripe_customer_id, stripe_subscription_id, current_period_end, trial_ends_at | Updated only by Stripe webhooks. |
 | **Property** | owner→User, name ("Imantas dzīvoklis"), address (free text), notes | |
 | **Tenant** | owner→User, full_name, email, phone | Minimal data. No personas kods, no ID documents. |
-| **Lease** | property, tenant, start_date, end_date (required – fixed-term, VERIFY **L3**), monthly_rent, deposit, rent_due_day (1–28), vid_notified_on (optional) | One active lease per property (enforced in code). |
-| **Meter** | property, kind (`cold_water`, `hot_water`, `electricity`, `heat`, `gas`, `other`), unit (m³, kWh, MWh), label, is_active | |
-| **Tariff** | meter, price_per_unit `NUMERIC(12,5)`, valid_from | History kept → old statements stay correct. |
+| **Lease** | property, tenant (`RESTRICT`: a tenant with leases can't be deleted alone, but deleting the whole account works), start_date, end_date (required – fixed-term, VERIFY **L3**), monthly_rent, deposit, rent_due_day (1–28), vid_notified_on (optional) | One active lease per property (enforced in code). |
+| **Meter** | property, kind (`cold_water`, `hot_water`, `electricity`, `heat`, `gas`, `other`), unit (m³, kWh, MWh), label, price_per_unit `NUMERIC(12,5)`, is_active | No separate tariff history table: statement lines copy the price, so old statements stay correct anyway. |
 | **FixedCharge** | property, label ("Apsaimniekošana", "Atkritumi"), amount, is_active | Monthly fixed amounts passed on to the tenant. |
 | **MeterReading** | meter, period (first day of month), value `NUMERIC(14,3)` | Unique (meter, period). |
 | **Statement** | lease, period, issue_date, due_date, status (`draft`/`sent`/`partly_paid`/`paid`), total, sent_at | |
@@ -104,8 +102,7 @@ for our own accounting → VERIFY **G2**.
 **Monthly statement** (`statements/services.py`):
 1. Landlord opens the property → "Jauns rēķins / New statement" for month M.
 2. Form shows each active meter with last month's reading pre-filled; landlord enters the new ones.
-3. `build_statement()` makes lines: rent + for each meter `(curr − prev) × tariff valid on
-   the 1st of M` + fixed charges. Rounds each line to 2 decimals (`ROUND_HALF_UP`), sums.
+3. `build_statement()` makes lines: rent + for each meter `(curr − prev) × meter price` + fixed charges. Rounds each line to 2 decimals (`ROUND_HALF_UP`), sums.
 4. Saved as `draft` → landlord checks it → "Sūtīt" generates the PDF (WeasyPrint) and emails
    it to the tenant (in the landlord's chosen language) → status `sent`.
 

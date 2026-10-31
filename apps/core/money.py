@@ -18,3 +18,11 @@ def format_eur(value):
     # Python gives '1,234.50'; swap to Latvian separators.
     text = f"{abs(amount):,.2f}".replace(",", NBSP).replace(".", ",")
     return f"{sign}{text}{NBSP}€"
+
+
+def format_quantity(value):
+    """Meter readings, quantities, unit prices: Decimal('120.400') → '120,4', Decimal('8450') → '8450'."""
+    if value is None or value == "":
+        return ""
+    text = format(Decimal(value).normalize(), "f")  # normalize() drops trailing zeros
+    return text.replace(".", ",")

@@ -5,4 +5,14 @@
 .message { padding: .75rem 1rem; }
 .message-error, .field-error { color: var(--pico-del-color); }
 .message-warning { border-left: 4px solid #e0a800; }
+.num { text-align: right; white-space: nowrap; }
+.muted { opacity: .55; }
+.actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+.actions form { margin: 0; }
+button.link { background: none; border: none; padding: 0; color: var(--pico-primary); width: auto; margin: 0; }
+.state { padding: .1rem .5rem; border-radius: .25rem; font-size: .85rem; }
+.state-paid { background: #d1f0d6; color: #14532d; }
+.state-overdue { background: #fbd5d5; color: #7f1d1d; }
+.state-unpaid, .state-partly_paid { background: #fdf0c8; color: #713f12; }
+.state-draft { background: #e5e7eb; color: #374151; }
 footer { margin-top: 3rem; opacity: .7; }

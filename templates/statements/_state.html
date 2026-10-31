@@ -1,0 +1,1 @@
+{% load i18n %}<span class="state state-{{ state }}">{% if state == "draft" %}{% translate "Draft" %}{% elif state == "paid" %}{% translate "Paid" %}{% elif state == "partly_paid" %}{% translate "Partly paid" %}{% elif state == "overdue" %}{% translate "Overdue" %}{% else %}{% translate "Unpaid" %}{% endif %}</span>

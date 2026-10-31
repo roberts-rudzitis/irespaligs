@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "My account" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "My account" %}</h1>
+  <p>{{ user.email }} · <a href="{% url 'account_change_password' %}">{% translate "Change password" %}</a></p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include "includes/form_fields.html" %}
+    <button type="submit">{% translate "Save" %}</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% load i18n money %}<!doctype html>
+{% comment %}
+  Printed payment notice (maksājuma paziņojums). Rendered by WeasyPrint.
+  TODO: verify (VERIFY.md V5) whether any content is mandatory for a private landlord's notice.
+{% endcomment %}
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: "DejaVu Sans", sans-serif; font-size: 10pt; color: #222; }
+  h1 { font-size: 16pt; margin: 0 0 4mm; }
+  .meta { width: 100%; margin-bottom: 8mm; }
+  .meta td { vertical-align: top; width: 50%; padding: 0; }
+  .label { color: #777; font-size: 8pt; text-transform: uppercase; }
+  table.lines { width: 100%; border-collapse: collapse; }
+  table.lines th, table.lines td { border-bottom: 1px solid #ddd; padding: 2mm 1mm; text-align: left; }
+  table.lines .num { text-align: right; white-space: nowrap; }
+  table.lines tfoot th { font-size: 12pt; border-bottom: none; }
+  .pay { margin-top: 8mm; padding: 4mm; background: #f4f4f4; }
+  .footer { margin-top: 10mm; font-size: 8pt; color: #777; }
+</style>
+</head>
+<body>
+  <h1>{% translate "Payment notice" %} {{ statement.number }}</h1>
+  <table class="meta">
+    <tr>
+      <td>
+        <div class="label">{% translate "From (landlord)" %}</div>
+        {{ landlord.full_name|default:landlord.email }}<br>{{ landlord.email }}
+      </td>
+      <td>
+        <div class="label">{% translate "To (tenant)" %}</div>
+        {{ statement.lease.tenant.full_name }}<br>{{ statement.lease.property.address|default:statement.lease.property.name }}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding-top:4mm">
+        <div class="label">{% translate "Month" %}</div>{{ statement.period|date:"m.Y" }}
+      </td>
+      <td style="padding-top:4mm">
+        <div class="label">{% translate "Issue date" %} / {% translate "Due date" %}</div>
+        {{ statement.issue_date|date:"SHORT_DATE_FORMAT" }} / <strong>{{ statement.due_date|date:"SHORT_DATE_FORMAT" }}</strong>
+      </td>
+    </tr>
+  </table>
+
+  {% include "statements/_lines.html" %}
+
+  <div class="pay">
+    <strong>{% translate "Amount to pay" %}: {{ statement.total|eur }}</strong><br>
+    {% translate "Payment reference" %}: {{ statement.number }}
+    {% if landlord.payment_details %}<br><br>{{ landlord.payment_details|linebreaksbr }}{% endif %}
+  </div>
+
+  <p class="footer">{% translate "Prepared with ĪresPalīgs." %}</p>
+</body>
+</html>

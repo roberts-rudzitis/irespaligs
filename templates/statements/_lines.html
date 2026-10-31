@@ -1,0 +1,28 @@
+{% load i18n l10n money %}
+<table class="lines">
+  <thead>
+    <tr>
+      <th>{% translate "Item" %}</th>
+      <th class="num">{% translate "Previous" %}</th>
+      <th class="num">{% translate "Current" %}</th>
+      <th class="num">{% translate "Quantity" %}</th>
+      <th class="num">{% translate "Price" %}</th>
+      <th class="num">{% translate "Amount" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for line in statement.lines.all %}
+      <tr>
+        <td>{{ line.description }}</td>
+        <td class="num">{% if line.prev_reading is not None %}{{ line.prev_reading|qty }}{% endif %}</td>
+        <td class="num">{% if line.curr_reading is not None %}{{ line.curr_reading|qty }}{% endif %}</td>
+        <td class="num">{% if line.kind == "utility" %}{{ line.quantity|qty }} {{ line.unit }}{% endif %}</td>
+        <td class="num">{% if line.kind == "utility" %}{{ line.unit_price|qty }}{% endif %}</td>
+        <td class="num">{{ line.amount|eur }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr><th colspan="5">{% translate "Total due" %}</th><th class="num">{{ statement.total|eur }}</th></tr>
+  </tfoot>
+</table>

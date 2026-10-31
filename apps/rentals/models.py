@@ -59,7 +59,7 @@ class Tenant(TimeStampedModel):
 
 class Lease(TimeStampedModel):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="leases", verbose_name=_("property"))
-    tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT, related_name="leases", verbose_name=_("tenant"))
+    tenant = models.ForeignKey(Tenant, on_delete=models.RESTRICT, related_name="leases", verbose_name=_("tenant"))
     start_date = models.DateField(_("start date"))
     # Required: residential leases must be fixed-term. TODO: verify (VERIFY.md L3)
     end_date = models.DateField(_("end date"))
@@ -111,3 +111,77 @@ class Lease(TimeStampedModel):
     def days_until_end(self, on_date=None):
         on_date = on_date or timezone.localdate()
         return (self.end_date - on_date).days
+
+
+class Meter(TimeStampedModel):
+    """A utility meter in a property. The price is the landlord's own tariff.
+    Statement lines copy the price, so changing it never alters old statements."""
+
+    class Kind(models.TextChoices):
+        COLD_WATER = "cold_water", _("Cold water")
+        HOT_WATER = "hot_water", _("Hot water")
+        ELECTRICITY = "electricity", _("Electricity")
+        HEAT = "heat", _("Heating")
+        GAS = "gas", _("Gas")
+        OTHER = "other", _("Other")
+
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="meters")
+    kind = models.CharField(_("type"), max_length=20, choices=Kind.choices)
+    label = models.CharField(_("label"), max_length=60, blank=True, help_text=_("e.g. “Kitchen”, if there are several"))
+    unit = models.CharField(_("unit"), max_length=10, help_text=_("e.g. m³, kWh, MWh"))
+    price_per_unit = models.DecimalField(_("price per unit"), max_digits=12, decimal_places=5)
+    is_active = models.BooleanField(_("in use"), default=True)
+
+    owner_lookup = "property__owner"
+    objects = OwnedQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _("meter")
+        verbose_name_plural = _("meters")
+        ordering = ["kind", "label"]
+
+    def __str__(self):
+        name = self.get_kind_display()
+        return f"{name} ({self.label})" if self.label else name
+
+    def get_absolute_url(self):
+        return self.property.get_absolute_url()
+
+    def last_reading_before(self, period):
+        return self.readings.filter(period__lt=period).order_by("-period").first()
+
+
+class MeterReading(TimeStampedModel):
+    meter = models.ForeignKey(Meter, on_delete=models.CASCADE, related_name="readings")
+    period = models.DateField(_("month"), help_text=_("Always the 1st day of the month."))
+    value = models.DecimalField(_("reading"), max_digits=14, decimal_places=3)
+
+    owner_lookup = "meter__property__owner"
+    objects = OwnedQuerySet.as_manager()
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["meter", "period"], name="one_reading_per_meter_per_month")]
+        ordering = ["-period"]
+
+
+class FixedCharge(TimeStampedModel):
+    """A fixed monthly amount passed on to the tenant, e.g. building management or waste."""
+
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="fixed_charges")
+    label = models.CharField(_("description"), max_length=100, help_text=_("e.g. “Building management”"))
+    amount = models.DecimalField(_("amount"), max_digits=12, decimal_places=2)
+    is_active = models.BooleanField(_("in use"), default=True)
+
+    owner_lookup = "property__owner"
+    objects = OwnedQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _("fixed charge")
+        verbose_name_plural = _("fixed charges")
+        ordering = ["label"]
+
+    def __str__(self):
+        return self.label
+
+    def get_absolute_url(self):
+        return self.property.get_absolute_url()

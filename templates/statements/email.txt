@@ -1,0 +1,12 @@
+{% load i18n money %}{% autoescape off %}{% blocktranslate with name=statement.lease.tenant.full_name %}Hello, {{ name }}!{% endblocktranslate %}
+
+{% blocktranslate with month=statement.period|date:"m.Y" property=statement.lease.property.name %}Attached is the payment notice for {{ month }} for {{ property }}.{% endblocktranslate %}
+
+{% translate "Amount to pay" %}: {{ statement.total|eur }}
+{% translate "Due date" %}: {{ statement.due_date|date:"SHORT_DATE_FORMAT" }}
+{% translate "Payment reference" %}: {{ statement.number }}
+{% if landlord.payment_details %}
+{{ landlord.payment_details }}
+{% endif %}
+{% blocktranslate with landlord=landlord.full_name|default:landlord.email %}If you have questions, just reply to this email – it goes to {{ landlord }}.{% endblocktranslate %}
+{% endautoescape %}

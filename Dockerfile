@@ -5,9 +5,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
     STATIC_ROOT=/srv/staticfiles
 
-# gettext: needed for makemessages / compilemessages (translations)
+# gettext: translations (makemessages / compilemessages)
+# pango + fonts: WeasyPrint needs them to render PDFs; DejaVu has Latvian letters (ā, č, ē, ...)
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gettext \
+       libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

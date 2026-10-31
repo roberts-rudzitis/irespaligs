@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 
 from apps.rentals.models import Lease, Property
+from apps.statements.models import Statement
 
 ENDING_SOON_DAYS = 60
 
@@ -27,4 +28,16 @@ def dashboard(request):
         .select_related("property", "tenant")
         .order_by("end_date")
     )
-    return render(request, "pages/dashboard.html", {"rows": rows, "ending_soon": ending_soon})
+    unpaid = list(
+        Statement.objects.for_owner(request.user).unpaid().select_related("lease__property", "lease__tenant").order_by("due_date")
+    )
+    return render(
+        request,
+        "pages/dashboard.html",
+        {
+            "rows": rows,
+            "ending_soon": ending_soon,
+            "unpaid": unpaid,
+            "unpaid_total": sum(n.balance for n in unpaid),
+        },
+    )

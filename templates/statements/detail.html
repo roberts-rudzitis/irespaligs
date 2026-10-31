@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n money %}
+{% block head_title %}{% translate "Payment notice" %} {{ statement.number }}{% endblock %}
+{% block content %}
+  <hgroup>
+    <h1>{% translate "Payment notice" %} {{ statement.number }}</h1>
+    <p><a href="{{ statement.lease.property.get_absolute_url }}">{{ statement.lease.property }}</a> · {{ statement.lease.tenant }}</p>
+  </hgroup>
+
+  <p>
+    {% include "statements/_state.html" with state=statement.payment_state %}
+    · {% translate "Month" %}: {{ statement.period|date:"m.Y" }}
+    · {% translate "Due date" %}: {{ statement.due_date|date:"SHORT_DATE_FORMAT" }}
+    {% if statement.sent_at %} · {% translate "Sent" %}: {{ statement.sent_at|date:"SHORT_DATETIME_FORMAT" }}{% endif %}
+  </p>
+
+  <div class="overflow-auto">{% include "statements/_lines.html" %}</div>
+
+  <div class="actions">
+    <a href="{% url 'statements:pdf' statement.pk %}" role="button" class="secondary outline" target="_blank">{% translate "View PDF" %}</a>
+    <form method="post" action="{% url 'statements:send' statement.pk %}">
+      {% csrf_token %}
+      <button type="submit">{% if statement.sent_at %}{% translate "Send again" %}{% else %}{% translate "Send to tenant" %}{% endif %}</button>
+    </form>
+    <a href="{% url 'statements:delete' statement.pk %}">{% translate "Delete" %}</a>
+  </div>
+  {% if not user.payment_details %}
+    <p><small>{% url 'profile' as profile_url %}{% blocktranslate %}Tip: add your <a href="{{ profile_url }}">payment details</a> (IBAN) so they appear on the notice.{% endblocktranslate %}</small></p>
+  {% endif %}
+
+  <h2>{% translate "Payments" %}</h2>
+  {% with payments=statement.payments.all %}
+    {% if payments %}
+      <table>
+        {% for payment in payments %}
+          <tr>
+            <td>{{ payment.paid_on|date:"SHORT_DATE_FORMAT" }}</td>
+            <td class="num">{{ payment.amount|eur }}</td>
+            <td>{{ payment.note }}</td>
+            <td>
+              <form method="post" action="{% url 'statements:payment_delete' payment.pk %}">
+                {% csrf_token %}<button type="submit" class="link">{% translate "Delete" %}</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        <tr><th>{% translate "Still to pay" %}</th><th class="num">{{ statement.balance|eur }}</th><td></td><td></td></tr>
+      </table>
+    {% else %}
+      <p>{% translate "No payments recorded yet." %}</p>
+    {% endif %}
+  {% endwith %}
+
+  <details {% if payment_form.errors %}open{% endif %}>
+    <summary role="button" class="secondary outline">{% translate "Record a payment" %}</summary>
+    <form method="post" action="{% url 'statements:payment_add' statement.pk %}" novalidate>
+      {% csrf_token %}
+      {% include "includes/form_fields.html" with form=payment_form %}
+      <button type="submit">{% translate "Save payment" %}</button>
+    </form>
+  </details>
+{% endblock %}

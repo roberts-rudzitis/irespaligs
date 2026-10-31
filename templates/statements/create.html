@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "New payment notice" %}{% endblock %}
+{% block content %}
+  <hgroup>
+    <h1>{% translate "New payment notice" %}</h1>
+    <p>{{ lease.property }} · {{ lease.tenant }}</p>
+  </hgroup>
+  {% if not form.meters %}
+    <p><small>{% blocktranslate %}This property has no meters, so the notice will contain only rent and fixed charges. You can add meters on the property page.{% endblocktranslate %}</small></p>
+  {% endif %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include "includes/form_fields.html" %}
+    <button type="submit">{% translate "Create draft" %}</button>
+  </form>
+{% endblock %}
