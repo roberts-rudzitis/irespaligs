@@ -165,13 +165,15 @@ def year_summary_csv(request):
     response["Content-Disposition"] = f'attachment; filename="ienakumi-{year}.csv"'
     response.write("﻿")  # BOM so Excel shows Latvian letters correctly
     writer = csv.writer(response, delimiter=";")  # Latvian Excel expects ";" because "," is the decimal sign
-    writer.writerow([_("Payment date"), _("Property"), _("Tenant"), _("Notice"), _("Amount"), _("Note")])
-    for row in rows:
-        for p in row.payments:
-            writer.writerow([
-                p.paid_on.strftime("%d.%m.%Y"), row.property.name, p.statement.lease.tenant.full_name,
-                p.statement.number, _csv_amount(p.amount), p.note,
-            ])
+    # Columns follow the income register VID describes (entry no., date, document, payer, description, amount),
+    # which is needed when rent is received in cash.
+    writer.writerow([_("No."), _("Payment date"), _("Notice"), _("Tenant"), _("Property"), _("Amount"), _("Note")])
+    payments = sorted((p for row in rows for p in row.payments), key=lambda p: (p.paid_on, p.pk))
+    for number, p in enumerate(payments, start=1):
+        writer.writerow([
+            number, p.paid_on.strftime("%d.%m.%Y"), p.statement.number, p.statement.lease.tenant.full_name,
+            p.statement.lease.property.name, _csv_amount(p.amount), p.note,
+        ])
     writer.writerow([])
     writer.writerow([_("Property"), _("Billed rent"), _("Billed utilities and charges"), _("Received")])
     for row in rows + [totals]:

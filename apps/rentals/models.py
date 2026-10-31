@@ -60,8 +60,10 @@ class Tenant(TimeStampedModel):
 class Lease(TimeStampedModel):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="leases", verbose_name=_("property"))
     tenant = models.ForeignKey(Tenant, on_delete=models.RESTRICT, related_name="leases", verbose_name=_("tenant"))
+    # The VID notification deadline counts from signing (VERIFY.md V2), which can be before the start.
+    signed_on = models.DateField(_("signed on"), null=True, blank=True, help_text=_("Leave empty if same as the start date."))
     start_date = models.DateField(_("start date"))
-    # Required: residential leases must be fixed-term. TODO: verify (VERIFY.md L3)
+    # Required: residential leases are fixed-term (Dzīvojamo telpu īres likums, Art. 9; VERIFY.md L3)
     end_date = models.DateField(_("end date"))
     monthly_rent = models.DecimalField(_("monthly rent"), max_digits=12, decimal_places=2)
     deposit = models.DecimalField(_("deposit"), max_digits=12, decimal_places=2, default=0)
@@ -71,12 +73,12 @@ class Lease(TimeStampedModel):
         validators=[MinValueValidator(1), MaxValueValidator(28)],
         help_text=_("Day of the month the rent is due (1–28)."),
     )
-    # Used for the "notify VID" reminder. TODO: verify (VERIFY.md V2)
+    # Used for the "notify VID" reminder (VERIFY.md V2, verified 31.10.2026)
     vid_notified_on = models.DateField(
         _("VID notified on"),
         null=True,
         blank=True,
-        help_text=_("If you chose the 10 percent rental income tax regime: the date you notified VID about this lease."),
+        help_text=_("If you pay the 10 percent rental income tax without registering a business: the date you notified VID in EDS (due within 5 working days of signing)."),
     )
 
     owner_lookup = "property__owner"
@@ -96,6 +98,11 @@ class Lease(TimeStampedModel):
     def clean(self):
         if self.start_date and self.end_date and self.end_date <= self.start_date:
             raise ValidationError({"end_date": _("The end date must be after the start date.")})
+        if self.signed_on and self.start_date and self.signed_on > self.start_date:
+            raise ValidationError({"signed_on": _("The signing date can't be after the start date.")})
+        # Dzīvojamo telpu īres likums, Art. 12(1): deposit max. two months' rent (VERIFY.md L4)
+        if self.deposit is not None and self.monthly_rent is not None and self.deposit > 2 * self.monthly_rent:
+            raise ValidationError({"deposit": _("By law the deposit may not exceed two months' rent.")})
         if self.property_id and self.start_date and self.end_date:
             # One lease per property at a time: date ranges may not overlap.
             overlapping = Lease.objects.filter(
@@ -103,6 +110,10 @@ class Lease(TimeStampedModel):
             ).exclude(pk=self.pk)
             if overlapping.exists():
                 raise ValidationError(_("This property already has a lease in this period."))
+
+    # A method, not @property: inside this class the name `property` is the ForeignKey field.
+    def signing_date(self):
+        return self.signed_on or self.start_date
 
     def is_active(self, on_date=None):
         on_date = on_date or timezone.localdate()

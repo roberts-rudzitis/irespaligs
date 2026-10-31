@@ -69,18 +69,21 @@ def lease_end_items(user, today):
 def vid_items(user, today):
     """New leases without a recorded VID notification.
 
-    TODO: verify (VERIFY.md V2) – whether/when VID must be notified (reported: within 5 working days
-    of signing, for the 10 percent regime). The text deliberately says "check", not "you must".
+    VID (methodology "Nodokļi no dzīvokļa izīrēšanas vai iznomāšanas ienākumiem", 27.10.2026): a person who
+    pays 10 percent IIN without registering a business must notify VID within 5 working days of signing the
+    lease (VERIFY.md V2). Only landlords on that regime need it, so the text says "if".
     """
     items = []
-    leases = Lease.objects.for_owner(user).filter(
+    recent = Lease.objects.for_owner(user).filter(
         vid_notified_on__isnull=True,
-        start_date__lte=today,
-        start_date__gte=today - timedelta(days=VID_REMINDER_WINDOW_DAYS),
+        start_date__gte=today - timedelta(days=VID_REMINDER_WINDOW_DAYS + 60),  # cheap pre-filter
     )
-    for lease in leases.select_related("property", "tenant"):
-        text = _("%(property)s: a new lease with %(tenant)s started on %(date)s. Check whether you need to notify VID (e.g. if you use the 10 percent rental income tax) – see vid.gov.lv. Record the date on the lease when done.") % {
-            "property": lease.property.name, "tenant": lease.tenant.full_name, "date": _date(lease.start_date),
+    for lease in recent.select_related("property", "tenant"):
+        signed = lease.signing_date()
+        if not (signed <= today <= signed + timedelta(days=VID_REMINDER_WINDOW_DAYS)):
+            continue
+        text = _("%(property)s: the lease with %(tenant)s was signed on %(date)s. If you pay the 10 percent rental income tax without registering a business, notify VID in EDS within 5 working days of signing (attach a copy of the lease). Record the date on the lease when done.") % {
+            "property": lease.property.name, "tenant": lease.tenant.full_name, "date": _date(signed),
         }
         items.append(("vid", f"lease:{lease.pk}", text))
     return items

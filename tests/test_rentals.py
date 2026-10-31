@@ -137,3 +137,23 @@ def test_deleting_landlord_removes_all_their_data(flat, tenant, verified_user):
     assert not Property.objects.exists()
     assert not Tenant.objects.exists()
     assert not Lease.objects.exists()
+
+
+def test_deposit_over_two_months_rent_is_rejected(landlord_client, flat, tenant):
+    # Dzīvojamo telpu īres likums, Art. 12(1)
+    response = landlord_client.post(
+        reverse("rentals:lease_create", args=[flat.pk]),
+        {"tenant": tenant.pk, "start_date": "01.11.2026", "end_date": "31.10.2027", "monthly_rent": "400",
+         "deposit": "800,01", "rent_due_day": "10"},
+    )
+    assert "deposit" in response.context["form"].errors
+    assert not Lease.objects.exists()
+
+
+def test_signing_date_cannot_be_after_start(landlord_client, flat, tenant):
+    response = landlord_client.post(
+        reverse("rentals:lease_create", args=[flat.pk]),
+        {"tenant": tenant.pk, "signed_on": "05.11.2026", "start_date": "01.11.2026", "end_date": "31.10.2027",
+         "monthly_rent": "400", "deposit": "0", "rent_due_day": "10"},
+    )
+    assert "signed_on" in response.context["form"].errors

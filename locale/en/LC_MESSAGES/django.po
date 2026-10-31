@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 19:06+0200\n"
+"POT-Creation-Date: 2026-10-31 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,15 +127,16 @@ msgid ""
 "Time to agree on an extension or a new tenant."
 msgstr ""
 
-#: apps/reminders/services.py:82
+#: apps/reminders/services.py:85
 #, python-format
 msgid ""
-"%(property)s: a new lease with %(tenant)s started on %(date)s. Check whether "
-"you need to notify VID (e.g. if you use the 10 percent rental income tax) – "
-"see vid.gov.lv. Record the date on the lease when done."
+"%(property)s: the lease with %(tenant)s was signed on %(date)s. If you pay "
+"the 10 percent rental income tax without registering a business, notify VID "
+"in EDS within 5 working days of signing (attach a copy of the lease). Record "
+"the date on the lease when done."
 msgstr ""
 
-#: apps/reminders/services.py:118
+#: apps/reminders/services.py:121
 #, python-format
 msgid "ĪresPalīgs reminders for %(date)s"
 msgstr ""
@@ -188,145 +189,161 @@ msgstr ""
 msgid "tenants"
 msgstr ""
 
-#: apps/rentals/models.py:63
-msgid "start date"
+#: apps/rentals/models.py:64
+msgid "signed on"
+msgstr ""
+
+#: apps/rentals/models.py:64
+msgid "Leave empty if same as the start date."
 msgstr ""
 
 #: apps/rentals/models.py:65
-msgid "end date"
-msgstr ""
-
-#: apps/rentals/models.py:66
-msgid "monthly rent"
+msgid "start date"
 msgstr ""
 
 #: apps/rentals/models.py:67
-msgid "deposit"
+msgid "end date"
+msgstr ""
+
+#: apps/rentals/models.py:68
+msgid "monthly rent"
 msgstr ""
 
 #: apps/rentals/models.py:69
+msgid "deposit"
+msgstr ""
+
+#: apps/rentals/models.py:71
 msgid "rent due day"
 msgstr ""
 
-#: apps/rentals/models.py:72
+#: apps/rentals/models.py:74
 msgid "Day of the month the rent is due (1–28)."
 msgstr ""
 
-#: apps/rentals/models.py:76
+#: apps/rentals/models.py:78
 msgid "VID notified on"
 msgstr ""
 
-#: apps/rentals/models.py:79
+#: apps/rentals/models.py:81
 msgid ""
-"If you chose the 10 percent rental income tax regime: the date you notified "
-"VID about this lease."
+"If you pay the 10 percent rental income tax without registering a business: "
+"the date you notified VID in EDS (due within 5 working days of signing)."
 msgstr ""
 
-#: apps/rentals/models.py:86
+#: apps/rentals/models.py:88
 msgid "lease"
 msgstr ""
 
-#: apps/rentals/models.py:87
+#: apps/rentals/models.py:89
 msgid "leases"
 msgstr ""
 
-#: apps/rentals/models.py:98
+#: apps/rentals/models.py:100
 msgid "The end date must be after the start date."
 msgstr ""
 
+#: apps/rentals/models.py:102
+msgid "The signing date can't be after the start date."
+msgstr ""
+
 #: apps/rentals/models.py:105
+msgid "By law the deposit may not exceed two months' rent."
+msgstr ""
+
+#: apps/rentals/models.py:112
 msgid "This property already has a lease in this period."
 msgstr ""
 
-#: apps/rentals/models.py:121
+#: apps/rentals/models.py:132
 msgid "Cold water"
 msgstr ""
 
-#: apps/rentals/models.py:122
+#: apps/rentals/models.py:133
 msgid "Hot water"
 msgstr ""
 
-#: apps/rentals/models.py:123
+#: apps/rentals/models.py:134
 msgid "Electricity"
 msgstr ""
 
-#: apps/rentals/models.py:124
+#: apps/rentals/models.py:135
 msgid "Heating"
 msgstr ""
 
-#: apps/rentals/models.py:125
+#: apps/rentals/models.py:136
 msgid "Gas"
 msgstr ""
 
-#: apps/rentals/models.py:126 apps/statements/models.py:92
+#: apps/rentals/models.py:137 apps/statements/models.py:92
 msgid "Other"
 msgstr ""
 
-#: apps/rentals/models.py:129
+#: apps/rentals/models.py:140
 msgid "type"
 msgstr ""
 
-#: apps/rentals/models.py:130
+#: apps/rentals/models.py:141
 msgid "label"
 msgstr ""
 
-#: apps/rentals/models.py:130
+#: apps/rentals/models.py:141
 msgid "e.g. “Kitchen”, if there are several"
 msgstr ""
 
-#: apps/rentals/models.py:131
+#: apps/rentals/models.py:142
 msgid "unit"
 msgstr ""
 
-#: apps/rentals/models.py:131
+#: apps/rentals/models.py:142
 msgid "e.g. m³, kWh, MWh"
 msgstr ""
 
-#: apps/rentals/models.py:132
+#: apps/rentals/models.py:143
 msgid "price per unit"
 msgstr ""
 
-#: apps/rentals/models.py:133 apps/rentals/models.py:173
+#: apps/rentals/models.py:144 apps/rentals/models.py:184
 msgid "in use"
 msgstr ""
 
-#: apps/rentals/models.py:139
+#: apps/rentals/models.py:150
 msgid "meter"
 msgstr ""
 
-#: apps/rentals/models.py:140
+#: apps/rentals/models.py:151
 msgid "meters"
 msgstr ""
 
-#: apps/rentals/models.py:156 apps/statements/models.py:36
+#: apps/rentals/models.py:167 apps/statements/models.py:36
 msgid "month"
 msgstr ""
 
-#: apps/rentals/models.py:156
+#: apps/rentals/models.py:167
 msgid "Always the 1st day of the month."
 msgstr ""
 
-#: apps/rentals/models.py:157
+#: apps/rentals/models.py:168
 msgid "reading"
 msgstr ""
 
-#: apps/rentals/models.py:171
+#: apps/rentals/models.py:182
 msgid "description"
 msgstr ""
 
-#: apps/rentals/models.py:171
+#: apps/rentals/models.py:182
 msgid "e.g. “Building management”"
 msgstr ""
 
-#: apps/rentals/models.py:172 apps/statements/models.py:112
+#: apps/rentals/models.py:183 apps/statements/models.py:112
 msgid "amount"
 msgstr ""
 
-#: apps/rentals/models.py:179
+#: apps/rentals/models.py:190
 msgid "fixed charge"
 msgstr ""
 
-#: apps/rentals/models.py:180
+#: apps/rentals/models.py:191
 msgid "fixed charges"
 msgstr ""
 
@@ -527,45 +544,49 @@ msgstr ""
 msgid "Payment deleted."
 msgstr ""
 
-#: apps/statements/views.py:168
+#: apps/statements/views.py:170
+msgid "No."
+msgstr ""
+
+#: apps/statements/views.py:170
 msgid "Payment date"
 msgstr ""
 
-#: apps/statements/views.py:168 apps/statements/views.py:176
+#: apps/statements/views.py:170
+msgid "Notice"
+msgstr ""
+
+#: apps/statements/views.py:170 templates/pages/dashboard.html:48
+msgid "Tenant"
+msgstr ""
+
+#: apps/statements/views.py:170 apps/statements/views.py:178
 #: templates/pages/dashboard.html:23 templates/pages/dashboard.html:48
 #: templates/statements/_year_table.html:5
 msgid "Property"
 msgstr ""
 
-#: apps/statements/views.py:168 templates/pages/dashboard.html:48
-msgid "Tenant"
-msgstr ""
-
-#: apps/statements/views.py:168
-msgid "Notice"
-msgstr ""
-
-#: apps/statements/views.py:168 templates/statements/_lines.html:10
+#: apps/statements/views.py:170 templates/statements/_lines.html:10
 msgid "Amount"
 msgstr ""
 
-#: apps/statements/views.py:168
+#: apps/statements/views.py:170
 msgid "Note"
 msgstr ""
 
-#: apps/statements/views.py:176 templates/statements/_year_table.html:6
+#: apps/statements/views.py:178 templates/statements/_year_table.html:6
 msgid "Billed rent"
 msgstr ""
 
-#: apps/statements/views.py:176 templates/statements/_year_table.html:7
+#: apps/statements/views.py:178 templates/statements/_year_table.html:7
 msgid "Billed utilities and charges"
 msgstr ""
 
-#: apps/statements/views.py:176 templates/statements/_year_table.html:8
+#: apps/statements/views.py:178 templates/statements/_year_table.html:8
 msgid "Received"
 msgstr ""
 
-#: apps/statements/views.py:179 templates/pages/dashboard.html:37
+#: apps/statements/views.py:181 templates/pages/dashboard.html:37
 #: templates/rentals/property_detail.html:32
 #: templates/statements/_year_table.html:23
 msgid "Total"
@@ -1077,6 +1098,15 @@ msgid ""
 "counts payments by their payment date. Which amounts are taxable rental "
 "income, and at what rate, depends on your tax regime – check the rules on "
 "vid.gov.lv or with a tax adviser."
+msgstr ""
+
+#: templates/statements/_tax_note.html:8
+msgid ""
+"According to VID guidance, under the 10 percent regime utility and "
+"management payments the tenant pays through you also count as income "
+"(payments made by the tenant directly to providers do not), and so does a "
+"received deposit. The tax is declared in the annual income declaration "
+"(appendix D11) from 1 March to 1 June of the following year."
 msgstr ""
 
 #: templates/statements/create.html:10

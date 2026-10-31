@@ -129,7 +129,7 @@ def test_year_summary_csv_uses_latvian_number_format(client, verified_user, leas
     Payment.objects.create(statement=notice, paid_on=D(2026, 10, 9), amount=Decimal("1234.5"))
     client.force_login(verified_user)
     content = client.get(reverse("statements:year_summary_csv") + "?year=2026").content.decode("utf-8-sig")
-    assert "09.10.2026;Imantas dzīvoklis;Jānis Bērziņš" in content
+    assert ";09.10.2026;" in content and "Jānis Bērziņš;Imantas dzīvoklis" in content
     assert "1234,50" in content
 
 
@@ -144,3 +144,13 @@ def test_year_summary_only_own_properties(client, lease, db):
     client.force_login(intruder)
     response = client.get(reverse("statements:year_summary") + "?year=2026")
     assert response.context["rows"] == []
+
+
+def test_vid_reminder_counts_from_signing_date(lease):
+    lease.vid_notified_on = None
+    lease.signed_on = D(2026, 10, 20)
+    lease.start_date = D(2026, 12, 1)  # starts later than signed
+    lease.save()
+    send_reminders(D(2026, 10, 21))
+    assert "20.10.2026" in mail.outbox[0].body
+    assert "5" in mail.outbox[0].body
