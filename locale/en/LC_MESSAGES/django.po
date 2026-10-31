@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:54+0200\n"
+"POT-Creation-Date: 2026-10-31 18:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,28 +77,28 @@ msgstr ""
 msgid "Saved."
 msgstr ""
 
-#: apps/reminders/services.py:37
+#: apps/reminders/services.py:38
 #, python-format
 msgid ""
 "It's a new month – enter meter readings and create payment notices for your "
 "%(count)s active lease(s)."
 msgstr ""
 
-#: apps/reminders/services.py:44
+#: apps/reminders/services.py:45
 #, python-format
 msgid ""
 "%(property)s: %(tenant)s has not fully paid the notice for %(month)s (due "
 "%(due)s). Still to pay: %(balance)s."
 msgstr ""
 
-#: apps/reminders/services.py:61
+#: apps/reminders/services.py:62
 #, python-format
 msgid ""
 "%(property)s: the lease with %(tenant)s ends on %(date)s (in %(days)s days). "
 "Time to agree on an extension or a new tenant."
 msgstr ""
 
-#: apps/reminders/services.py:81
+#: apps/reminders/services.py:82
 #, python-format
 msgid ""
 "%(property)s: a new lease with %(tenant)s started on %(date)s. Check whether "
@@ -106,7 +106,7 @@ msgid ""
 "see vid.gov.lv. Record the date on the lease when done."
 msgstr ""
 
-#: apps/reminders/services.py:115
+#: apps/reminders/services.py:118
 #, python-format
 msgid "ĪresPalīgs reminders for %(date)s"
 msgstr ""
@@ -301,47 +301,51 @@ msgstr ""
 msgid "fixed charges"
 msgstr ""
 
-#: apps/rentals/views.py:29 templates/pages/dashboard.html:43
+#: apps/rentals/views.py:30 templates/pages/dashboard.html:43
 msgid "New property"
 msgstr ""
 
-#: apps/rentals/views.py:40
+#: apps/rentals/views.py:34
+msgid "Your plan's property limit is reached. Upgrade to add more."
+msgstr ""
+
+#: apps/rentals/views.py:47
 msgid "Edit property"
 msgstr ""
 
-#: apps/rentals/views.py:61 templates/rentals/tenant_list.html:6
+#: apps/rentals/views.py:68 templates/rentals/tenant_list.html:6
 msgid "New tenant"
 msgstr ""
 
-#: apps/rentals/views.py:80
+#: apps/rentals/views.py:87
 msgid "Edit tenant"
 msgstr ""
 
-#: apps/rentals/views.py:92
+#: apps/rentals/views.py:99
 msgid "This tenant has leases. Delete the leases first."
 msgstr ""
 
-#: apps/rentals/views.py:115 templates/rentals/property_detail.html:17
+#: apps/rentals/views.py:122 templates/rentals/property_detail.html:17
 msgid "New lease"
 msgstr ""
 
-#: apps/rentals/views.py:127
+#: apps/rentals/views.py:134
 msgid "Edit lease"
 msgstr ""
 
-#: apps/rentals/views.py:170 templates/rentals/property_detail.html:54
+#: apps/rentals/views.py:177 templates/rentals/property_detail.html:54
 msgid "New meter"
 msgstr ""
 
-#: apps/rentals/views.py:177
+#: apps/rentals/views.py:184
 msgid "Edit meter"
 msgstr ""
 
-#: apps/rentals/views.py:187 templates/rentals/property_detail.html:78
+#: apps/rentals/views.py:194 templates/rentals/property_detail.html:78
 msgid "New fixed charge"
 msgstr ""
 
-#: apps/rentals/views.py:194
+#: apps/rentals/views.py:201
 msgid "Edit fixed charge"
 msgstr ""
 
@@ -468,81 +472,125 @@ msgstr ""
 msgid "Payment notice for %(month)s – %(property)s"
 msgstr ""
 
-#: apps/statements/views.py:53
+#: apps/statements/views.py:54
 msgid "Draft created. Check it, then send it to the tenant."
 msgstr ""
 
-#: apps/statements/views.py:85
+#: apps/statements/views.py:70
+msgid "PDF and email notices are part of the paid plan."
+msgstr ""
+
+#: apps/statements/views.py:95
 #, python-format
 msgid "Sent to %(email)s."
 msgstr ""
 
-#: apps/statements/views.py:95
+#: apps/statements/views.py:105
 msgid "Deleted."
 msgstr ""
 
-#: apps/statements/views.py:108
+#: apps/statements/views.py:118
 msgid "Payment recorded."
 msgstr ""
 
-#: apps/statements/views.py:119
+#: apps/statements/views.py:129
 msgid "Payment deleted."
 msgstr ""
 
-#: apps/statements/views.py:158
+#: apps/statements/views.py:168
 msgid "Payment date"
 msgstr ""
 
-#: apps/statements/views.py:158 apps/statements/views.py:166
+#: apps/statements/views.py:168 apps/statements/views.py:176
 #: templates/pages/dashboard.html:23 templates/pages/dashboard.html:48
 #: templates/statements/_year_table.html:5
 msgid "Property"
 msgstr ""
 
-#: apps/statements/views.py:158 templates/pages/dashboard.html:48
+#: apps/statements/views.py:168 templates/pages/dashboard.html:48
 msgid "Tenant"
 msgstr ""
 
-#: apps/statements/views.py:158
+#: apps/statements/views.py:168
 msgid "Notice"
 msgstr ""
 
-#: apps/statements/views.py:158 templates/statements/_lines.html:10
+#: apps/statements/views.py:168 templates/statements/_lines.html:10
 msgid "Amount"
 msgstr ""
 
-#: apps/statements/views.py:158
+#: apps/statements/views.py:168
 msgid "Note"
 msgstr ""
 
-#: apps/statements/views.py:166 templates/statements/_year_table.html:6
+#: apps/statements/views.py:176 templates/statements/_year_table.html:6
 msgid "Billed rent"
 msgstr ""
 
-#: apps/statements/views.py:166 templates/statements/_year_table.html:7
+#: apps/statements/views.py:176 templates/statements/_year_table.html:7
 msgid "Billed utilities and charges"
 msgstr ""
 
-#: apps/statements/views.py:166 templates/statements/_year_table.html:8
+#: apps/statements/views.py:176 templates/statements/_year_table.html:8
 msgid "Received"
 msgstr ""
 
-#: apps/statements/views.py:169 templates/pages/dashboard.html:37
+#: apps/statements/views.py:179 templates/pages/dashboard.html:37
 #: templates/rentals/property_detail.html:32
 #: templates/statements/_year_table.html:23
 msgid "Total"
 msgstr ""
 
-#: irespaligs/settings.py:132
-msgid "Latvian"
+#: apps/subscriptions/models.py:15
+msgid "Free trial"
+msgstr ""
+
+#: apps/subscriptions/models.py:16
+msgid "Active"
+msgstr ""
+
+#: apps/subscriptions/models.py:17
+msgid "Payment failed"
+msgstr ""
+
+#: apps/subscriptions/models.py:18
+msgid "Cancelled"
+msgstr ""
+
+#: apps/subscriptions/models.py:19
+msgid "Free plan"
+msgstr ""
+
+#: apps/subscriptions/plans.py:22
+msgid "Free"
+msgstr ""
+
+#: apps/subscriptions/plans.py:23
+msgid "Standard"
+msgstr ""
+
+#: apps/subscriptions/plans.py:45
+msgid "per month"
+msgstr ""
+
+#: apps/subscriptions/plans.py:46
+msgid "per year (2 months free)"
+msgstr ""
+
+#: apps/subscriptions/views.py:23
+msgid "Thank you! Your subscription will be active in a moment."
 msgstr ""
 
 #: irespaligs/settings.py:133
+msgid "Latvian"
+msgstr ""
+
+#: irespaligs/settings.py:134
 msgid "English"
 msgstr ""
 
 #: templates/accounts/profile.html:3 templates/accounts/profile.html:5
-#: templates/base.html:21
+#: templates/base.html:22
 msgid "My account"
 msgstr ""
 
@@ -570,15 +618,20 @@ msgstr ""
 msgid "Year summary"
 msgstr ""
 
-#: templates/base.html:22
+#: templates/base.html:21 templates/subscriptions/billing.html:3
+#: templates/subscriptions/billing.html:5
+msgid "Subscription"
+msgstr ""
+
+#: templates/base.html:23
 msgid "Log out"
 msgstr ""
 
-#: templates/base.html:24 templates/pages/home.html:11
+#: templates/base.html:25 templates/pages/home.html:11
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:25
+#: templates/base.html:26
 msgid "Sign up"
 msgstr ""
 
@@ -903,4 +956,70 @@ msgstr ""
 
 #: templates/statements/year_summary_pdf.html:22
 msgid "Payments received"
+msgstr ""
+
+#: templates/subscriptions/billing.html:9
+msgid "Your plan"
+msgstr ""
+
+#: templates/subscriptions/billing.html:11
+#, python-format
+msgid "free trial, %(days)s day left"
+msgid_plural "free trial, %(days)s days left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/subscriptions/billing.html:15
+msgid "ends on"
+msgstr ""
+
+#: templates/subscriptions/billing.html:15
+msgid "renews on"
+msgstr ""
+
+#: templates/subscriptions/billing.html:21
+msgid "Your last payment failed. Please update your card to keep your plan."
+msgstr ""
+
+#: templates/subscriptions/billing.html:24
+#, python-format
+msgid "up to %(n)s property"
+msgid_plural "up to %(n)s properties"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/subscriptions/billing.html:25
+msgid "PDF payment notices sent to tenants by email"
+msgstr ""
+
+#: templates/subscriptions/billing.html:26
+msgid "Email reminders"
+msgstr ""
+
+#: templates/subscriptions/billing.html:31
+msgid "Manage payment card or cancel"
+msgstr ""
+
+#: templates/subscriptions/billing.html:37
+#, python-format
+msgid "Subscribe to %(name)s"
+msgstr ""
+
+#: templates/subscriptions/billing.html:44
+#, python-format
+msgid "incl. 21%% VAT (%(vat)s); excl. VAT %(net)s"
+msgstr ""
+
+#: templates/subscriptions/billing.html:48
+msgid "Pay by card"
+msgstr ""
+
+#: templates/subscriptions/billing.html:53
+msgid ""
+"Secure payment by Stripe. You can cancel at any time; the plan stays active "
+"until the end of the paid period."
+msgstr ""
+
+#: templates/subscriptions/billing.html:55
+msgid "Online payments are not configured on this server yet."
 msgstr ""

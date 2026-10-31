@@ -11,6 +11,7 @@ from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
 from apps.rentals.models import Lease
+from apps.subscriptions.services import can_send_notices
 
 from . import reports, services
 from .forms import PaymentForm, StatementCreateForm
@@ -65,9 +66,16 @@ def statement_detail(request, pk):
     )
 
 
+def _upgrade_needed(request):
+    messages.info(request, _("PDF and email notices are part of the paid plan."))
+    return redirect("billing")
+
+
 @login_required
 def statement_pdf(request, pk):
     statement = _own_statement(request, pk)
+    if not can_send_notices(request.user):
+        return _upgrade_needed(request)
     response = HttpResponse(services.render_pdf(statement), content_type="application/pdf")
     response["Content-Disposition"] = f'inline; filename="{services.pdf_filename(statement)}"'
     return response
@@ -77,6 +85,8 @@ def statement_pdf(request, pk):
 @require_POST
 def statement_send(request, pk):
     statement = _own_statement(request, pk)
+    if not can_send_notices(request.user):
+        return _upgrade_needed(request)
     try:
         services.send_statement(statement)
     except services.StatementError as error:

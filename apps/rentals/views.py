@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from apps.core.mixins import OwnerMixin, SavedMessageMixin
+from apps.subscriptions.services import can_add_property
 
 from .forms import FixedChargeForm, LeaseForm, MeterForm, PropertyForm, TenantForm
 from .models import FixedCharge, Lease, Meter, Property, Tenant
@@ -27,6 +28,12 @@ class PropertyCreate(OwnerMixin, SavedMessageMixin, CreateView):
     form_class = PropertyForm
     template_name = FORM_TEMPLATE
     extra_context = {"title": _("New property")}
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and not can_add_property(request.user):
+            messages.info(request, _("Your plan's property limit is reached. Upgrade to add more."))
+            return redirect("billing")
+        return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

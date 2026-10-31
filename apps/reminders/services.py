@@ -16,6 +16,7 @@ from apps.accounts.models import User
 from apps.core.money import format_eur
 from apps.rentals.models import Lease
 from apps.statements.models import Statement
+from apps.subscriptions.services import gets_reminders
 
 from .models import ReminderLog
 
@@ -108,6 +109,8 @@ def send_reminders(today):
     """Send one digest email per landlord. Returns the number of emails sent."""
     sent = 0
     for user in User.objects.filter(is_active=True):
+        if not gets_reminders(user):
+            continue
         items = collect_items(user, today)
         if not items:
             continue

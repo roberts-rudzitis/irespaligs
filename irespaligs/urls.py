@@ -9,6 +9,7 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("language/", set_language, name="set_language"),
     path("profile/", profile, name="profile"),
+    path("", include("apps.subscriptions.urls")),
     path("", include("apps.rentals.urls")),
     path("", include("apps.statements.urls")),
     path("", include("apps.pages.urls")),

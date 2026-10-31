@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:54+0200\n"
+"POT-Creation-Date: 2026-10-31 18:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,36 +79,45 @@ msgstr "lietotāji"
 msgid "Saved."
 msgstr "Saglabāts."
 
-#: apps/reminders/services.py:37
+#: apps/reminders/services.py:38
 #, python-format
 msgid ""
 "It's a new month – enter meter readings and create payment notices for your "
 "%(count)s active lease(s)."
-msgstr "Sācies jauns mēnesis – ievadiet skaitītāju rādījumus un izveidojiet maksājuma paziņojumus (aktīvie līgumi: %(count)s)."
+msgstr ""
+"Sācies jauns mēnesis – ievadiet skaitītāju rādījumus un izveidojiet "
+"maksājuma paziņojumus (aktīvie līgumi: %(count)s)."
 
-#: apps/reminders/services.py:44
+#: apps/reminders/services.py:45
 #, python-format
 msgid ""
 "%(property)s: %(tenant)s has not fully paid the notice for %(month)s (due "
 "%(due)s). Still to pay: %(balance)s."
-msgstr "%(property)s: %(tenant)s nav pilnībā apmaksājis paziņojumu par %(month)s (termiņš %(due)s). Atlikums: %(balance)s."
+msgstr ""
+"%(property)s: %(tenant)s nav pilnībā apmaksājis paziņojumu par %(month)s "
+"(termiņš %(due)s). Atlikums: %(balance)s."
 
-#: apps/reminders/services.py:61
+#: apps/reminders/services.py:62
 #, python-format
 msgid ""
 "%(property)s: the lease with %(tenant)s ends on %(date)s (in %(days)s days). "
 "Time to agree on an extension or a new tenant."
-msgstr "%(property)s: līgums ar %(tenant)s beidzas %(date)s (pēc %(days)s dienām). Laiks vienoties par pagarinājumu vai meklēt jaunu īrnieku."
+msgstr ""
+"%(property)s: līgums ar %(tenant)s beidzas %(date)s (pēc %(days)s dienām). "
+"Laiks vienoties par pagarinājumu vai meklēt jaunu īrnieku."
 
-#: apps/reminders/services.py:81
+#: apps/reminders/services.py:82
 #, python-format
 msgid ""
 "%(property)s: a new lease with %(tenant)s started on %(date)s. Check whether "
 "you need to notify VID (e.g. if you use the 10 percent rental income tax) – "
 "see vid.gov.lv. Record the date on the lease when done."
-msgstr "%(property)s: jauns līgums ar %(tenant)s sākās %(date)s. Pārbaudiet, vai jums par to jāpaziņo VID (piem., ja piemērojat 10 procentu nodokli īres ienākumiem) – skat. vid.gov.lv. Kad paziņots, ierakstiet datumu līgumā."
+msgstr ""
+"%(property)s: jauns līgums ar %(tenant)s sākās %(date)s. Pārbaudiet, vai "
+"jums par to jāpaziņo VID (piem., ja piemērojat 10 procentu nodokli īres "
+"ienākumiem) – skat. vid.gov.lv. Kad paziņots, ierakstiet datumu līgumā."
 
-#: apps/reminders/services.py:115
+#: apps/reminders/services.py:118
 #, python-format
 msgid "ĪresPalīgs reminders for %(date)s"
 msgstr "ĪresPalīgs atgādinājumi %(date)s"
@@ -305,47 +314,51 @@ msgstr "fiksētais maksājums"
 msgid "fixed charges"
 msgstr "fiksētie maksājumi"
 
-#: apps/rentals/views.py:29 templates/pages/dashboard.html:43
+#: apps/rentals/views.py:30 templates/pages/dashboard.html:43
 msgid "New property"
 msgstr "Jauns īpašums"
 
-#: apps/rentals/views.py:40
+#: apps/rentals/views.py:34
+msgid "Your plan's property limit is reached. Upgrade to add more."
+msgstr "Jūsu plāna īpašumu limits ir sasniegts. Lai pievienotu vairāk, izvēlieties maksas plānu."
+
+#: apps/rentals/views.py:47
 msgid "Edit property"
 msgstr "Labot īpašumu"
 
-#: apps/rentals/views.py:61 templates/rentals/tenant_list.html:6
+#: apps/rentals/views.py:68 templates/rentals/tenant_list.html:6
 msgid "New tenant"
 msgstr "Jauns īrnieks"
 
-#: apps/rentals/views.py:80
+#: apps/rentals/views.py:87
 msgid "Edit tenant"
 msgstr "Labot īrnieku"
 
-#: apps/rentals/views.py:92
+#: apps/rentals/views.py:99
 msgid "This tenant has leases. Delete the leases first."
 msgstr "Šim īrniekam ir īres līgumi. Vispirms dzēsiet tos."
 
-#: apps/rentals/views.py:115 templates/rentals/property_detail.html:17
+#: apps/rentals/views.py:122 templates/rentals/property_detail.html:17
 msgid "New lease"
 msgstr "Jauns īres līgums"
 
-#: apps/rentals/views.py:127
+#: apps/rentals/views.py:134
 msgid "Edit lease"
 msgstr "Labot īres līgumu"
 
-#: apps/rentals/views.py:170 templates/rentals/property_detail.html:54
+#: apps/rentals/views.py:177 templates/rentals/property_detail.html:54
 msgid "New meter"
 msgstr "Jauns skaitītājs"
 
-#: apps/rentals/views.py:177
+#: apps/rentals/views.py:184
 msgid "Edit meter"
 msgstr "Labot skaitītāju"
 
-#: apps/rentals/views.py:187 templates/rentals/property_detail.html:78
+#: apps/rentals/views.py:194 templates/rentals/property_detail.html:78
 msgid "New fixed charge"
 msgstr "Jauns fiksētais maksājums"
 
-#: apps/rentals/views.py:194
+#: apps/rentals/views.py:201
 msgid "Edit fixed charge"
 msgstr "Labot fiksēto maksājumu"
 
@@ -472,81 +485,125 @@ msgstr "Īrniekam nav norādīta e-pasta adrese. Pievienojiet to īrnieka lapā.
 msgid "Payment notice for %(month)s – %(property)s"
 msgstr "Maksājuma paziņojums par %(month)s – %(property)s"
 
-#: apps/statements/views.py:53
+#: apps/statements/views.py:54
 msgid "Draft created. Check it, then send it to the tenant."
 msgstr "Melnraksts izveidots. Pārbaudiet to un nosūtiet īrniekam."
 
-#: apps/statements/views.py:85
+#: apps/statements/views.py:70
+msgid "PDF and email notices are part of the paid plan."
+msgstr "PDF un e-pasta paziņojumi ir pieejami maksas plānā."
+
+#: apps/statements/views.py:95
 #, python-format
 msgid "Sent to %(email)s."
 msgstr "Nosūtīts uz %(email)s."
 
-#: apps/statements/views.py:95
+#: apps/statements/views.py:105
 msgid "Deleted."
 msgstr "Dzēsts."
 
-#: apps/statements/views.py:108
+#: apps/statements/views.py:118
 msgid "Payment recorded."
 msgstr "Maksājums reģistrēts."
 
-#: apps/statements/views.py:119
+#: apps/statements/views.py:129
 msgid "Payment deleted."
 msgstr "Maksājums dzēsts."
 
-#: apps/statements/views.py:158
+#: apps/statements/views.py:168
 msgid "Payment date"
 msgstr "Maksājuma datums"
 
-#: apps/statements/views.py:158 apps/statements/views.py:166
+#: apps/statements/views.py:168 apps/statements/views.py:176
 #: templates/pages/dashboard.html:23 templates/pages/dashboard.html:48
 #: templates/statements/_year_table.html:5
 msgid "Property"
 msgstr "Īpašums"
 
-#: apps/statements/views.py:158 templates/pages/dashboard.html:48
+#: apps/statements/views.py:168 templates/pages/dashboard.html:48
 msgid "Tenant"
 msgstr "Īrnieks"
 
-#: apps/statements/views.py:158
+#: apps/statements/views.py:168
 msgid "Notice"
 msgstr "Paziņojums"
 
-#: apps/statements/views.py:158 templates/statements/_lines.html:10
+#: apps/statements/views.py:168 templates/statements/_lines.html:10
 msgid "Amount"
 msgstr "Summa"
 
-#: apps/statements/views.py:158
+#: apps/statements/views.py:168
 msgid "Note"
 msgstr "Piezīme"
 
-#: apps/statements/views.py:166 templates/statements/_year_table.html:6
+#: apps/statements/views.py:176 templates/statements/_year_table.html:6
 msgid "Billed rent"
 msgstr "Aprēķinātā īres maksa"
 
-#: apps/statements/views.py:166 templates/statements/_year_table.html:7
+#: apps/statements/views.py:176 templates/statements/_year_table.html:7
 msgid "Billed utilities and charges"
 msgstr "Aprēķinātie komunālie un citi maksājumi"
 
-#: apps/statements/views.py:166 templates/statements/_year_table.html:8
+#: apps/statements/views.py:176 templates/statements/_year_table.html:8
 msgid "Received"
 msgstr "Saņemts"
 
-#: apps/statements/views.py:169 templates/pages/dashboard.html:37
+#: apps/statements/views.py:179 templates/pages/dashboard.html:37
 #: templates/rentals/property_detail.html:32
 #: templates/statements/_year_table.html:23
 msgid "Total"
 msgstr "Kopā"
 
-#: irespaligs/settings.py:132
+#: apps/subscriptions/models.py:15
+msgid "Free trial"
+msgstr "Bezmaksas izmēģinājums"
+
+#: apps/subscriptions/models.py:16
+msgid "Active"
+msgstr "Aktīvs"
+
+#: apps/subscriptions/models.py:17
+msgid "Payment failed"
+msgstr "Maksājums neizdevās"
+
+#: apps/subscriptions/models.py:18
+msgid "Cancelled"
+msgstr "Atcelts"
+
+#: apps/subscriptions/models.py:19
+msgid "Free plan"
+msgstr "Bezmaksas plāns"
+
+#: apps/subscriptions/plans.py:22
+msgid "Free"
+msgstr "Bezmaksas"
+
+#: apps/subscriptions/plans.py:23
+msgid "Standard"
+msgstr "Standarta"
+
+#: apps/subscriptions/plans.py:45
+msgid "per month"
+msgstr "mēnesī"
+
+#: apps/subscriptions/plans.py:46
+msgid "per year (2 months free)"
+msgstr "gadā (2 mēneši bez maksas)"
+
+#: apps/subscriptions/views.py:23
+msgid "Thank you! Your subscription will be active in a moment."
+msgstr "Paldies! Abonements pēc brīža būs aktīvs."
+
+#: irespaligs/settings.py:133
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: irespaligs/settings.py:133
+#: irespaligs/settings.py:134
 msgid "English"
 msgstr "Angļu"
 
 #: templates/accounts/profile.html:3 templates/accounts/profile.html:5
-#: templates/base.html:21
+#: templates/base.html:22
 msgid "My account"
 msgstr "Mans konts"
 
@@ -574,15 +631,20 @@ msgstr "Īrnieki"
 msgid "Year summary"
 msgstr "Gada pārskats"
 
-#: templates/base.html:22
+#: templates/base.html:21 templates/subscriptions/billing.html:3
+#: templates/subscriptions/billing.html:5
+msgid "Subscription"
+msgstr "Abonements"
+
+#: templates/base.html:23
 msgid "Log out"
 msgstr "Iziet"
 
-#: templates/base.html:24 templates/pages/home.html:11
+#: templates/base.html:25 templates/pages/home.html:11
 msgid "Log in"
 msgstr "Ieiet"
 
-#: templates/base.html:25
+#: templates/base.html:26
 msgid "Sign up"
 msgstr "Reģistrēties"
 
@@ -804,7 +866,12 @@ msgid ""
 "counts payments by their payment date. Which amounts are taxable rental "
 "income, and at what rate, depends on your tax regime – check the rules on "
 "vid.gov.lv or with a tax adviser."
-msgstr "Šis ir ĪresPalīgs reģistrēto summu kopsavilkums, nevis nodokļu aprēķins. “Aprēķināts” ietver nosūtītos paziņojumus pēc to mēneša; “Saņemts” – maksājumus pēc maksājuma datuma. Kuras summas ir apliekamie īres ienākumi un ar kādu likmi, ir atkarīgs no jūsu nodokļu režīma – pārbaudiet noteikumus vid.gov.lv vai jautājiet nodokļu konsultantam."
+msgstr ""
+"Šis ir ĪresPalīgs reģistrēto summu kopsavilkums, nevis nodokļu aprēķins. "
+"“Aprēķināts” ietver nosūtītos paziņojumus pēc to mēneša; “Saņemts” – "
+"maksājumus pēc maksājuma datuma. Kuras summas ir apliekamie īres ienākumi un "
+"ar kādu likmi, ir atkarīgs no jūsu nodokļu režīma – pārbaudiet noteikumus "
+"vid.gov.lv vai jautājiet nodokļu konsultantam."
 
 #: templates/statements/create.html:10
 msgid ""
@@ -917,3 +984,71 @@ msgstr "Lejupielādēt PDF"
 #: templates/statements/year_summary_pdf.html:22
 msgid "Payments received"
 msgstr "Saņemtie maksājumi"
+
+#: templates/subscriptions/billing.html:9
+msgid "Your plan"
+msgstr "Jūsu plāns"
+
+#: templates/subscriptions/billing.html:11
+#, python-format
+msgid "free trial, %(days)s day left"
+msgid_plural "free trial, %(days)s days left"
+msgstr[0] "bezmaksas izmēģinājums, atlikusi %(days)s diena"
+msgstr[1] "bezmaksas izmēģinājums, atlikušas %(days)s dienas"
+msgstr[2] "bezmaksas izmēģinājums, atlicis %(days)s dienu"
+
+#: templates/subscriptions/billing.html:15
+msgid "ends on"
+msgstr "beidzas"
+
+#: templates/subscriptions/billing.html:15
+msgid "renews on"
+msgstr "atjaunosies"
+
+#: templates/subscriptions/billing.html:21
+msgid "Your last payment failed. Please update your card to keep your plan."
+msgstr "Pēdējais maksājums neizdevās. Lūdzu, atjaunojiet kartes datus, lai saglabātu plānu."
+
+#: templates/subscriptions/billing.html:24
+#, python-format
+msgid "up to %(n)s property"
+msgid_plural "up to %(n)s properties"
+msgstr[0] "līdz %(n)s īpašumam"
+msgstr[1] "līdz %(n)s īpašumiem"
+msgstr[2] "līdz %(n)s īpašumiem"
+
+#: templates/subscriptions/billing.html:25
+msgid "PDF payment notices sent to tenants by email"
+msgstr "PDF maksājuma paziņojumi īrniekiem pa e-pastu"
+
+#: templates/subscriptions/billing.html:26
+msgid "Email reminders"
+msgstr "Atgādinājumi e-pastā"
+
+#: templates/subscriptions/billing.html:31
+msgid "Manage payment card or cancel"
+msgstr "Pārvaldīt maksājumu karti vai atcelt"
+
+#: templates/subscriptions/billing.html:37
+#, python-format
+msgid "Subscribe to %(name)s"
+msgstr "Abonēt plānu “%(name)s”"
+
+#: templates/subscriptions/billing.html:44
+#, python-format
+msgid "incl. 21%% VAT (%(vat)s); excl. VAT %(net)s"
+msgstr "ar 21%% PVN (%(vat)s); bez PVN %(net)s"
+
+#: templates/subscriptions/billing.html:48
+msgid "Pay by card"
+msgstr "Maksāt ar karti"
+
+#: templates/subscriptions/billing.html:53
+msgid ""
+"Secure payment by Stripe. You can cancel at any time; the plan stays active "
+"until the end of the paid period."
+msgstr "Drošs maksājums ar Stripe. Varat atcelt jebkurā laikā; plāns paliek aktīvs līdz apmaksātā perioda beigām."
+
+#: templates/subscriptions/billing.html:55
+msgid "Online payments are not configured on this server yet."
+msgstr "Tiešsaistes maksājumi šajā serverī vēl nav iestatīti."

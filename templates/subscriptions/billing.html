@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n money %}
+{% block head_title %}{% translate "Subscription" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Subscription" %}</h1>
+
+  <article>
+    <p>
+      {% translate "Your plan" %}: <strong>{{ subscription.plan.name }}</strong>
+      {% if subscription.in_trial %}
+        · {% blocktranslate count days=subscription.trial_days_left %}free trial, {{ days }} day left{% plural %}free trial, {{ days }} days left{% endblocktranslate %}
+      {% elif subscription.is_paying %}
+        · {{ subscription.get_status_display }}
+        {% if subscription.current_period_end %}
+          · {% if subscription.cancel_at_period_end %}{% translate "ends on" %}{% else %}{% translate "renews on" %}{% endif %}
+          {{ subscription.current_period_end|date:"SHORT_DATE_FORMAT" }}
+        {% endif %}
+      {% endif %}
+    </p>
+    {% if subscription.status == "past_due" %}
+      <p class="message-error">{% translate "Your last payment failed. Please update your card to keep your plan." %}</p>
+    {% endif %}
+    <ul>
+      <li>{% blocktranslate count n=subscription.plan.max_properties %}up to {{ n }} property{% plural %}up to {{ n }} properties{% endblocktranslate %}</li>
+      <li>{% if subscription.plan.can_send_notices %}✓{% else %}✗{% endif %} {% translate "PDF payment notices sent to tenants by email" %}</li>
+      <li>{% if subscription.plan.reminders %}✓{% else %}✗{% endif %} {% translate "Email reminders" %}</li>
+    </ul>
+    {% if subscription.provider_customer_id %}
+      <form method="post" action="{% url 'billing_manage' %}">
+        {% csrf_token %}
+        <button type="submit" class="secondary outline">{% translate "Manage payment card or cancel" %}</button>
+      </form>
+    {% endif %}
+  </article>
+
+  {% if not subscription.is_paying %}
+    <h2>{% blocktranslate with name=standard.name %}Subscribe to {{ name }}{% endblocktranslate %}</h2>
+    {% if payments_configured %}
+      <div class="grid">
+        {% for price in prices %}
+          <article>
+            <h3>{{ price.gross|eur }} <small>{{ price.label }}</small></h3>
+            {# TODO: verify (VERIFY.md B1, B4) – PVN display #}
+            <p><small>{% blocktranslate with net=price.net|eur vat=price.vat|eur %}incl. 21% VAT ({{ vat }}); excl. VAT {{ net }}{% endblocktranslate %}</small></p>
+            <form method="post" action="{% url 'billing_checkout' %}">
+              {% csrf_token %}
+              <input type="hidden" name="interval" value="{{ price.interval }}">
+              <button type="submit">{% translate "Pay by card" %}</button>
+            </form>
+          </article>
+        {% endfor %}
+      </div>
+      <p><small>{% translate "Secure payment by Stripe. You can cancel at any time; the plan stays active until the end of the paid period." %}</small></p>
+    {% else %}
+      <p><em>{% translate "Online payments are not configured on this server yet." %}</em></p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

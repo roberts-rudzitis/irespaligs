@@ -49,3 +49,24 @@ templates/      HTML templates (base layout, allauth overrides)
 locale/         translations (lv, en)
 tests/          pytest tests
 ```
+
+## Payments (Stripe)
+
+Without Stripe keys the app works normally; the "Subscription" page just says payments are
+not configured. New accounts get a 14-day trial of the paid plan without a card.
+
+To try real checkout in **test mode** (no real money):
+
+1. Create a free Stripe account and stay in **Test mode**.
+2. Create a product "ĪresPalīgs Standarta" with two recurring prices: **4,99 EUR / month** and
+   **49,90 EUR / year**, both with tax behaviour **"inclusive"** (price includes PVN).
+3. Put the keys in `.env`: `STRIPE_SECRET_KEY` (sk_test_…), `STRIPE_PRICE_MONTHLY` and
+   `STRIPE_PRICE_YEARLY` (price_…).
+4. Forward webhooks to your computer with the [Stripe CLI](https://docs.stripe.com/stripe-cli):
+   `stripe listen --forward-to localhost:8000/stripe/webhook/` and put the `whsec_…` it prints
+   into `STRIPE_WEBHOOK_SECRET`.
+5. Restart (`docker compose up`), open "Abonements", pay with test card `4242 4242 4242 4242`.
+
+In production, add the webhook endpoint `https://<your-domain>/stripe/webhook/` in the Stripe
+dashboard with the events `checkout.session.completed` and `customer.subscription.*`.
+Plan limits live in `apps/subscriptions/plans.py`.

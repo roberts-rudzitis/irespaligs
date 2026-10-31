@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "apps.rentals",
     "apps.statements",
     "apps.reminders",
+    "apps.subscriptions",
 ]
 
 MIDDLEWARE = [
@@ -168,6 +169,13 @@ if EMAIL_HOST:
 else:
     # Local development: emails (e.g. login codes) are printed in the `docker compose up` output.
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# --- Payments (Stripe) -------------------------------------------------------
+# Empty in local development → the billing page says payments are not configured.
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
+STRIPE_PRICE_MONTHLY = os.environ.get("STRIPE_PRICE_MONTHLY", "")
+STRIPE_PRICE_YEARLY = os.environ.get("STRIPE_PRICE_YEARLY", "")
 
 # --- Security (production) --------------------------------------------------
 
