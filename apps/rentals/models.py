@@ -80,6 +80,8 @@ class Lease(TimeStampedModel):
         blank=True,
         help_text=_("If you pay the 10 percent rental income tax without registering a business: the date you notified VID in EDS (due within 5 working days of signing)."),
     )
+    # Secret part of the tenant's "submit readings" link (no login). Empty = no link.
+    readings_token = models.CharField(max_length=64, blank=True, db_index=True, editable=False)
 
     owner_lookup = "property__owner"
     objects = OwnedQuerySet.as_manager()
@@ -166,6 +168,7 @@ class MeterReading(TimeStampedModel):
     meter = models.ForeignKey(Meter, on_delete=models.CASCADE, related_name="readings")
     period = models.DateField(_("month"), help_text=_("Always the 1st day of the month."))
     value = models.DecimalField(_("reading"), max_digits=14, decimal_places=3)
+    submitted_by_tenant = models.BooleanField(default=False)
 
     owner_lookup = "meter__property__owner"
     objects = OwnedQuerySet.as_manager()

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 19:28+0200\n"
+"POT-Creation-Date: 2026-10-31 19:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,7 +145,11 @@ msgid ""
 "the 10 percent rental income tax without registering a business, notify VID "
 "in EDS within 5 working days of signing (attach a copy of the lease). Record "
 "the date on the lease when done."
-msgstr "%(property)s: līgums ar %(tenant)s parakstīts %(date)s. Ja maksājat 10 procentu iedzīvotāju ienākuma nodokli, nereģistrējot saimniecisko darbību, paziņojiet VID EDS sistēmā piecu darbdienu laikā no līguma noslēgšanas (pievienojiet līguma kopiju). Kad paziņots, ierakstiet datumu līgumā."
+msgstr ""
+"%(property)s: līgums ar %(tenant)s parakstīts %(date)s. Ja maksājat 10 "
+"procentu iedzīvotāju ienākuma nodokli, nereģistrējot saimniecisko darbību, "
+"paziņojiet VID EDS sistēmā piecu darbdienu laikā no līguma noslēgšanas "
+"(pievienojiet līguma kopiju). Kad paziņots, ierakstiet datumu līgumā."
 
 #: apps/reminders/services.py:121
 #, python-format
@@ -240,123 +244,167 @@ msgstr "VID paziņots"
 msgid ""
 "If you pay the 10 percent rental income tax without registering a business: "
 "the date you notified VID in EDS (due within 5 working days of signing)."
-msgstr "Ja maksājat 10 procentu nodokli, nereģistrējot saimniecisko darbību: datums, kad paziņojāt VID EDS sistēmā (jāpaziņo piecu darbdienu laikā no līguma noslēgšanas)."
+msgstr ""
+"Ja maksājat 10 procentu nodokli, nereģistrējot saimniecisko darbību: datums, "
+"kad paziņojāt VID EDS sistēmā (jāpaziņo piecu darbdienu laikā no līguma "
+"noslēgšanas)."
 
-#: apps/rentals/models.py:88
+#: apps/rentals/models.py:90
 msgid "lease"
 msgstr "īres līgums"
 
-#: apps/rentals/models.py:89
+#: apps/rentals/models.py:91
 msgid "leases"
 msgstr "īres līgumi"
 
-#: apps/rentals/models.py:100
+#: apps/rentals/models.py:102
 msgid "The end date must be after the start date."
 msgstr "Beigu datumam jābūt vēlākam par sākuma datumu."
 
-#: apps/rentals/models.py:102
+#: apps/rentals/models.py:104
 msgid "The signing date can't be after the start date."
 msgstr "Noslēgšanas datums nevar būt vēlāks par sākuma datumu."
 
-#: apps/rentals/models.py:105
+#: apps/rentals/models.py:107
 msgid "By law the deposit may not exceed two months' rent."
-msgstr "Saskaņā ar likumu drošības nauda nedrīkst pārsniegt divu mēnešu īres maksu."
+msgstr ""
+"Saskaņā ar likumu drošības nauda nedrīkst pārsniegt divu mēnešu īres maksu."
 
-#: apps/rentals/models.py:112
+#: apps/rentals/models.py:114
 msgid "This property already has a lease in this period."
 msgstr "Šim īpašumam šajā periodā jau ir īres līgums."
 
-#: apps/rentals/models.py:132
+#: apps/rentals/models.py:134
 msgid "Cold water"
 msgstr "Aukstais ūdens"
 
-#: apps/rentals/models.py:133
+#: apps/rentals/models.py:135
 msgid "Hot water"
 msgstr "Karstais ūdens"
 
-#: apps/rentals/models.py:134
+#: apps/rentals/models.py:136
 msgid "Electricity"
 msgstr "Elektrība"
 
-#: apps/rentals/models.py:135
+#: apps/rentals/models.py:137
 msgid "Heating"
 msgstr "Apkure"
 
-#: apps/rentals/models.py:136
+#: apps/rentals/models.py:138
 msgid "Gas"
 msgstr "Gāze"
 
-#: apps/rentals/models.py:137 apps/statements/models.py:92
+#: apps/rentals/models.py:139 apps/statements/models.py:92
 msgid "Other"
 msgstr "Cits"
 
-#: apps/rentals/models.py:140
+#: apps/rentals/models.py:142
 msgid "type"
 msgstr "veids"
 
-#: apps/rentals/models.py:141
+#: apps/rentals/models.py:143
 msgid "label"
 msgstr "apzīmējums"
 
-#: apps/rentals/models.py:141
+#: apps/rentals/models.py:143
 msgid "e.g. “Kitchen”, if there are several"
 msgstr "piem., “Virtuve”, ja skaitītāji ir vairāki"
 
-#: apps/rentals/models.py:142
+#: apps/rentals/models.py:144
 msgid "unit"
 msgstr "mērvienība"
 
-#: apps/rentals/models.py:142
+#: apps/rentals/models.py:144
 msgid "e.g. m³, kWh, MWh"
 msgstr "piem., m³, kWh, MWh"
 
-#: apps/rentals/models.py:143
+#: apps/rentals/models.py:145
 msgid "price per unit"
 msgstr "cena par vienību"
 
-#: apps/rentals/models.py:144 apps/rentals/models.py:184
+#: apps/rentals/models.py:146 apps/rentals/models.py:187
 msgid "in use"
 msgstr "lietošanā"
 
-#: apps/rentals/models.py:150
+#: apps/rentals/models.py:152
 msgid "meter"
 msgstr "skaitītājs"
 
-#: apps/rentals/models.py:151
+#: apps/rentals/models.py:153
 msgid "meters"
 msgstr "skaitītāji"
 
-#: apps/rentals/models.py:167 apps/statements/models.py:36
+#: apps/rentals/models.py:169 apps/statements/models.py:36
 msgid "month"
 msgstr "mēnesis"
 
-#: apps/rentals/models.py:167
+#: apps/rentals/models.py:169
 msgid "Always the 1st day of the month."
 msgstr "Vienmēr mēneša 1. datums."
 
-#: apps/rentals/models.py:168
+#: apps/rentals/models.py:170
 msgid "reading"
 msgstr "rādījums"
 
-#: apps/rentals/models.py:182
+#: apps/rentals/models.py:185
 msgid "description"
 msgstr "apraksts"
 
-#: apps/rentals/models.py:182
+#: apps/rentals/models.py:185
 msgid "e.g. “Building management”"
 msgstr "piem., “Apsaimniekošana”"
 
-#: apps/rentals/models.py:183 apps/statements/models.py:112
+#: apps/rentals/models.py:186 apps/statements/models.py:112
 msgid "amount"
 msgstr "summa"
 
-#: apps/rentals/models.py:190
+#: apps/rentals/models.py:193
 msgid "fixed charge"
 msgstr "fiksētais maksājums"
 
-#: apps/rentals/models.py:191
+#: apps/rentals/models.py:194
 msgid "fixed charges"
 msgstr "fiksētie maksājumi"
+
+#: apps/rentals/tenant_readings.py:68
+#, python-format
+msgid "%(tenant)s submitted meter readings – %(property)s"
+msgstr "%(tenant)s iesniedza skaitītāju rādījumus – %(property)s"
+
+#: apps/rentals/tenant_readings.py:84
+#, python-format
+msgid "Submit your meter readings – %(property)s"
+msgstr "Skaitītāju rādījumu iesniegšana – %(property)s"
+
+#: apps/rentals/tenant_views.py:24
+msgid "The tenant readings link is part of the paid plan."
+msgstr "Rādījumu saite īrniekam ir pieejama maksas plānā."
+
+#: apps/rentals/tenant_views.py:30
+msgid "New link created. The old link (if any) no longer works."
+msgstr "Izveidota jauna saite. Vecā saite (ja tāda bija) vairs nedarbojas."
+
+#: apps/rentals/tenant_views.py:33
+msgid "Link removed."
+msgstr "Saite noņemta."
+
+#: apps/rentals/tenant_views.py:36 apps/statements/services.py:127
+msgid "The tenant has no email address. Add it on the tenant's page."
+msgstr "Īrniekam nav norādīta e-pasta adrese. Pievienojiet to īrnieka lapā."
+
+#: apps/rentals/tenant_views.py:39
+#, python-format
+msgid "Link sent to %(email)s."
+msgstr "Saite nosūtīta uz %(email)s."
+
+#: apps/rentals/tenant_views.py:56
+#, python-format
+msgid "Previous reading: %(value)s"
+msgstr "Iepriekšējais rādījums: %(value)s"
+
+#: apps/rentals/tenant_views.py:65
+msgid "This is lower than the previous reading. Please check the meter."
+msgstr "Tas ir mazāks par iepriekšējo rādījumu. Lūdzu, pārbaudiet skaitītāju."
 
 #: apps/rentals/views.py:30 templates/pages/dashboard.html:43
 msgid "New property"
@@ -392,7 +440,7 @@ msgstr "Jauns īres līgums"
 msgid "Edit lease"
 msgstr "Labot īres līgumu"
 
-#: apps/rentals/views.py:177 templates/rentals/property_detail.html:54
+#: apps/rentals/views.py:177 templates/rentals/property_detail.html:74
 msgid "New meter"
 msgstr "Jauns skaitītājs"
 
@@ -400,7 +448,7 @@ msgstr "Jauns skaitītājs"
 msgid "Edit meter"
 msgstr "Labot skaitītāju"
 
-#: apps/rentals/views.py:194 templates/rentals/property_detail.html:78
+#: apps/rentals/views.py:194 templates/rentals/property_detail.html:98
 msgid "New fixed charge"
 msgstr "Jauns fiksētais maksājums"
 
@@ -417,29 +465,33 @@ msgid "Enter the month as mm.yyyy, e.g. 11.2026."
 msgstr "Ievadiet mēnesi formātā mm.gggg, piem., 11.2026."
 
 #: apps/statements/forms.py:35 templates/pages/dashboard.html:23
-#: templates/rentals/property_detail.html:32
+#: templates/rentals/property_detail.html:52
 #: templates/statements/detail.html:12 templates/statements/pdf.html:39
 msgid "Month"
 msgstr "Mēnesis"
 
 #: apps/statements/forms.py:36 templates/pages/dashboard.html:24
-#: templates/rentals/property_detail.html:32
+#: templates/rentals/property_detail.html:52
 #: templates/statements/detail.html:13 templates/statements/email.txt:6
 #: templates/statements/pdf.html:42
 msgid "Due date"
 msgstr "Samaksas termiņš"
 
-#: apps/statements/forms.py:44
+#: apps/statements/forms.py:45
 #, python-format
 msgid "%(meter)s – previous reading (%(unit)s)"
 msgstr "%(meter)s – iepriekšējais rādījums (%(unit)s)"
 
-#: apps/statements/forms.py:49
+#: apps/statements/forms.py:50
 #, python-format
 msgid "%(meter)s – current reading (%(unit)s)"
 msgstr "%(meter)s – pašreizējais rādījums (%(unit)s)"
 
-#: apps/statements/forms.py:74
+#: apps/statements/forms.py:53
+msgid "Submitted by the tenant – please check."
+msgstr "Iesniedza īrnieks – lūdzu, pārbaudiet."
+
+#: apps/statements/forms.py:77
 msgid "The amount must be greater than zero."
 msgstr "Summai jābūt lielākai par nulli."
 
@@ -523,10 +575,6 @@ msgstr "Īres maksa par %(month)s"
 msgid "%(meter)s: the new reading is lower than the previous one."
 msgstr "%(meter)s: jaunais rādījums ir mazāks par iepriekšējo."
 
-#: apps/statements/services.py:127
-msgid "The tenant has no email address. Add it on the tenant's page."
-msgstr "Īrniekam nav norādīta e-pasta adrese. Pievienojiet to īrnieka lapā."
-
 #: apps/statements/services.py:130
 #, python-format
 msgid "Payment notice for %(month)s – %(property)s"
@@ -600,7 +648,7 @@ msgid "Received"
 msgstr "Saņemts"
 
 #: apps/statements/views.py:181 templates/pages/dashboard.html:37
-#: templates/rentals/property_detail.html:32
+#: templates/rentals/property_detail.html:52
 #: templates/statements/_year_table.html:23
 msgid "Total"
 msgstr "Kopā"
@@ -754,7 +802,7 @@ msgstr "Gaida samaksu"
 msgid "Still to pay"
 msgstr "Atlikums"
 
-#: templates/pages/dashboard.html:24 templates/rentals/property_detail.html:32
+#: templates/pages/dashboard.html:24 templates/rentals/property_detail.html:52
 msgid "Status"
 msgstr "Statuss"
 
@@ -977,7 +1025,8 @@ msgstr ""
 msgid "Delete my account permanently"
 msgstr "Neatgriezeniski dzēst manu kontu"
 
-#: templates/reminders/digest.txt:1 templates/statements/email.txt:1
+#: templates/reminders/digest.txt:1 templates/rentals/email_readings_link.txt:1
+#: templates/statements/email.txt:1
 #, python-format
 msgid "Hello, %(name)s!"
 msgstr "Labdien, %(name)s!"
@@ -994,8 +1043,8 @@ msgstr "Atgādinājumus var izslēgt sadaļā “Mans konts”."
 #: templates/rentals/confirm_delete.html:5
 #: templates/rentals/property_detail.html:11
 #: templates/rentals/property_detail.html:25
-#: templates/rentals/property_detail.html:66
-#: templates/rentals/property_detail.html:88
+#: templates/rentals/property_detail.html:86
+#: templates/rentals/property_detail.html:108
 #: templates/rentals/tenant_list.html:16 templates/statements/detail.html:25
 #: templates/statements/detail.html:42
 msgid "Delete"
@@ -1014,14 +1063,38 @@ msgstr "Jā, dzēst"
 msgid "Cancel"
 msgstr "Atcelt"
 
+#: templates/rentals/email_readings_link.txt:3
+#, python-format
+msgid ""
+"You can submit the meter readings for %(property)s at this link each month – "
+"no registration needed:"
+msgstr "Katru mēnesi varat iesniegt skaitītāju rādījumus par īpašumu “%(property)s”, izmantojot šo saiti – reģistrācija nav nepieciešama:"
+
+#: templates/rentals/email_readings_link.txt:6
+#, python-format
+msgid ""
+"Please keep the link private. If you have questions, reply to this email – "
+"it goes to %(landlord)s."
+msgstr "Lūdzu, nenododiet saiti citiem. Ja jums ir jautājumi, atbildiet uz šo e-pastu – atbilde nonāks pie %(landlord)s."
+
+#: templates/rentals/email_readings_submitted.txt:1
+#, python-format
+msgid "%(tenant)s submitted meter readings for %(property)s (%(month)s):"
+msgstr "%(tenant)s iesniedza skaitītāju rādījumus par īpašumu “%(property)s” (%(month)s):"
+
+#: templates/rentals/email_readings_submitted.txt:5
+msgid ""
+"Create the payment notice (the readings are filled in – please check them):"
+msgstr "Izveidojiet maksājuma paziņojumu (rādījumi jau ir aizpildīti – lūdzu, pārbaudiet tos):"
+
 #: templates/rentals/form.html:10
 msgid "+ Add a new tenant"
 msgstr "+ Pievienot jaunu īrnieku"
 
 #: templates/rentals/property_detail.html:10
 #: templates/rentals/property_detail.html:24
-#: templates/rentals/property_detail.html:65
-#: templates/rentals/property_detail.html:87
+#: templates/rentals/property_detail.html:85
+#: templates/rentals/property_detail.html:107
 #: templates/rentals/tenant_list.html:15
 msgid "Edit"
 msgstr "Labot"
@@ -1043,27 +1116,57 @@ msgstr "Drošības nauda"
 msgid "New payment notice"
 msgstr "Jauns maksājuma paziņojums"
 
-#: templates/rentals/property_detail.html:49
+#: templates/rentals/property_detail.html:30
+msgid "Tenant submits readings via a link"
+msgstr "Īrnieks iesniedz rādījumus, izmantojot saiti"
+
+#: templates/rentals/property_detail.html:35
+msgid "Link for the tenant"
+msgstr "Saite īrniekam"
+
+#: templates/rentals/property_detail.html:37
+msgid "Email the link to the tenant"
+msgstr "Nosūtīt saiti īrniekam"
+
+#: templates/rentals/property_detail.html:38
+msgid "New link"
+msgstr "Jauna saite"
+
+#: templates/rentals/property_detail.html:39
+msgid "Remove link"
+msgstr "Noņemt saiti"
+
+#: templates/rentals/property_detail.html:42
+msgid ""
+"The tenant opens the link (no registration), enters the readings, and you "
+"get an email. The new payment notice is then filled in."
+msgstr "Īrnieks atver saiti (bez reģistrācijas), ievada rādījumus, un jūs saņemat e-pastu. Jaunajā maksājuma paziņojumā rādījumi būs jau aizpildīti."
+
+#: templates/rentals/property_detail.html:43
+msgid "Create link"
+msgstr "Izveidot saiti"
+
+#: templates/rentals/property_detail.html:69
 msgid "No leases yet."
 msgstr "Vēl nav neviena īres līguma."
 
-#: templates/rentals/property_detail.html:53
+#: templates/rentals/property_detail.html:73
 msgid "Meters"
 msgstr "Skaitītāji"
 
-#: templates/rentals/property_detail.html:58
+#: templates/rentals/property_detail.html:78
 msgid "Meter"
 msgstr "Skaitītājs"
 
-#: templates/rentals/property_detail.html:58
+#: templates/rentals/property_detail.html:78
 msgid "Price per unit"
 msgstr "Cena par vienību"
 
-#: templates/rentals/property_detail.html:58
+#: templates/rentals/property_detail.html:78
 msgid "Last reading"
 msgstr "Pēdējais rādījums"
 
-#: templates/rentals/property_detail.html:72
+#: templates/rentals/property_detail.html:92
 msgid ""
 "No meters yet. Add water, electricity or heating meters to bill utilities by "
 "readings."
@@ -1071,11 +1174,11 @@ msgstr ""
 "Vēl nav skaitītāju. Pievienojiet ūdens, elektrības vai apkures skaitītājus, "
 "lai aprēķinātu komunālos maksājumus pēc rādījumiem."
 
-#: templates/rentals/property_detail.html:77
+#: templates/rentals/property_detail.html:97
 msgid "Fixed monthly charges"
 msgstr "Fiksētie ikmēneša maksājumi"
 
-#: templates/rentals/property_detail.html:94
+#: templates/rentals/property_detail.html:114
 msgid "No fixed charges yet (e.g. building management, waste)."
 msgstr "Vēl nav fiksēto maksājumu (piem., apsaimniekošana, atkritumi)."
 
@@ -1094,6 +1197,49 @@ msgstr "Tālrunis"
 #: templates/rentals/tenant_list.html:23
 msgid "No tenants yet."
 msgstr "Vēl nav neviena īrnieka."
+
+#: templates/rentals/tenant_readings_done.html:3
+#: templates/rentals/tenant_readings_done.html:6
+#: templates/rentals/tenant_readings_form.html:3
+#: templates/rentals/tenant_readings_form.html:7
+msgid "Meter readings"
+msgstr "Skaitītāju rādījumi"
+
+#: templates/rentals/tenant_readings_done.html:8
+#, python-format
+msgid ""
+"The payment notice for %(month)s has already been prepared. If a reading is "
+"wrong, please contact your landlord."
+msgstr "Maksājuma paziņojums par %(month)s jau ir sagatavots. Ja kāds rādījums ir nepareizs, lūdzu, sazinieties ar izīrētāju."
+
+#: templates/rentals/tenant_readings_done.html:10
+msgid ""
+"Thank you! Your landlord has been notified. You can open this link again to "
+"correct the readings until the payment notice is prepared."
+msgstr "Paldies! Izīrētājs ir informēts. Kamēr maksājuma paziņojums nav sagatavots, varat atvērt šo saiti vēlreiz un labot rādījumus."
+
+#: templates/rentals/tenant_readings_form.html:11
+#, python-format
+msgid "Hello, %(name)s! Please enter the current readings from the meters."
+msgstr "Labdien, %(name)s! Lūdzu, ievadiet pašreizējos skaitītāju rādījumus."
+
+#: templates/rentals/tenant_readings_form.html:15
+msgid "Send readings"
+msgstr "Nosūtīt rādījumus"
+
+#: templates/rentals/tenant_readings_form.html:18
+msgid "There are no meters to read for this property."
+msgstr "Šim īpašumam nav skaitītāju, kuru rādījumi būtu jānodod."
+
+#: templates/rentals/tenant_readings_invalid.html:3
+#: templates/rentals/tenant_readings_invalid.html:6
+msgid "Link not valid"
+msgstr "Saite nav derīga"
+
+#: templates/rentals/tenant_readings_invalid.html:7
+msgid ""
+"This link does not work (any more). Please ask your landlord for a new one."
+msgstr "Šī saite (vairs) nedarbojas. Lūdzu, palūdziet izīrētājam jaunu."
 
 #: templates/statements/_lines.html:5
 msgid "Item"
@@ -1156,7 +1302,12 @@ msgid ""
 "(payments made by the tenant directly to providers do not), and so does a "
 "received deposit. The tax is declared in the annual income declaration "
 "(appendix D11) from 1 March to 1 June of the following year."
-msgstr "Saskaņā ar VID skaidrojumu, piemērojot 10 procentu nodokli, ienākums ir arī komunālie un apsaimniekošanas maksājumi, ko īrnieks maksā ar jūsu starpniecību (maksājumi, ko īrnieks veic tieši pakalpojumu sniedzējiem, nav), kā arī saņemtā drošības nauda. Nodokli deklarē gada ienākumu deklarācijas D11 pielikumā no nākamā gada 1. marta līdz 1. jūnijam."
+msgstr ""
+"Saskaņā ar VID skaidrojumu, piemērojot 10 procentu nodokli, ienākums ir arī "
+"komunālie un apsaimniekošanas maksājumi, ko īrnieks maksā ar jūsu "
+"starpniecību (maksājumi, ko īrnieks veic tieši pakalpojumu sniedzējiem, "
+"nav), kā arī saņemtā drošības nauda. Nodokli deklarē gada ienākumu "
+"deklarācijas D11 pielikumā no nākamā gada 1. marta līdz 1. jūnijam."
 
 #: templates/statements/create.html:10
 msgid ""

@@ -1,0 +1,9 @@
+{% load i18n money %}{% autoescape off %}{% blocktranslate with tenant=lease.tenant.full_name property=lease.property.name month=period|date:"m.Y" %}{{ tenant }} submitted meter readings for {{ property }} ({{ month }}):{% endblocktranslate %}
+{% for meter, value in values.items %}
+• {{ meter }}: {{ value|qty }} {{ meter.unit }}{% endfor %}
+
+{% translate "Create the payment notice (the readings are filled in – please check them):" %}
+{{ notice_url }}
+
+ĪresPalīgs
+{% endautoescape %}

@@ -1,0 +1,7 @@
+{% load i18n %}{% autoescape off %}{% blocktranslate with name=lease.tenant.full_name %}Hello, {{ name }}!{% endblocktranslate %}
+
+{% blocktranslate with property=lease.property.name %}You can submit the meter readings for {{ property }} at this link each month – no registration needed:{% endblocktranslate %}
+{{ url }}
+
+{% blocktranslate with landlord=landlord.full_name|default:landlord.email %}Please keep the link private. If you have questions, reply to this email – it goes to {{ landlord }}.{% endblocktranslate %}
+{% endautoescape %}

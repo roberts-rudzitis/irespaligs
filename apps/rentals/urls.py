@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from . import tenant_views, views
 
 app_name = "rentals"
 
@@ -18,6 +18,8 @@ urlpatterns = [
     path("properties/<int:property_pk>/charges/new/", views.FixedChargeCreate.as_view(), name="charge_create"),
     path("charges/<int:pk>/edit/", views.FixedChargeUpdate.as_view(), name="charge_update"),
     path("charges/<int:pk>/delete/", views.FixedChargeDelete.as_view(), name="charge_delete"),
+    path("leases/<int:pk>/readings-link/", tenant_views.readings_link, name="lease_readings_link"),
+    path("r/<str:token>/", tenant_views.tenant_readings_form, name="tenant_readings"),  # public, for tenants
     path("tenants/", views.TenantList.as_view(), name="tenant_list"),
     path("tenants/new/", views.TenantCreate.as_view(), name="tenant_create"),
     path("tenants/<int:pk>/edit/", views.TenantUpdate.as_view(), name="tenant_update"),

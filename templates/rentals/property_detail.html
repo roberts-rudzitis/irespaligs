@@ -25,6 +25,26 @@
         <a href="{% url 'rentals:lease_delete' lease.pk %}">{% translate "Delete" %}</a></small>
       </header>
       <p><a href="{% url 'statements:create' lease.pk %}" role="button">{% translate "New payment notice" %}</a></p>
+      {% if lease.is_active %}
+        <details class="readings-link">
+          <summary>{% translate "Tenant submits readings via a link" %}</summary>
+          <form method="post" action="{% url 'rentals:lease_readings_link' lease.pk %}">
+            {% csrf_token %}
+            {% if lease.readings_token %}
+              {% url 'rentals:tenant_readings' lease.readings_token as tenant_path %}
+              <input type="text" readonly value="{{ request.scheme }}://{{ request.get_host }}{{ tenant_path }}" onclick="this.select()" aria-label="{% translate 'Link for the tenant' %}">
+              <div class="actions">
+                <button type="submit" name="action" value="send">{% translate "Email the link to the tenant" %}</button>
+                <button type="submit" name="action" value="reset" class="secondary outline">{% translate "New link" %}</button>
+                <button type="submit" name="action" value="remove" class="link">{% translate "Remove link" %}</button>
+              </div>
+            {% else %}
+              <p><small>{% translate "The tenant opens the link (no registration), enters the readings, and you get an email. The new payment notice is then filled in." %}</small></p>
+              <button type="submit" name="action" value="create" class="secondary">{% translate "Create link" %}</button>
+            {% endif %}
+          </form>
+        </details>
+      {% endif %}
       {% with notices=lease.statements.all %}
         {% if notices %}
           <div class="overflow-auto">

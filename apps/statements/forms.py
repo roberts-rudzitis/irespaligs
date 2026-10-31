@@ -40,6 +40,7 @@ class StatementCreateForm(forms.Form):
         self.meters = list(meters)
         for meter in self.meters:
             last = meter.last_reading_before(period)
+            this_month = meter.readings.filter(period=period).first()  # e.g. submitted by the tenant
             self.fields[f"prev_{meter.pk}"] = forms.DecimalField(
                 label=_("%(meter)s – previous reading (%(unit)s)") % {"meter": meter, "unit": meter.unit},
                 max_digits=14, decimal_places=3, min_value=0, localize=True,
@@ -48,6 +49,8 @@ class StatementCreateForm(forms.Form):
             self.fields[f"curr_{meter.pk}"] = forms.DecimalField(
                 label=_("%(meter)s – current reading (%(unit)s)") % {"meter": meter, "unit": meter.unit},
                 max_digits=14, decimal_places=3, min_value=0, localize=True,
+                initial=this_month.value if this_month else None,
+                help_text=_("Submitted by the tenant – please check.") if this_month and this_month.submitted_by_tenant else "",
             )
 
     def readings(self):

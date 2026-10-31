@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Meter readings" %}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">{% endblock %}
+{% block content %}
+  <h1>{% translate "Meter readings" %}</h1>
+  {% if already_billed %}
+    <p>{% blocktranslate with month=period|date:"m.Y" %}The payment notice for {{ month }} has already been prepared. If a reading is wrong, please contact your landlord.{% endblocktranslate %}</p>
+  {% else %}
+    <p>{% translate "Thank you! Your landlord has been notified. You can open this link again to correct the readings until the payment notice is prepared." %}</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Meter readings" %}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex"><meta name="referrer" content="no-referrer">{% endblock %}
+{% block content %}
+  <hgroup>
+    <h1>{% translate "Meter readings" %}</h1>
+    <p>{{ lease.property.name }} · {{ period|date:"m.Y" }}</p>
+  </hgroup>
+  {% if form.meters %}
+    <p>{% blocktranslate with name=lease.tenant.full_name %}Hello, {{ name }}! Please enter the current readings from the meters.{% endblocktranslate %}</p>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% include "includes/form_fields.html" %}
+      <button type="submit">{% translate "Send readings" %}</button>
+    </form>
+  {% else %}
+    <p>{% translate "There are no meters to read for this property." %}</p>
+  {% endif %}
+{% endblock %}
