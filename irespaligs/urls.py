@@ -7,5 +7,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("language/", set_language, name="set_language"),
+    path("", include("apps.rentals.urls")),
     path("", include("apps.pages.urls")),
 ]

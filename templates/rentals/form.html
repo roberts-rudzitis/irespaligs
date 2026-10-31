@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{{ title }}{% endblock %}
+{% block content %}
+  <h1>{{ title }}</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include "includes/form_fields.html" %}
+    {% if new_tenant_url %}
+      <p><small><a href="{{ new_tenant_url }}">{% translate "+ Add a new tenant" %}</a></small></p>
+    {% endif %}
+    <button type="submit">{% translate "Save" %}</button>
+  </form>
+{% endblock %}

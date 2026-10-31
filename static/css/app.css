@@ -3,4 +3,6 @@
 .lang-switch button { padding: .2rem .5rem; font-size: .8rem; margin: 0; }
 .lang-switch button.active { font-weight: bold; }
 .message { padding: .75rem 1rem; }
+.message-error, .field-error { color: var(--pico-del-color); }
+.message-warning { border-left: 4px solid #e0a800; }
 footer { margin-top: 3rem; opacity: .7; }

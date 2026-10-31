@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Tenants" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Tenants" %}</h1>
+  <p><a href="{% url 'rentals:tenant_create' %}" role="button">{% translate "New tenant" %}</a></p>
+  {% if object_list %}
+    <div class="overflow-auto">
+    <table>
+      <thead><tr><th>{% translate "Name" %}</th><th>{% translate "Email" %}</th><th>{% translate "Phone" %}</th><th></th></tr></thead>
+      <tbody>
+      {% for tenant in object_list %}
+        <tr>
+          <td>{{ tenant.full_name }}</td><td>{{ tenant.email }}</td><td>{{ tenant.phone }}</td>
+          <td><a href="{% url 'rentals:tenant_update' tenant.pk %}">{% translate "Edit" %}</a> ·
+              <a href="{% url 'rentals:tenant_delete' tenant.pk %}">{% translate "Delete" %}</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  {% else %}
+    <p>{% translate "No tenants yet." %}</p>
+  {% endif %}
+{% endblock %}

@@ -1,8 +1,46 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n money %}
 {% block head_title %}{% translate "Dashboard" %}{% endblock %}
 {% block content %}
   <h1>{% translate "Dashboard" %}</h1>
-  <p>{% blocktranslate with name=user.get_short_name %}Welcome, {{ name }}!{% endblocktranslate %}</p>
-  <p>{% translate "Your properties will appear here." %}</p>
+
+  {% if ending_soon %}
+    <article class="message message-warning">
+      <strong>{% translate "Leases ending soon" %}</strong>
+      <ul>
+        {% for lease in ending_soon %}
+          <li>{% blocktranslate with property=lease.property tenant=lease.tenant date=lease.end_date|date:"SHORT_DATE_FORMAT" days=lease.days_until_end %}{{ property }} ({{ tenant }}) – ends {{ date }}, in {{ days }} days{% endblocktranslate %}</li>
+        {% endfor %}
+      </ul>
+    </article>
+  {% endif %}
+
+  <h2>{% translate "Properties" %}</h2>
+  <p><a href="{% url 'rentals:property_create' %}" role="button">{% translate "New property" %}</a></p>
+  {% if rows %}
+    <div class="overflow-auto">
+    <table>
+      <thead><tr>
+        <th>{% translate "Property" %}</th><th>{% translate "Tenant" %}</th>
+        <th>{% translate "Rent" %}</th><th>{% translate "Lease ends" %}</th>
+      </tr></thead>
+      <tbody>
+      {% for row in rows %}
+        <tr>
+          <td><a href="{{ row.property.get_absolute_url }}">{{ row.property.name }}</a></td>
+          {% if row.lease %}
+            <td>{{ row.lease.tenant }}</td>
+            <td>{{ row.lease.monthly_rent|eur }}</td>
+            <td>{{ row.lease.end_date|date:"SHORT_DATE_FORMAT" }}</td>
+          {% else %}
+            <td colspan="3"><em>{% translate "Vacant" %}</em></td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  {% else %}
+    <p>{% translate "You have no properties yet. Start by adding your first one." %}</p>
+  {% endif %}
 {% endblock %}

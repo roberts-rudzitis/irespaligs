@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:34+0200\n"
+"POT-Creation-Date: 2026-10-31 18:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: apps/accounts/admin.py:15
 msgid "Personal info"
 msgstr ""
@@ -32,7 +33,7 @@ msgstr ""
 msgid "email address"
 msgstr ""
 
-#: apps/accounts/models.py:36
+#: apps/accounts/models.py:36 apps/rentals/models.py:41
 msgid "full name"
 msgstr ""
 
@@ -48,11 +49,141 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: irespaligs/settings.py:129
-msgid "Latvian"
+#: apps/core/mixins.py:17
+msgid "Saved."
+msgstr ""
+
+#: apps/rentals/forms.py:11
+msgid "dd.mm.yyyy"
+msgstr ""
+
+#: apps/rentals/models.py:14
+msgid "name"
+msgstr ""
+
+#: apps/rentals/models.py:14
+msgid "e.g. “Flat in Imanta”"
+msgstr ""
+
+#: apps/rentals/models.py:15
+msgid "address"
+msgstr ""
+
+#: apps/rentals/models.py:16
+msgid "notes"
+msgstr ""
+
+#: apps/rentals/models.py:22 apps/rentals/models.py:61
+msgid "property"
+msgstr ""
+
+#: apps/rentals/models.py:23
+msgid "properties"
+msgstr ""
+
+#: apps/rentals/models.py:42
+msgid "email"
+msgstr ""
+
+#: apps/rentals/models.py:42
+msgid "Monthly statements are sent here."
+msgstr ""
+
+#: apps/rentals/models.py:43
+msgid "phone"
+msgstr ""
+
+#: apps/rentals/models.py:49 apps/rentals/models.py:62
+msgid "tenant"
+msgstr ""
+
+#: apps/rentals/models.py:50
+msgid "tenants"
+msgstr ""
+
+#: apps/rentals/models.py:63
+msgid "start date"
+msgstr ""
+
+#: apps/rentals/models.py:65
+msgid "end date"
+msgstr ""
+
+#: apps/rentals/models.py:66
+msgid "monthly rent"
+msgstr ""
+
+#: apps/rentals/models.py:67
+msgid "deposit"
+msgstr ""
+
+#: apps/rentals/models.py:69
+msgid "rent due day"
+msgstr ""
+
+#: apps/rentals/models.py:72
+msgid "Day of the month the rent is due (1–28)."
+msgstr ""
+
+#: apps/rentals/models.py:76
+msgid "VID notified on"
+msgstr ""
+
+#: apps/rentals/models.py:79
+msgid ""
+"If you chose the 10 percent rental income tax regime: the date you notified "
+"VID about this lease."
+msgstr ""
+
+#: apps/rentals/models.py:86
+msgid "lease"
+msgstr ""
+
+#: apps/rentals/models.py:87
+msgid "leases"
+msgstr ""
+
+#: apps/rentals/models.py:98
+msgid "The end date must be after the start date."
+msgstr ""
+
+#: apps/rentals/models.py:105
+msgid "This property already has a lease in this period."
+msgstr ""
+
+#: apps/rentals/views.py:29 templates/pages/dashboard.html:19
+msgid "New property"
+msgstr ""
+
+#: apps/rentals/views.py:40
+msgid "Edit property"
+msgstr ""
+
+#: apps/rentals/views.py:61 templates/rentals/tenant_list.html:6
+msgid "New tenant"
+msgstr ""
+
+#: apps/rentals/views.py:80
+msgid "Edit tenant"
+msgstr ""
+
+#: apps/rentals/views.py:92
+msgid "This tenant has leases. Delete the leases first."
+msgstr ""
+
+#: apps/rentals/views.py:115 templates/rentals/property_detail.html:16
+msgid "New lease"
+msgstr ""
+
+#: apps/rentals/views.py:127
+msgid "Edit lease"
 msgstr ""
 
 #: irespaligs/settings.py:130
+msgid "Latvian"
+msgstr ""
+
+#: irespaligs/settings.py:131
 msgid "English"
 msgstr ""
 
@@ -61,25 +192,58 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: templates/base.html:19
+#: templates/base.html:19 templates/rentals/tenant_list.html:3
+#: templates/rentals/tenant_list.html:5
+msgid "Tenants"
+msgstr ""
+
+#: templates/base.html:20
 msgid "Log out"
 msgstr ""
 
-#: templates/base.html:21 templates/pages/home.html:11
+#: templates/base.html:22 templates/pages/home.html:11
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:22
+#: templates/base.html:23
 msgid "Sign up"
 msgstr ""
 
-#: templates/pages/dashboard.html:6
-#, python-format
-msgid "Welcome, %(name)s!"
+#: templates/pages/dashboard.html:9
+msgid "Leases ending soon"
 msgstr ""
 
-#: templates/pages/dashboard.html:7
-msgid "Your properties will appear here."
+#: templates/pages/dashboard.html:12
+#, python-format
+msgid "%(property)s (%(tenant)s) – ends %(date)s, in %(days)s days"
+msgstr ""
+
+#: templates/pages/dashboard.html:18
+msgid "Properties"
+msgstr ""
+
+#: templates/pages/dashboard.html:24
+msgid "Property"
+msgstr ""
+
+#: templates/pages/dashboard.html:24 templates/rentals/property_detail.html:22
+msgid "Tenant"
+msgstr ""
+
+#: templates/pages/dashboard.html:25 templates/rentals/property_detail.html:23
+msgid "Rent"
+msgstr ""
+
+#: templates/pages/dashboard.html:25
+msgid "Lease ends"
+msgstr ""
+
+#: templates/pages/dashboard.html:36
+msgid "Vacant"
+msgstr ""
+
+#: templates/pages/dashboard.html:44
+msgid "You have no properties yet. Start by adding your first one."
 msgstr ""
 
 #: templates/pages/home.html:3
@@ -96,4 +260,75 @@ msgstr ""
 
 #: templates/pages/home.html:10
 msgid "Create a free account"
+msgstr ""
+
+#: templates/rentals/confirm_delete.html:3
+#: templates/rentals/confirm_delete.html:5
+#: templates/rentals/property_detail.html:11
+#: templates/rentals/property_detail.html:33
+#: templates/rentals/tenant_list.html:16
+msgid "Delete"
+msgstr ""
+
+#: templates/rentals/confirm_delete.html:6
+#, python-format
+msgid "Are you sure you want to delete “%(name)s”? This cannot be undone."
+msgstr ""
+
+#: templates/rentals/confirm_delete.html:9
+msgid "Yes, delete"
+msgstr ""
+
+#: templates/rentals/confirm_delete.html:10
+msgid "Cancel"
+msgstr ""
+
+#: templates/rentals/form.html:10
+msgid "+ Add a new tenant"
+msgstr ""
+
+#: templates/rentals/form.html:12
+msgid "Save"
+msgstr ""
+
+#: templates/rentals/property_detail.html:10
+#: templates/rentals/property_detail.html:32
+#: templates/rentals/tenant_list.html:15
+msgid "Edit"
+msgstr ""
+
+#: templates/rentals/property_detail.html:15
+msgid "Leases"
+msgstr ""
+
+#: templates/rentals/property_detail.html:22
+msgid "Period"
+msgstr ""
+
+#: templates/rentals/property_detail.html:23
+msgid "Deposit"
+msgstr ""
+
+#: templates/rentals/property_detail.html:28
+msgid "active"
+msgstr ""
+
+#: templates/rentals/property_detail.html:40
+msgid "No leases yet."
+msgstr ""
+
+#: templates/rentals/tenant_list.html:10
+msgid "Name"
+msgstr ""
+
+#: templates/rentals/tenant_list.html:10
+msgid "Email"
+msgstr ""
+
+#: templates/rentals/tenant_list.html:10
+msgid "Phone"
+msgstr ""
+
+#: templates/rentals/tenant_list.html:23
+msgid "No tenants yet."
 msgstr ""

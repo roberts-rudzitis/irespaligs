@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% translate "Delete" %}{% endblock %}
+{% block content %}
+  <h1>{% translate "Delete" %}</h1>
+  <p>{% blocktranslate with name=object %}Are you sure you want to delete “{{ name }}”? This cannot be undone.{% endblocktranslate %}</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="contrast">{% translate "Yes, delete" %}</button>
+    <a href="javascript:history.back()" role="button" class="secondary outline">{% translate "Cancel" %}</a>
+  </form>
+{% endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-31 18:34+0200\n"
+"POT-Creation-Date: 2026-10-31 18:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
+
 #: apps/accounts/admin.py:15
 msgid "Personal info"
 msgstr "Personiskā informācija"
@@ -33,7 +34,7 @@ msgstr "Svarīgi datumi"
 msgid "email address"
 msgstr "e-pasta adrese"
 
-#: apps/accounts/models.py:36
+#: apps/accounts/models.py:36 apps/rentals/models.py:41
 msgid "full name"
 msgstr "vārds, uzvārds"
 
@@ -49,11 +50,141 @@ msgstr "lietotājs"
 msgid "users"
 msgstr "lietotāji"
 
-#: irespaligs/settings.py:129
+#: apps/core/mixins.py:17
+msgid "Saved."
+msgstr "Saglabāts."
+
+#: apps/rentals/forms.py:11
+msgid "dd.mm.yyyy"
+msgstr "dd.mm.gggg"
+
+#: apps/rentals/models.py:14
+msgid "name"
+msgstr "nosaukums"
+
+#: apps/rentals/models.py:14
+msgid "e.g. “Flat in Imanta”"
+msgstr "piem., “Dzīvoklis Imantā”"
+
+#: apps/rentals/models.py:15
+msgid "address"
+msgstr "adrese"
+
+#: apps/rentals/models.py:16
+msgid "notes"
+msgstr "piezīmes"
+
+#: apps/rentals/models.py:22 apps/rentals/models.py:61
+msgid "property"
+msgstr "īpašums"
+
+#: apps/rentals/models.py:23
+msgid "properties"
+msgstr "īpašumi"
+
+#: apps/rentals/models.py:42
+msgid "email"
+msgstr "e-pasts"
+
+#: apps/rentals/models.py:42
+msgid "Monthly statements are sent here."
+msgstr "Uz šo adresi tiks sūtīti ikmēneša rēķini."
+
+#: apps/rentals/models.py:43
+msgid "phone"
+msgstr "tālrunis"
+
+#: apps/rentals/models.py:49 apps/rentals/models.py:62
+msgid "tenant"
+msgstr "īrnieks"
+
+#: apps/rentals/models.py:50
+msgid "tenants"
+msgstr "īrnieki"
+
+#: apps/rentals/models.py:63
+msgid "start date"
+msgstr "sākuma datums"
+
+#: apps/rentals/models.py:65
+msgid "end date"
+msgstr "beigu datums"
+
+#: apps/rentals/models.py:66
+msgid "monthly rent"
+msgstr "mēneša īres maksa"
+
+#: apps/rentals/models.py:67
+msgid "deposit"
+msgstr "drošības nauda"
+
+#: apps/rentals/models.py:69
+msgid "rent due day"
+msgstr "īres maksas samaksas diena"
+
+#: apps/rentals/models.py:72
+msgid "Day of the month the rent is due (1–28)."
+msgstr "Mēneša diena, līdz kurai jāsamaksā īre (1–28)."
+
+#: apps/rentals/models.py:76
+msgid "VID notified on"
+msgstr "VID paziņots"
+
+#: apps/rentals/models.py:79
+msgid ""
+"If you chose the 10 percent rental income tax regime: the date you notified "
+"VID about this lease."
+msgstr "Ja izvēlējāties īres ienākumiem 10 procentu iedzīvotāju ienākuma nodokli: datums, kad paziņojāt VID par šo līgumu."
+
+#: apps/rentals/models.py:86
+msgid "lease"
+msgstr "īres līgums"
+
+#: apps/rentals/models.py:87
+msgid "leases"
+msgstr "īres līgumi"
+
+#: apps/rentals/models.py:98
+msgid "The end date must be after the start date."
+msgstr "Beigu datumam jābūt vēlākam par sākuma datumu."
+
+#: apps/rentals/models.py:105
+msgid "This property already has a lease in this period."
+msgstr "Šim īpašumam šajā periodā jau ir īres līgums."
+
+#: apps/rentals/views.py:29 templates/pages/dashboard.html:19
+msgid "New property"
+msgstr "Jauns īpašums"
+
+#: apps/rentals/views.py:40
+msgid "Edit property"
+msgstr "Labot īpašumu"
+
+#: apps/rentals/views.py:61 templates/rentals/tenant_list.html:6
+msgid "New tenant"
+msgstr "Jauns īrnieks"
+
+#: apps/rentals/views.py:80
+msgid "Edit tenant"
+msgstr "Labot īrnieku"
+
+#: apps/rentals/views.py:92
+msgid "This tenant has leases. Delete the leases first."
+msgstr "Šim īrniekam ir īres līgumi. Vispirms dzēsiet tos."
+
+#: apps/rentals/views.py:115 templates/rentals/property_detail.html:16
+msgid "New lease"
+msgstr "Jauns īres līgums"
+
+#: apps/rentals/views.py:127
+msgid "Edit lease"
+msgstr "Labot īres līgumu"
+
+#: irespaligs/settings.py:130
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: irespaligs/settings.py:130
+#: irespaligs/settings.py:131
 msgid "English"
 msgstr "Angļu"
 
@@ -62,26 +193,59 @@ msgstr "Angļu"
 msgid "Dashboard"
 msgstr "Pārskats"
 
-#: templates/base.html:19
+#: templates/base.html:19 templates/rentals/tenant_list.html:3
+#: templates/rentals/tenant_list.html:5
+msgid "Tenants"
+msgstr "Īrnieki"
+
+#: templates/base.html:20
 msgid "Log out"
 msgstr "Iziet"
 
-#: templates/base.html:21 templates/pages/home.html:11
+#: templates/base.html:22 templates/pages/home.html:11
 msgid "Log in"
 msgstr "Ieiet"
 
-#: templates/base.html:22
+#: templates/base.html:23
 msgid "Sign up"
 msgstr "Reģistrēties"
 
-#: templates/pages/dashboard.html:6
-#, python-format
-msgid "Welcome, %(name)s!"
-msgstr "Sveicināti, %(name)s!"
+#: templates/pages/dashboard.html:9
+msgid "Leases ending soon"
+msgstr "Drīzumā beidzas līgumi"
 
-#: templates/pages/dashboard.html:7
-msgid "Your properties will appear here."
-msgstr "Šeit būs redzami jūsu īpašumi."
+#: templates/pages/dashboard.html:12
+#, python-format
+msgid "%(property)s (%(tenant)s) – ends %(date)s, in %(days)s days"
+msgstr "%(property)s (%(tenant)s) – beidzas %(date)s, pēc %(days)s dienām"
+
+#: templates/pages/dashboard.html:18
+msgid "Properties"
+msgstr "Īpašumi"
+
+#: templates/pages/dashboard.html:24
+msgid "Property"
+msgstr "Īpašums"
+
+#: templates/pages/dashboard.html:24 templates/rentals/property_detail.html:22
+msgid "Tenant"
+msgstr "Īrnieks"
+
+#: templates/pages/dashboard.html:25 templates/rentals/property_detail.html:23
+msgid "Rent"
+msgstr "Īres maksa"
+
+#: templates/pages/dashboard.html:25
+msgid "Lease ends"
+msgstr "Līgums beidzas"
+
+#: templates/pages/dashboard.html:36
+msgid "Vacant"
+msgstr "Brīvs"
+
+#: templates/pages/dashboard.html:44
+msgid "You have no properties yet. Start by adding your first one."
+msgstr "Jums vēl nav neviena īpašuma. Sāciet, pievienojot pirmo."
 
 #: templates/pages/home.html:3
 msgid "Home"
@@ -98,3 +262,74 @@ msgstr "Vienkāršs rīks izīrētājiem Latvijā."
 #: templates/pages/home.html:10
 msgid "Create a free account"
 msgstr "Izveidot bezmaksas kontu"
+
+#: templates/rentals/confirm_delete.html:3
+#: templates/rentals/confirm_delete.html:5
+#: templates/rentals/property_detail.html:11
+#: templates/rentals/property_detail.html:33
+#: templates/rentals/tenant_list.html:16
+msgid "Delete"
+msgstr "Dzēst"
+
+#: templates/rentals/confirm_delete.html:6
+#, python-format
+msgid "Are you sure you want to delete “%(name)s”? This cannot be undone."
+msgstr "Vai tiešām dzēst “%(name)s”? To nevarēs atsaukt."
+
+#: templates/rentals/confirm_delete.html:9
+msgid "Yes, delete"
+msgstr "Jā, dzēst"
+
+#: templates/rentals/confirm_delete.html:10
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: templates/rentals/form.html:10
+msgid "+ Add a new tenant"
+msgstr "+ Pievienot jaunu īrnieku"
+
+#: templates/rentals/form.html:12
+msgid "Save"
+msgstr "Saglabāt"
+
+#: templates/rentals/property_detail.html:10
+#: templates/rentals/property_detail.html:32
+#: templates/rentals/tenant_list.html:15
+msgid "Edit"
+msgstr "Labot"
+
+#: templates/rentals/property_detail.html:15
+msgid "Leases"
+msgstr "Īres līgumi"
+
+#: templates/rentals/property_detail.html:22
+msgid "Period"
+msgstr "Periods"
+
+#: templates/rentals/property_detail.html:23
+msgid "Deposit"
+msgstr "Drošības nauda"
+
+#: templates/rentals/property_detail.html:28
+msgid "active"
+msgstr "spēkā"
+
+#: templates/rentals/property_detail.html:40
+msgid "No leases yet."
+msgstr "Vēl nav neviena īres līguma."
+
+#: templates/rentals/tenant_list.html:10
+msgid "Name"
+msgstr "Vārds, uzvārds"
+
+#: templates/rentals/tenant_list.html:10
+msgid "Email"
+msgstr "E-pasts"
+
+#: templates/rentals/tenant_list.html:10
+msgid "Phone"
+msgstr "Tālrunis"
+
+#: templates/rentals/tenant_list.html:23
+msgid "No tenants yet."
+msgstr "Vēl nav neviena īrnieka."

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n money %}
+{% block head_title %}{{ object.name }}{% endblock %}
+{% block content %}
+  <hgroup>
+    <h1>{{ object.name }}</h1>
+    <p>{{ object.address }}</p>
+  </hgroup>
+  <p>
+    <a href="{% url 'rentals:property_update' object.pk %}">{% translate "Edit" %}</a> ·
+    <a href="{% url 'rentals:property_delete' object.pk %}">{% translate "Delete" %}</a>
+  </p>
+  {% if object.notes %}<p>{{ object.notes|linebreaksbr }}</p>{% endif %}
+
+  <h2>{% translate "Leases" %}</h2>
+  <p><a href="{% url 'rentals:lease_create' object.pk %}" role="button">{% translate "New lease" %}</a></p>
+  {% with leases=object.leases.all %}
+    {% if leases %}
+      <div class="overflow-auto">
+      <table>
+        <thead><tr>
+          <th>{% translate "Tenant" %}</th><th>{% translate "Period" %}</th>
+          <th>{% translate "Rent" %}</th><th>{% translate "Deposit" %}</th><th></th>
+        </tr></thead>
+        <tbody>
+        {% for lease in leases %}
+          <tr>
+            <td>{{ lease.tenant }}{% if lease.is_active %} <mark>{% translate "active" %}</mark>{% endif %}</td>
+            <td>{{ lease.start_date|date:"SHORT_DATE_FORMAT" }} – {{ lease.end_date|date:"SHORT_DATE_FORMAT" }}</td>
+            <td>{{ lease.monthly_rent|eur }}</td>
+            <td>{{ lease.deposit|eur }}</td>
+            <td><a href="{% url 'rentals:lease_update' lease.pk %}">{% translate "Edit" %}</a> ·
+                <a href="{% url 'rentals:lease_delete' lease.pk %}">{% translate "Delete" %}</a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    {% else %}
+      <p>{% translate "No leases yet." %}</p>
+    {% endif %}
+  {% endwith %}
+{% endblock %}

@@ -29,6 +29,7 @@ in the terminal where `docker compose up` runs. Look for the confirmation link o
 
 | What | Command |
 |---|---|
+| Create demo data (login `demo@example.lv` / `demo-parole-2026`) | `docker compose run --rm web python manage.py seed_demo` |
 | Run tests | `docker compose run --rm web pytest` |
 | Create an admin user (for /admin/) | `docker compose run --rm web python manage.py createsuperuser` |
 | After changing a model | `docker compose run --rm web python manage.py makemigrations` |
