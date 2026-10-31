@@ -153,4 +153,4 @@ def test_vid_reminder_counts_from_signing_date(lease):
     lease.save()
     send_reminders(D(2026, 10, 21))
     assert "20.10.2026" in mail.outbox[0].body
-    assert "5" in mail.outbox[0].body
+    assert "piecu darbdienu" in mail.outbox[0].body  # "within 5 working days"
