@@ -74,15 +74,21 @@ Plan limits live in `apps/subscriptions/plans.py`.
 
 ## Deploying (Render, Frankfurt)
 
-`render.yaml` describes the web app, a PostgreSQL database and the daily reminder job, all in
-the Frankfurt region (EU). Rough steps:
+`render.yaml` describes the web app, a PostgreSQL 17 database and the daily reminder job, all in
+the Frankfurt region (EU). Field names were checked against Render's Blueprint docs (31.10.2026).
 
-1. Push this repository to GitHub (private).
-2. In Render: **New → Blueprint**, pick the repo. Fill in the variables marked `sync: false`.
-3. Create an environment group `irespaligs-shared` for the cron job with the same variables.
-4. Point your domain to Render, set `DJANGO_ALLOWED_HOSTS` and `DJANGO_CSRF_TRUSTED_ORIGINS`.
-5. Create the Stripe webhook (see "Payments") and a Brevo SMTP key.
-6. Create your admin user: Render shell → `python manage.py createsuperuser`.
+1. **Put the code on GitHub (private).** Create an empty *private* repository on github.com
+   (e.g. `irespaligs`, no README), then in this folder:
+   `git remote add origin https://github.com/<your-user>/irespaligs.git` and `git push -u origin main`.
+2. **Render:** New → Blueprint → pick the repository. Render asks for every value marked
+   `sync: false` (allowed hosts, admin path, email and Stripe keys).
+3. **Email:** create a Brevo account, add your sending domain with SPF/DKIM records (otherwise
+   notices land in spam), and put the SMTP login into `EMAIL_HOST_USER` / `EMAIL_HOST_PASSWORD`.
+4. **Domain:** point your domain to the Render web service; set `DJANGO_ALLOWED_HOSTS` and
+   `DJANGO_CSRF_TRUSTED_ORIGINS` accordingly.
+5. **Stripe:** create the webhook endpoint `https://<your-domain>/stripe/webhook/` (see "Payments").
+6. **Admin user:** Render dashboard → web service → Shell → `python manage.py createsuperuser`.
+7. **Check the cron job's first run time** (the timezone is assumed to be UTC).
 
 Before real users: see the open items in [VERIFY.md](VERIFY.md) and replace the `[PLACEHOLDERS]`
 in `templates/pages/legal/`.

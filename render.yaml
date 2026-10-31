@@ -1,11 +1,12 @@
 # Render Blueprint – everything in Frankfurt (EU). See README "Deploying".
-# TODO: verify field names and plans against current Render docs before first deploy.
+# Field names and plan IDs checked against https://render.com/docs/blueprint-spec on 31.10.2026.
+# `sync: false` = Render asks you for the value when the Blueprint is first created.
 services:
   - type: web
     name: irespaligs-web
     runtime: docker
     region: frankfurt
-    plan: starter
+    plan: 0.5c-512mb
     healthCheckPath: /
     preDeployCommand: python manage.py migrate --noinput
     envVars:
@@ -18,7 +19,7 @@ services:
       - key: DJANGO_CSRF_TRUSTED_ORIGINS
         sync: false # e.g. https://irespaligs.lv
       - key: DJANGO_ADMIN_URL
-        sync: false
+        sync: false # e.g. office-7f3k/
       - key: DATABASE_URL
         fromDatabase:
           name: irespaligs-db
@@ -42,20 +43,39 @@ services:
       - key: STRIPE_PRICE_YEARLY
         sync: false
 
-  # Daily reminders: 05:00 UTC = 07:00 Riga in winter, 08:00 in summer
+  # Daily reminders. Render's docs don't state the cron timezone; assuming UTC:
+  # 05:00 UTC = 07:00 Riga in winter, 08:00 in summer. Check the first run time in the dashboard.
   - type: cron
     name: irespaligs-reminders
     runtime: docker
     region: frankfurt
-    plan: starter
+    plan: 0.5c-512mb
     schedule: "0 5 * * *"
     dockerCommand: python manage.py send_reminders
     envVars:
-      - fromGroup: irespaligs-shared # create in the dashboard with the same variables as the web service
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true # not shared with the web app; the reminder job signs nothing
+      - key: DJANGO_ALLOWED_HOSTS
+        value: localhost
+      - key: DATABASE_URL
+        fromDatabase:
+          name: irespaligs-db
+          property: connectionString
+      - key: DEFAULT_FROM_EMAIL
+        sync: false
+      - key: EMAIL_HOST
+        value: smtp-relay.brevo.com
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
 
 databases:
   - name: irespaligs-db
     region: frankfurt
-    plan: basic-256mb
+    plan: 0.1c-256mb
+    postgresMajorVersion: "17" # same as local development (docker-compose.yml)
     databaseName: irespaligs
     user: irespaligs
