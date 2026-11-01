@@ -1,0 +1,46 @@
+# Runs the test suite on every push and pull request.
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: irespaligs
+          POSTGRES_USER: irespaligs
+          POSTGRES_PASSWORD: irespaligs
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U irespaligs"
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      DJANGO_DEBUG: "1"
+      DATABASE_URL: postgres://irespaligs:irespaligs@localhost:5432/irespaligs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: System libraries for PDF generation and translations
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gettext libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Migrations are up to date
+        run: python manage.py makemigrations --check --dry-run
+      - name: Run tests
+        run: pytest

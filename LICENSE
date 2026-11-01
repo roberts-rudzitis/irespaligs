@@ -1,0 +1,7 @@
+Copyright (c) 2026 Roberts Rudzītis. All rights reserved.
+
+This repository is public so that the source code can be viewed and evaluated, for example by
+prospective employers. No licence is granted to copy, modify, distribute or use this software,
+in whole or in part, without the prior written permission of the copyright holder.
+
+Third-party components keep their own licences (see requirements.txt and static/css/pico.min.css).
