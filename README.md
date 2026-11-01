@@ -73,7 +73,7 @@ dates that matter (overdue rent, lease end, tax notifications).
 - [SPEC.md](SPEC.md) – persona, user stories, MVP scope, pricing, success metric
 - [ARCHITECTURE.md](ARCHITECTURE.md) – stack decisions, data model, auth, payments, deployment
 - [VERIFY.md](VERIFY.md) – legal and tax assumptions with sources and status
-- [CLAUDE.md](CLAUDE.md) – coding conventions for the project
+- [CONTRIBUTING.md](CONTRIBUTING.md) – commands, coding conventions and rules for the project
 
 ## Run it locally
 
